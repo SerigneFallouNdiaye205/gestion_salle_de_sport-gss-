@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="570.0" prefWidth="966.0"
+            style="-fx-background-color: #f3f4f6;"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gss.gss.controller.UtilisateursController">
+    <children>
+        <ScrollPane fitToHeight="true" fitToWidth="true"
+                    hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0"
+                    prefHeight="327.0" prefWidth="840.0"
+                    AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <content>
+                <AnchorPane>
+                    <children>
+                        <TableView fx:id="utilisateursTable" layoutX="-10.0" layoutY="21.0"
+                                   prefHeight="275.0" prefWidth="803.0"
+                                   AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0"
+                                   AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+                            <columns>
+                                <TableColumn fx:id="idColumn" prefWidth="53.99997270107269" text="ID" />
+                                <TableColumn fx:id="usernameColumn" prefWidth="107.99996566772461" text="nom d'utilisateur" />
+                                <TableColumn fx:id="typeColumn" prefWidth="200.0" text="type" />
+                                <TableColumn fx:id="dateCreationColumn" prefWidth="250.0" text="Date de creation" />
+                                <TableColumn fx:id="statutColumn" prefWidth="200.0" text="Statut" />
+                            </columns>
+                            <effect>
+                                <DropShadow height="9.32" radius="3.7775" spread="0.52" width="7.79">
+                                    <color>
+                                        <Color red="0.7280701994895935" green="0.6808804273605347" blue="0.6808804273605347" />
+                                    </color>
+                                </DropShadow>
+                            </effect>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <HBox alignment="CENTER" layoutX="37.0" layoutY="100.0" prefHeight="40.0" prefWidth="737.0" spacing="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <children>
+                <TextField fx:id="searchField" prefHeight="29.0" prefWidth="269.0" promptText="Nom, prénom, téléphone ou email ">
+                    <font>
+                        <Font name="Times New Roman" size="15.0" />
+                    </font>
+                </TextField>
+                <ComboBox fx:id="statusComboBox" prefHeight="30.0" prefWidth="115.0" promptText="Statut">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </ComboBox>
+                <ComboBox fx:id="typeComboBox" prefHeight="30.0" prefWidth="115.0" promptText="Type">
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                </ComboBox>
+                <Button alignment="CENTER" onAction="#handleSearch" prefHeight="30.0" text="rechercher">
+                    <font>
+                        <Font name="Times New Roman" size="13.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                    <graphic>
+                        <FontAwesomeIconView fill="#3051A0" glyphName="SEARCH" size="15" />
+                    </graphic>
+                </Button>
+                <Button alignment="CENTER" onAction="#handleRefresh" prefHeight="30.0" text="Actualiser">
+                    <font>
+                        <Font name="Times New Roman" size="13.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                    <graphic>
+                        <FontAwesomeIconView fill="#3051A0" glyphName="REFRESH" size="15" />
+                    </graphic>
+                </Button>
+                <Button onAction="#handleAdd" prefHeight="30.0" style="-fx-background-color: #16a34a;" text="nouvel utilisateur" textFill="#eff0f5">
+                    <font>
+                        <Font name="Times New Roman" size="13.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="20.0" />
+                    </HBox.margin>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
+                    </graphic>
+                </Button>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+        <Label layoutX="37.0" layoutY="66.0" prefHeight="34.0" prefWidth="340.0" text="Ajouter, modifier, rechercher et gérer les utilisateurs" textFill="#c7bfbf" AnchorPane.leftAnchor="25.0">
+            <font>
+                <Font name="Times New Roman" size="16.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="513.0" prefHeight="35.0" spacing="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <children>
+                <Button onAction="#handleEdit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Modifier" textFill="#eff0f5">
+                    <font>
+                        <Font name="Times New Roman Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
+                    </graphic>
+                </Button>
+                <Button onAction="#handleDelete" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: red;" text="Supprimer" textFill="#eff0f5">
+                    <font>
+                        <Font name="Times New Roman Bold" size="13.0" />
+                    </font>
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

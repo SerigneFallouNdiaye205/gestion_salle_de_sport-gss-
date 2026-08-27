@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import java.net.URL?>
+<BorderPane fx:id="container" prefHeight="618.0" prefWidth="950.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gss.gss.controller.DashboardController">
+    <stylesheets>
+        <URL value="@../css/dashboard.css"/>
+    </stylesheets>
+
+    <!-- ========================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================= -->
+
+    <left>
+        <VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: #3051A0;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20" left="15" right="15" top="25" />
+            </padding>
+            <!-- Logo -->
+            <Label style="-fx-text-fill: white;" text="GSS">
+                <font>
+                    <Font name="Times New Roman Bold" size="21.0" />
+                </font>
+            </Label>
+            <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;             -fx-font-size: 13px;" text="Utilisateur" />
+
+            <Separator />
+
+            <!-- Accueil -->
+            <Button fx:id="homeButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleHome"
+                    prefHeight="42" text="Tableau de bord"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="DASHBOARD" size="20" />
+                </graphic>
+            </Button>
+            <!-- Membres -->
+            <Button fx:id="membersButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleMembers"
+                    prefHeight="42" text="Membres"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="USERS" size="20" />
+                </graphic>
+            </Button>
+            <!-- Paiements -->
+            <Button fx:id="paymentsButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handlePayments"
+                    prefHeight="42" text="Paiements"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="MONEY" size="20" />
+                </graphic>
+            </Button>
+            <!-- Abonnements -->
+            <Button fx:id="subscriptionsButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleSubscriptions"
+                    prefHeight="42" text="Abonnements"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="CREDIT_CARD" size="20" />
+                </graphic>
+            </Button>
+            <!-- Séances -->
+            <Button fx:id="sessionsButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleSessions"
+                    prefHeight="42" text="Séances"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="CALENDAR" size="20" />
+                </graphic>
+            </Button>
+            <!-- Coachs -->
+            <Button fx:id="coachesButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleCoaches"
+                    prefHeight="42" text="Coachs"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="USER_MD" size="20" />
+                </graphic>
+            </Button>
+            <!-- Utilisateurs -->
+            <Button fx:id="usersButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleUsers"
+                    prefHeight="42" text="Utilisateurs"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
+                </graphic>
+            </Button>
+
+
+            <VBox VBox.vgrow="ALWAYS" />
+
+            <Separator />
+
+            <Button fx:id="logoutButton" alignment="CENTER"
+                    maxWidth="250" onAction="#handleLogout"
+                    prefHeight="42" text="Déconnexion"
+                    styleClass="logout-button">
+                <font>
+                    <Font name="Times New Roman" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#dc2626" glyphName="SIGN_OUT" size="20" />
+                </graphic>
+            </Button>
+
+        </VBox>
+    </left>
+
+
+
+    <center>
+        <BorderPane prefHeight="539.0" prefWidth="380.0">
+            <!-- HEADER -->
+            <top>
+                <HBox alignment="CENTER_LEFT" prefHeight="70" spacing="15" style="-fx-background-color: #eff0f5;                 -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                    <padding>
+                        <Insets left="30" right="30" />
+                    </padding>
+                    <Label fx:id="welcomeLabel" style="-fx-font-size: 22px;                     -fx-font-weight: bold;                     -fx-text-fill: #111827;" />
+                </HBox>
+
+            </top>
+            <!-- CONTENU -->
+            <center>
+                <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" style="-fx-background-color: #f3f4f6;">
+                    <padding>
+                        <Insets bottom="30" left="30" right="30" top="30" />
+                    </padding>
+                    <Label style="-fx-font-size: 24px;                     -fx-font-weight: bold;                     -fx-text-fill: #111827;" text="Vue d'ensemble" />
+
+                    <!-- CARTES -->
+                    <HBox spacing="20">
+
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                            <Label style="-fx-font-size: 15px;                                          -fx-text-fill: #6b7280;" text="Membres" />
+                            <Label fx:id="membersCountLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
+                        </VBox>
+
+
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                            <Label style="-fx-font-size: 15px;                                         -fx-text-fill: #6b7280;" text="Abonnements actifs" />
+                            <Label fx:id="activeSubscriptionsLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
+                        </VBox>
+
+
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+
+                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Paiements" />
+
+                            <Label fx:id="paymentsCountLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
+
+                        </VBox>
+
+
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+
+                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Séances" />
+
+                            <Label fx:id="sessionsCountLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
+                        </VBox>
+                    </HBox>
+               <ScrollPane prefHeight="600.0" prefWidth="1000.0">
+                 <content>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="970.0">
+                        <children>
+                                <!-- MESSAGE -->
+                                <StackPane fx:id="contentPane" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;                                     -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                    </StackPane>
+                        </children>
+                     </AnchorPane>
+                 </content>
+               </ScrollPane>
+
+                </VBox>
+
+            </center>
+
+        </BorderPane>
+
+    </center>
+
+</BorderPane>

@@ -1,0 +1,26 @@
+.nav-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #eff0f5;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+.nav-button:hover{
+    -fx-background-color: #4873d7;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #eff0f5;
+
+}
+
+.logout-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #eff0f5;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+.logout-button:hover{
+    -fx-background-color: #c02424;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-text-fill: #eff0f5;
+}

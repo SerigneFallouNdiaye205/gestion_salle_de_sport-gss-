@@ -1,0 +1,4 @@
+package com.gss.gss.service;
+
+public class CoachService {
+}

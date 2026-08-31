@@ -11,7 +11,8 @@ public class Coach {
     private Double salaire;
     private String disponibilite;
 
-    public Coach(){}
+    public Coach() {
+    }
 
     public Coach(
             int id,
@@ -36,6 +37,7 @@ public class Coach {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -43,6 +45,7 @@ public class Coach {
     public String getNom() {
         return nom;
     }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -50,6 +53,7 @@ public class Coach {
     public String getPrenom() {
         return prenom;
     }
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
@@ -57,6 +61,7 @@ public class Coach {
     public String getTelephone() {
         return telephone;
     }
+
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
@@ -64,6 +69,7 @@ public class Coach {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -71,6 +77,7 @@ public class Coach {
     public String getSpecialite() {
         return specialite;
     }
+
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
@@ -78,6 +85,7 @@ public class Coach {
     public Double getSalaire() {
         return salaire;
     }
+
     public void setSalaire(Double salaire) {
         this.salaire = salaire;
     }
@@ -85,8 +93,8 @@ public class Coach {
     public String getDisponibilite() {
         return disponibilite;
     }
+
     public void setDisponibilite(String disponibilite) {
         this.disponibilite = disponibilite;
     }
-
 }

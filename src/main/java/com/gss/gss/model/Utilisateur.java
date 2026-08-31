@@ -11,9 +11,15 @@ public class Utilisateur {
     private String statut;
     private LocalDate dateCreation;
 
-    public Utilisateur() {}
+    public Utilisateur() {
+    }
 
-    public Utilisateur(String username, String password, String type, String statut) {
+    public Utilisateur(
+            String username,
+            String password,
+            String type,
+            String statut
+    ) {
         this.username = username;
         this.password = password;
         this.type = type;

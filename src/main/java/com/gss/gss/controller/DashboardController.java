@@ -24,14 +24,6 @@ public class DashboardController {
     @FXML
     private StackPane contentPane;
     @FXML
-    private Label membersCountLabel;
-    @FXML
-    private Label activeSubscriptionsLabel;
-    @FXML
-    private Label paymentsCountLabel;
-    @FXML
-    private Label sessionsCountLabel;
-    @FXML
     private Button homeButton;
     @FXML
     private Button membersButton;
@@ -63,9 +55,6 @@ public class DashboardController {
         // Adapter le menu au rôle
         configureMenu(utilisateur.getType());
 
-        // Pour l'instant les statistiques sont à 0.
-        // Elles seront récupérées depuis la base plus tard.
-        loadStatistics();
     }
 
     // Configure les boutons selon le rôle.
@@ -219,18 +208,7 @@ public class DashboardController {
                 usersButton.setManaged(false);
         }
     }
-    /**
-     * Charge les statistiques du dashboard.
 
-     * Pour le moment les valeurs sont à 0.
-     * Plus tard, elles viendront des services/DAO.
-     */
-    private void loadStatistics() {
-        membersCountLabel.setText("0");
-        activeSubscriptionsLabel.setText("0");
-        paymentsCountLabel.setText("0");
-        sessionsCountLabel.setText("0");
-    }
 
     @FXML
     private void handleHome() {
@@ -249,7 +227,9 @@ public class DashboardController {
         } catch (IOException e) {
 
             e.printStackTrace();
-        }    }
+        }
+    }
+
     @FXML
     private void handleMembers() {
         //Gestion des membres
@@ -271,7 +251,7 @@ public class DashboardController {
         }
     }
     @FXML
-    private void handlePayments() {
+    private void handlePaiements() {
         // Gestion des paiements
         try {
 
@@ -290,7 +270,7 @@ public class DashboardController {
         }
     }
     @FXML
-    private void handleSubscriptions() {
+    private void handleAbonnements() {
         // Gestion des abonnements
         try {
 
@@ -309,7 +289,7 @@ public class DashboardController {
         }
     }
     @FXML
-    private void handleSessions() {
+    private void handleSeances() {
         // Gestion des seances
         try {
 
@@ -328,7 +308,7 @@ public class DashboardController {
         }
     }
     @FXML
-    private void handleCoaches() {
+    private void handleCoachs() {
         // Gestion des paiements
         try {
 
@@ -349,7 +329,7 @@ public class DashboardController {
 
 
     @FXML
-    private void handleUsers() {
+    private void handleUtilisateurs() {
     // Gestion des utilisateurs
         try {
 

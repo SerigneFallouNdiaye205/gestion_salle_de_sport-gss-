@@ -37,7 +37,8 @@
                     <Font name="Times New Roman Bold" size="21.0" />
                 </font>
             </Label>
-            <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;             -fx-font-size: 13px;" text="Utilisateur" />
+            <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;
+            -fx-font-size: 13px;" text="Utilisateur" />
 
             <Separator />
 
@@ -67,7 +68,7 @@
             </Button>
             <!-- Paiements -->
             <Button fx:id="paymentsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handlePayments"
+                    maxWidth="250" onAction="#handlePaiements"
                     prefHeight="42" text="Paiements"
                     styleClass="nav-button">
                 <font>
@@ -79,7 +80,7 @@
             </Button>
             <!-- Abonnements -->
             <Button fx:id="subscriptionsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleSubscriptions"
+                    maxWidth="250" onAction="#handleAbonnements"
                     prefHeight="42" text="Abonnements"
                     styleClass="nav-button">
                 <font>
@@ -91,7 +92,7 @@
             </Button>
             <!-- Séances -->
             <Button fx:id="sessionsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleSessions"
+                    maxWidth="250" onAction="#handleSeances"
                     prefHeight="42" text="Séances"
                     styleClass="nav-button">
                 <font>
@@ -103,7 +104,7 @@
             </Button>
             <!-- Coachs -->
             <Button fx:id="coachesButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleCoaches"
+                    maxWidth="250" onAction="#handleCoachs"
                     prefHeight="42" text="Coachs"
                     styleClass="nav-button">
                 <font>
@@ -115,7 +116,7 @@
             </Button>
             <!-- Utilisateurs -->
             <Button fx:id="usersButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleUsers"
+                    maxWidth="250" onAction="#handleUtilisateurs"
                     prefHeight="42" text="Utilisateurs"
                     styleClass="nav-button">
                 <font>
@@ -131,6 +132,7 @@
 
             <Separator />
 
+            <!-- Déconnexion -->
             <Button fx:id="logoutButton" alignment="CENTER"
                     maxWidth="250" onAction="#handleLogout"
                     prefHeight="42" text="Déconnexion"
@@ -172,31 +174,29 @@
                     <HBox spacing="20">
 
                         <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
-                            <Label style="-fx-font-size: 15px;                                          -fx-text-fill: #6b7280;" text="Membres" />
-                            <Label fx:id="membersCountLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
+                            <Label style="-fx-font-size: 15px;
+                            -fx-text-fill: #6b7280;" text="Membres" />
                         </VBox>
 
 
                         <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
-                            <Label style="-fx-font-size: 15px;                                         -fx-text-fill: #6b7280;" text="Abonnements actifs" />
-                            <Label fx:id="activeSubscriptionsLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
-                        </VBox>
-
-
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
-
-                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Paiements" />
-
-                            <Label fx:id="paymentsCountLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
-
+                            <Label style="-fx-font-size: 15px;
+                            -fx-text-fill: #6b7280;" text="Abonnements actifs" />
                         </VBox>
 
 
                         <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
 
-                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Séances" />
+                            <Label style="-fx-font-size: 15px;
+                            -fx-text-fill: #6b7280;" text="Paiements" />
 
-                            <Label fx:id="sessionsCountLabel" style="-fx-font-size: 30px;                                         -fx-font-weight: bold;                                         -fx-text-fill: #111827;" text="0" />
+                        </VBox>
+
+
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+
+                            <Label style="-fx-font-size: 15px;
+                            -fx-text-fill: #6b7280;" text="Séances" />
                         </VBox>
                     </HBox>
                <ScrollPane prefHeight="600.0" prefWidth="1000.0">

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.gss.gss.controller.CoachFormController"
+      prefWidth="500"
+      prefHeight="520"
+      spacing="20"
+      style="-fx-background-color: #f8fafc;">
+
+    <padding>
+        <Insets top="25"
+                right="30"
+                bottom="25"
+                left="30"/>
+    </padding>
+
+    <Label text="Informations du coach"
+           style="-fx-font-size: 22px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1e293b;"/>
+
+    <GridPane hgap="12"
+              vgap="15">
+
+        <Label text="Nom :"
+               GridPane.rowIndex="0"
+               GridPane.columnIndex="0"/>
+
+        <TextField fx:id="nomField"
+                   promptText="Nom"
+                   GridPane.rowIndex="0"
+                   GridPane.columnIndex="1"/>
+
+
+        <Label text="Prénom :"
+               GridPane.rowIndex="1"
+               GridPane.columnIndex="0"/>
+
+        <TextField fx:id="prenomField"
+                   promptText="Prénom"
+                   GridPane.rowIndex="1"
+                   GridPane.columnIndex="1"/>
+
+
+        <Label text="Téléphone :"
+               GridPane.rowIndex="2"
+               GridPane.columnIndex="0"/>
+
+        <TextField fx:id="telephoneField"
+                   promptText="Téléphone"
+                   GridPane.rowIndex="2"
+                   GridPane.columnIndex="1"/>
+
+
+        <Label text="Email :"
+               GridPane.rowIndex="3"
+               GridPane.columnIndex="0"/>
+
+        <TextField fx:id="emailField"
+                   promptText="Email"
+                   GridPane.rowIndex="3"
+                   GridPane.columnIndex="1"/>
+
+
+        <Label text="Spécialité :"
+               GridPane.rowIndex="4"
+               GridPane.columnIndex="0"/>
+
+        <ComboBox fx:id="specialiteComboBox"
+                  prefWidth="250"
+                  GridPane.rowIndex="4"
+                  GridPane.columnIndex="1"/>
+
+
+        <Label text="Salaire :"
+               GridPane.rowIndex="5"
+               GridPane.columnIndex="0"/>
+
+        <TextField fx:id="salaireField"
+                   promptText="Ex : 150000"
+                   GridPane.rowIndex="5"
+                   GridPane.columnIndex="1"/>
+
+
+        <Label text="Disponibilité :"
+               GridPane.rowIndex="6"
+               GridPane.columnIndex="0"/>
+
+        <ComboBox fx:id="disponibiliteComboBox"
+                  prefWidth="250"
+                  GridPane.rowIndex="6"
+                  GridPane.columnIndex="1"/>
+
+    </GridPane>
+
+    <HBox spacing="10">
+
+        <Button text="Annuler"
+                onAction="#handleCancel"
+                prefWidth="110"
+                prefHeight="40"
+                style="-fx-background-color: #64748b;
+                       -fx-text-fill: white;
+                       -fx-background-radius: 6px;
+                       -fx-cursor: hand;"/>
+
+        <Button text="Enregistrer"
+                onAction="#handleSave"
+                prefWidth="130"
+                prefHeight="40"
+                style="-fx-background-color: #2563eb;
+                       -fx-text-fill: white;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 6px;
+                       -fx-cursor: hand;"/>
+
+    </HBox>
+
+</VBox>

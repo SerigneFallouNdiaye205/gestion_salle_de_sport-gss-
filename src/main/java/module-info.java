@@ -2,6 +2,7 @@ module com.gss.gss {
 
     requires javafx.controls;
     requires javafx.fxml;
+    requires jbcrypt;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

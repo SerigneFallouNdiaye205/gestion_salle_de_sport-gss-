@@ -17,37 +17,26 @@ public class AbonnementController {
 
     @FXML
     private TextField searchField;
-
     @FXML
     private ComboBox<String> typeComboBox;
-
     @FXML
     private ComboBox<String> statutComboBox;
-
     @FXML
     private TableView<Abonnement> abonnementsTable;
-
     @FXML
     private TableColumn<Abonnement, Number> idColumn;
-
     @FXML
     private TableColumn<Abonnement, Number> membreIdColumn;
-
     @FXML
     private TableColumn<Abonnement, String> typeColumn;
-
     @FXML
     private TableColumn<Abonnement, Number> prixColumn;
-
     @FXML
     private TableColumn<Abonnement, String> dateDebutColumn;
-
     @FXML
     private TableColumn<Abonnement, String> dateFinColumn;
-
     @FXML
     private TableColumn<Abonnement, String> statutColumn;
-
     @FXML
     private TableColumn<Abonnement, String> joursRestantsColumn;
 

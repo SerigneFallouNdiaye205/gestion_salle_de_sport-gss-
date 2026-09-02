@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.gss.gss.controller.CoachController"
@@ -58,7 +59,11 @@
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
                                -fx-background-radius: 6px;
-                               -fx-cursor: hand;"/>
+                               -fx-cursor: hand;">
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="SEARCH" size="15" />
+                    </graphic>
+                </Button>
 
                 <ComboBox fx:id="specialiteComboBox"
                           prefWidth="150"
@@ -79,7 +84,11 @@
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
                                -fx-background-radius: 6px;
-                               -fx-cursor: hand;"/>
+                               -fx-cursor: hand;">
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="REFRESH" size="15" />
+                    </graphic>
+                </Button>
 
             </HBox>
 
@@ -159,14 +168,18 @@
                         left="25"/>
             </padding>
 
-            <Button text="+ Nouveau coach"
+            <Button text="Nouveau coach"
                     onAction="#handleAdd"
                     prefHeight="40"
                     style="-fx-background-color: #16a34a;
                            -fx-text-fill: white;
                            -fx-font-weight: bold;
                            -fx-background-radius: 6px;
-                           -fx-cursor: hand;"/>
+                           -fx-cursor: hand;">
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
+                </graphic>
+            </Button>
 
             <Button text="Modifier"
                     onAction="#handleEdit"
@@ -175,7 +188,11 @@
                            -fx-text-fill: white;
                            -fx-font-weight: bold;
                            -fx-background-radius: 6px;
-                           -fx-cursor: hand;"/>
+                           -fx-cursor: hand;">
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
+                    </graphic>
+            </Button>
 
             <Button text="Supprimer"
                     onAction="#handleDelete"
@@ -184,7 +201,18 @@
                            -fx-text-fill: white;
                            -fx-font-weight: bold;
                            -fx-background-radius: 6px;
-                           -fx-cursor: hand;"/>
+                           -fx-cursor: hand;">
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
+                </graphic>
+            </Button>
+
+            <HBox HBox.hgrow="ALWAYS"/>
+
+            <Label text="Sélectionnez un coach pour effectuer une action."
+                   style="-fx-text-fill: #64748b;
+                          -fx-font-size: 12px;"
+                   alignment="CENTER_RIGHT"/>
 
         </HBox>
 

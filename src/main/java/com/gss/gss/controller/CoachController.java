@@ -27,37 +27,26 @@ public class CoachController {
 
     @FXML
     private TextField searchField;
-
     @FXML
     private ComboBox<String> specialiteComboBox;
-
     @FXML
     private ComboBox<String> disponibiliteComboBox;
-
     @FXML
     private TableView<Coach> coachsTable;
-
     @FXML
     private TableColumn<Coach, Number> idColumn;
-
     @FXML
     private TableColumn<Coach, String> nomColumn;
-
     @FXML
     private TableColumn<Coach, String> prenomColumn;
-
     @FXML
     private TableColumn<Coach, String> telephoneColumn;
-
     @FXML
     private TableColumn<Coach, String> emailColumn;
-
     @FXML
     private TableColumn<Coach, String> specialiteColumn;
-
     @FXML
     private TableColumn<Coach, Number> salaireColumn;
-
     @FXML
     private TableColumn<Coach, String> disponibiliteColumn;
 
@@ -179,9 +168,7 @@ public class CoachController {
                 searchField.getText().trim();
 
         if (recherche.isEmpty()) {
-
             chargerCoachs();
-
             return;
         }
 

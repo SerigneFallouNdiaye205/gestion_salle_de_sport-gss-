@@ -14,22 +14,16 @@ public class CoachFormController {
 
     @FXML
     private TextField nomField;
-
     @FXML
     private TextField prenomField;
-
     @FXML
     private TextField telephoneField;
-
     @FXML
     private TextField emailField;
-
     @FXML
     private ComboBox<String> specialiteComboBox;
-
     @FXML
     private TextField salaireField;
-
     @FXML
     private ComboBox<String> disponibiliteComboBox;
 
@@ -98,15 +92,11 @@ public class CoachFormController {
         if (coach.getSalaire() != null) {
 
             salaireField.setText(
-                    String.valueOf(
-                            coach.getSalaire()
-                    )
+                    String.valueOf(coach.getSalaire())
             );
         }
 
-        disponibiliteComboBox.setValue(
-                coach.getDisponibilite()
-        );
+        disponibiliteComboBox.setValue(coach.getDisponibilite());
     }
 
     @FXML
@@ -174,20 +164,11 @@ public class CoachFormController {
                                 ? null
                                 : email
                 );
-                nouveauCoach.setSpecialite(
-                        specialite
-                );
-                nouveauCoach.setSalaire(
-                        salaire
-                );
-                nouveauCoach.setDisponibilite(
-                        disponibilite
-                );
+                nouveauCoach.setSpecialite(specialite);
+                nouveauCoach.setSalaire(salaire);
+                nouveauCoach.setDisponibilite(disponibilite);
 
-                boolean resultat =
-                        coachService.save(
-                                nouveauCoach
-                        );
+                boolean resultat = coachService.save(nouveauCoach);
 
                 if (resultat) {
 
@@ -218,20 +199,12 @@ public class CoachFormController {
                                 ? null
                                 : email
                 );
-                coach.setSpecialite(
-                        specialite
-                );
-                coach.setSalaire(
-                        salaire
-                );
-                coach.setDisponibilite(
-                        disponibilite
-                );
+                coach.setSpecialite(specialite);
+                coach.setSalaire(salaire);
+                coach.setDisponibilite(disponibilite);
 
                 boolean resultat =
-                        coachService.update(
-                                coach
-                        );
+                        coachService.update(coach);
 
                 if (resultat) {
 
@@ -272,38 +245,27 @@ public class CoachFormController {
         if (nomField.getText() == null ||
                 nomField.getText().trim().isEmpty()) {
 
-            afficherAvertissement(
-                    "Le nom est obligatoire."
-            );
-
+            afficherAvertissement("Le nom est obligatoire.");
             return false;
         }
 
         if (prenomField.getText() == null ||
                 prenomField.getText().trim().isEmpty()) {
 
-            afficherAvertissement(
-                    "Le prénom est obligatoire."
-            );
-
+            afficherAvertissement("Le prénom est obligatoire.");
             return false;
         }
 
         if (telephoneField.getText() == null ||
                 telephoneField.getText().trim().isEmpty()) {
 
-            afficherAvertissement(
-                    "Le téléphone est obligatoire."
-            );
-
+            afficherAvertissement("Le téléphone est obligatoire.");
             return false;
         }
 
         if (disponibiliteComboBox.getValue() == null) {
 
-            disponibiliteComboBox.setValue(
-                    "DISPONIBLE"
-            );
+            disponibiliteComboBox.setValue("DISPONIBLE");
         }
 
         return true;
@@ -317,10 +279,7 @@ public class CoachFormController {
     private void fermerFenetre() {
 
         Stage stage =
-                (Stage) nomField
-                        .getScene()
-                        .getWindow();
-
+                (Stage) nomField.getScene().getWindow();
         stage.close();
     }
 
@@ -328,10 +287,7 @@ public class CoachFormController {
             String message
     ) {
 
-        Alert alert =
-                new Alert(
-                        Alert.AlertType.WARNING
-                );
+        Alert alert = new Alert(Alert.AlertType.WARNING);
 
         alert.setTitle("Attention");
         alert.setHeaderText(null);
@@ -340,14 +296,9 @@ public class CoachFormController {
         alert.showAndWait();
     }
 
-    private void afficherInformation(
-            String message
-    ) {
+    private void afficherInformation(String message) {
 
-        Alert alert =
-                new Alert(
-                        Alert.AlertType.INFORMATION
-                );
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
         alert.setTitle("Information");
         alert.setHeaderText(null);
@@ -356,14 +307,9 @@ public class CoachFormController {
         alert.showAndWait();
     }
 
-    private void afficherErreur(
-            String message
-    ) {
+    private void afficherErreur(String message) {
 
-        Alert alert =
-                new Alert(
-                        Alert.AlertType.ERROR
-                );
+        Alert alert = new Alert(Alert.AlertType.ERROR);
 
         alert.setTitle("Erreur");
         alert.setHeaderText(null);

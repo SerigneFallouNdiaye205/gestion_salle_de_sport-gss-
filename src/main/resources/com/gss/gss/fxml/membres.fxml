@@ -3,78 +3,201 @@
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="570.0" prefWidth="966.0"
-            style="-fx-background-color: #f3f4f6;"
+<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+
+        <?import de.jensd.fx.glyphs.fontawesome.*?>
+        <?import javafx.geometry.*?>
+        <?import javafx.scene.control.*?>
+        <?import javafx.scene.effect.*?>
+        <?import javafx.scene.layout.*?>
+        <?import javafx.scene.paint.*?>
+        <?import javafx.scene.text.*?>
+
+        <AnchorPane prefHeight="570.0" prefWidth="966.0"
+                    style="-fx-background-color: #f3f4f6;"
+                    xmlns="http://javafx.com/javafx/21"
+                    xmlns:fx="http://javafx.com/fxml/1"
+                    fx:controller="com.gss.gss.controller.MembreController">
+           <children>
+              <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="327.0" prefWidth="840.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                <content>
+                  <AnchorPane>
+                       <children>
+                          <TableView fx:id="membersTable" layoutX="-10.0" layoutY="21.0" prefHeight="275.0" prefWidth="803.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+                            <columns>
+                              <TableColumn fx:id="idColumn" prefWidth="53.99997270107269" text="ID" />
+                              <TableColumn fx:id="nomColumn" prefWidth="107.99996566772461" text="Nom" />
+                                <TableColumn fx:id="prenomColumn" prefWidth="133.3333740234375" text="Prenom" />
+                                <TableColumn fx:id="telephoneColumn" prefWidth="110.0" text="Telephone" />
+                                <TableColumn fx:id="emailColumn" prefWidth="167.33343505859375" text="Email" />
+                                <TableColumn fx:id="dateInscriptionColumn" prefWidth="124.6666259765625" text="Date d'inscription" />
+                                <TableColumn fx:id="statutColumn" minWidth="2.00006103515625" prefWidth="142.6666259765625" text="Statut" />
+                            </columns>
+                             <effect>
+                                <DropShadow height="9.32" radius="3.7775" spread="0.52" width="7.79">
+                                   <color>
+                                      <Color red="0.7280701994895935" green="0.6808804273605347" blue="0.6808804273605347" />
+                                   </color>
+                                </DropShadow>
+                             </effect>
+                          </TableView>
+                       </children>
+                    </AnchorPane>
+                </content>
+              </ScrollPane>
+              <HBox alignment="CENTER" layoutX="37.0" layoutY="100.0" prefHeight="40.0" prefWidth="737.0" spacing="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                 <children>
+                    <TextField fx:id="searchField" prefHeight="29.0" prefWidth="298.0" promptText="Nom, prénom, téléphone ou email ">
+                       <font>
+                          <Font name="Times New Roman" size="15.0" />
+                       </font>
+                    </TextField>
+                    <ComboBox fx:id="statusComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Statut">
+                       <HBox.margin>
+                          <Insets left="20.0" />
+                       </HBox.margin>
+                    </ComboBox>
+                    <Button alignment="CENTER" onAction="#handleSearch" prefHeight="30.0" prefWidth="125.0" text="rechercher">
+                       <font>
+                          <Font name="Times New Roman" size="13.0" />
+                       </font>
+                       <HBox.margin>
+                          <Insets left="20.0" />
+                       </HBox.margin>
+                       <graphic>
+                          <FontAwesomeIconView fill="#3051A0" glyphName="SEARCH" size="15" />
+                       </graphic>
+                    </Button>
+                    <Button alignment="CENTER" onAction="#handleRefresh" prefHeight="30.0" prefWidth="125.0" text="Actualiser">
+                       <font>
+                          <Font name="Times New Roman" size="13.0" />
+                       </font>
+                       <HBox.margin>
+                          <Insets left="20.0" />
+                       </HBox.margin>
+                       <graphic>
+                          <FontAwesomeIconView fill="#3051A0" glyphName="REFRESH" size="15" />
+                       </graphic>
+                    </Button>
+                    <Button onAction="#handleAdd" prefHeight="30.0" style="-fx-background-color: #16a34a;" text="nouveau membre" textFill="#eff0f5">
+                       <font>
+                          <Font name="Times New Roman" size="13.0" />
+                       </font>
+                       <HBox.margin>
+                          <Insets left="20.0" />
+                       </HBox.margin>
+                       <opaqueInsets>
+                          <Insets />
+                       </opaqueInsets>
+                       <graphic>
+                          <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
+                       </graphic>
+                    </Button>
+                 </children>
+                 <opaqueInsets>
+                    <Insets />
+                 </opaqueInsets>
+              </HBox>
+              <Label layoutX="37.0" layoutY="66.0" prefHeight="34.0" prefWidth="340.0" text="Ajouter, modifier, rechercher et gérer les membres" textFill="#c7bfbf" AnchorPane.leftAnchor="25.0">
+                 <font>
+                    <Font name="Times New Roman" size="16.0" />
+                 </font>
+              </Label>
+              <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="513.0" prefHeight="35.0" spacing="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                 <children>
+                    <Button onAction="#handleEdit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Modifier" textFill="#eff0f5">
+                       <font>
+                          <Font name="Times New Roman Bold" size="13.0" />
+                       </font>
+                       <graphic>
+                       <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
+                       </graphic>
+                    </Button>
+                    <Button onAction="#handleDelete" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: red;" text="Supprimer" textFill="#eff0f5">
+                       <font>
+                          <Font name="Times New Roman Bold" size="13.0" />
+                       </font>
+                       <graphic>
+                          <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
+                       </graphic>
+                    </Button>
+                 </children>
+              </HBox>
+           </children>
+        </AnchorPane>
+        -->
+
+<BorderPane prefHeight="650" prefWidth="1100"
+            style="-fx-background-color: #f8fafc;"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.gss.gss.controller.MembreController">
-   <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="327.0" prefWidth="840.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-        <content>
-          <AnchorPane>
-               <children>
-                  <TableView fx:id="membersTable" layoutX="-10.0" layoutY="21.0" prefHeight="275.0" prefWidth="803.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
-                    <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="53.99997270107269" text="ID" />
-                      <TableColumn fx:id="nomColumn" prefWidth="107.99996566772461" text="Nom" />
-                        <TableColumn fx:id="prenomColumn" prefWidth="133.3333740234375" text="Prenom" />
-                        <TableColumn fx:id="telephoneColumn" prefWidth="110.0" text="Telephone" />
-                        <TableColumn fx:id="emailColumn" prefWidth="167.33343505859375" text="Email" />
-                        <TableColumn fx:id="dateInscriptionColumn" prefWidth="124.6666259765625" text="Date d'inscription" />
-                        <TableColumn fx:id="statutColumn" minWidth="2.00006103515625" prefWidth="142.6666259765625" text="Statut" />
-                    </columns>
-                     <effect>
-                        <DropShadow height="9.32" radius="3.7775" spread="0.52" width="7.79">
-                           <color>
-                              <Color red="0.7280701994895935" green="0.6808804273605347" blue="0.6808804273605347" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <HBox alignment="CENTER" layoutX="37.0" layoutY="100.0" prefHeight="40.0" prefWidth="737.0" spacing="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-         <children>
-            <TextField fx:id="searchField" prefHeight="29.0" prefWidth="298.0" promptText="Nom, prénom, téléphone ou email ">
-               <font>
-                  <Font name="Times New Roman" size="15.0" />
-               </font>
-            </TextField>
-            <ComboBox fx:id="statusComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Statut">
+
+   <top>
+
+      <VBox spacing="12">
+
+         <padding>
+            <Insets bottom="15" left="25" right="25" top="20" />
+         </padding>
+
+         <Label
+                 style="-fx-font-size: 24px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1e293b;" text="Gestion des membres" />
+
+         <Label
+                 style="-fx-font-size: 13px;
+                 -fx-text-fill: #64748b;"
+                 text="Ajoutez, modifiez, recherchez et gérez les membres de la salle." />
+
+         <HBox spacing="10">
+
+            <TextField fx:id="searchField"
+                       onAction="#handleSearch"
+                       prefHeight="40"
+                       promptText="Rechercher par nom, prénom, téléphone, email..."
+                       style="-fx-background-color: white;
+                       -fx-border-color: #cbd5e1;
+                       -fx-border-radius: 6;
+                       -fx-background-radius: 6;
+                       -fx-padding: 0 12px;" HBox.hgrow="ALWAYS" />
+
+            <Button onAction="#handleSearch" prefHeight="40"
+                    style="-fx-background-color: #2563eb;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 6px;
+                    -fx-cursor: hand;" text="Rechercher">
+               <graphic>
+                  <FontAwesomeIconView fill="#eff0f5" glyphName="SEARCH" size="15" />
+               </graphic>
+            </Button>
+
+            <ComboBox fx:id="statusComboBox" prefHeight="40" prefWidth="150.0" promptText="Statut">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </ComboBox>
-            <Button alignment="CENTER" onAction="#handleSearch" prefHeight="30.0" prefWidth="125.0" text="rechercher">
-               <font>
-                  <Font name="Times New Roman" size="13.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
+
+            <Button onAction="#handleRefresh" prefHeight="40"
+                    style="-fx-background-color: #64748b;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 6px;
+                    -fx-cursor: hand;" text="Actualiser">
                <graphic>
-                  <FontAwesomeIconView fill="#3051A0" glyphName="SEARCH" size="15" />
+                  <FontAwesomeIconView fill="#eff0f5" glyphName="REFRESH" size="15" />
                </graphic>
             </Button>
-            <Button alignment="CENTER" onAction="#handleRefresh" prefHeight="30.0" prefWidth="125.0" text="Actualiser">
-               <font>
-                  <Font name="Times New Roman" size="13.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-               <graphic>
-                  <FontAwesomeIconView fill="#3051A0" glyphName="REFRESH" size="15" />
-               </graphic>
-            </Button>
-            <Button onAction="#handleAdd" prefHeight="30.0" style="-fx-background-color: #16a34a;" text="nouveau membre" textFill="#eff0f5">
+
+            <Button onAction="#handleAdd" prefHeight="40"
+                    style="-fx-background-color: #16a34a;"
+                    text="nouveau membre" textFill="#eff0f5">
                <font>
                   <Font name="Times New Roman" size="13.0" />
                </font>
@@ -88,35 +211,102 @@
                   <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
                </graphic>
             </Button>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </HBox>
-      <Label layoutX="37.0" layoutY="66.0" prefHeight="34.0" prefWidth="340.0" text="Ajouter, modifier, rechercher et gérer les membres" textFill="#c7bfbf" AnchorPane.leftAnchor="25.0">
-         <font>
-            <Font name="Times New Roman" size="16.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER_RIGHT" layoutX="25.0" layoutY="513.0" prefHeight="35.0" spacing="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-         <children>
-            <Button onAction="#handleEdit" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Modifier" textFill="#eff0f5">
-               <font>
-                  <Font name="Times New Roman Bold" size="13.0" />
-               </font>
-               <graphic>
+
+         </HBox>
+
+      </VBox>
+
+   </top>
+
+   <center>
+
+      <VBox spacing="10">
+
+         <padding>
+            <Insets bottom="10" left="25" right="25" top="5" />
+         </padding>
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
+                     layoutX="125.0" layoutY="160.0"
+                     prefHeight="400" prefWidth="900.0"
+                     AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+            <AnchorPane prefHeight="400" prefWidth="900.0">
+               <TableView fx:id="membersTable"
+                          style="-fx-background-color: white;"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                          VBox.vgrow="ALWAYS">
+                  <columns>
+                     <TableColumn fx:id="idColumn" prefWidth="55" text="ID" />
+
+                     <TableColumn fx:id="nomColumn" prefWidth="110" text="Nom" />
+
+                     <TableColumn fx:id="prenomColumn" prefWidth="110" text="Prénom" />
+
+                     <TableColumn fx:id="telephoneColumn" prefWidth="120" text="Téléphone" />
+
+                     <TableColumn fx:id="emailColumn" prefWidth="180" text="Email" />
+
+                     <TableColumn fx:id="dateInscriptionColumn" prefWidth="130" text="Date d'inscription" />
+
+                     <TableColumn fx:id="statutColumn" prefWidth="140" text="Statut" />
+                  </columns>
+
+                  <columnResizePolicy>
+                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                  </columnResizePolicy>
+
+               </TableView>
+            </AnchorPane>
+         </ScrollPane>
+
+      </VBox>
+
+   </center>
+
+   <bottom>
+
+      <HBox spacing="10">
+
+         <padding>
+            <Insets bottom="20" left="25" right="25" top="10" />
+         </padding>
+
+         <Button onAction="#handleEdit" prefHeight="40" prefWidth="100.0"
+                 style="-fx-background-color: #2563eb;
+                 -fx-text-fill: #eff0f5;
+                 -fx-font-weight: bold;
+                 -fx-background-radius: 6px;
+                 -fx-cursor: hand;" text="Modifier">
+            <font>
+               <Font name="Times New Roman Bold" size="13.0" />
+            </font>
+            <graphic>
                <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
-               </graphic>
-            </Button>
-            <Button onAction="#handleDelete" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: red;" text="Supprimer" textFill="#eff0f5">
-               <font>
-                  <Font name="Times New Roman Bold" size="13.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
-               </graphic>
-            </Button>
-         </children>
+            </graphic>
+         </Button>
+
+         <Button onAction="#handleDelete" prefHeight="40"
+                 style="-fx-background-color: #dc2626;
+                  -fx-text-fill: white;
+                  -fx-font-weight: bold;
+                  -fx-background-radius: 6px;
+                  -fx-cursor: hand;" text="Supprimer">
+            <font>
+               <Font name="Times New Roman Bold" size="13.0" />
+            </font>
+            <graphic>
+               <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
+            </graphic>
+         </Button>
+
+         <HBox HBox.hgrow="ALWAYS"/>
+
+         <Label text="Sélectionnez un membre pour effectuer une action."
+                style="-fx-text-fill: #64748b;
+                          -fx-font-size: 12px;"
+                alignment="CENTER_RIGHT"/>
+
       </HBox>
-   </children>
-</AnchorPane>
+
+   </bottom>
+
+</BorderPane>

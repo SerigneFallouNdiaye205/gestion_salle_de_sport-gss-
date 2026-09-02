@@ -13,22 +13,16 @@ public class AbonnementFormController {
 
     @FXML
     private TextField membreIdField;
-
     @FXML
     private ComboBox<String> typeComboBox;
-
     @FXML
     private TextField prixField;
-
     @FXML
     private DatePicker dateDebutPicker;
-
     @FXML
     private DatePicker dateFinPicker;
-
     @FXML
     private ComboBox<String> statutComboBox;
-
     @FXML
     private Label errorLabel;
 
@@ -108,9 +102,7 @@ public class AbonnementFormController {
 
             int membreId =
                     Integer.parseInt(
-                            membreIdField
-                                    .getText()
-                                    .trim()
+                            membreIdField.getText().trim()
                     );
 
             String type =
@@ -118,19 +110,14 @@ public class AbonnementFormController {
 
             double prix =
                     Double.parseDouble(
-                            prixField
-                                    .getText()
-                                    .trim()
+                            prixField.getText().trim()
                     );
 
-            LocalDate dateDebut =
-                    dateDebutPicker.getValue();
+            LocalDate dateDebut = dateDebutPicker.getValue();
 
-            LocalDate dateFin =
-                    dateFinPicker.getValue();
+            LocalDate dateFin = dateFinPicker.getValue();
 
-            String statut =
-                    statutComboBox.getValue();
+            String statut = statutComboBox.getValue();
 
             if (abonnement == null) {
 
@@ -163,16 +150,12 @@ public class AbonnementFormController {
             fermer();
 
         } catch (NumberFormatException e) {
-
             afficherErreur(
                     "Le membre et le prix doivent être valides."
             );
 
         } catch (IllegalArgumentException e) {
-
-            afficherErreur(
-                    e.getMessage()
-            );
+            afficherErreur(e.getMessage());
         }
     }
 
@@ -185,10 +168,7 @@ public class AbonnementFormController {
     private void fermer() {
 
         Stage stage =
-                (Stage) membreIdField
-                        .getScene()
-                        .getWindow();
-
+                (Stage) membreIdField.getScene().getWindow();
         stage.close();
     }
 

@@ -265,7 +265,6 @@ public class DashboardController {
             contentPane.getChildren().add(paiementsView);
 
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }
@@ -284,7 +283,6 @@ public class DashboardController {
             contentPane.getChildren().add(abonnementsView);
 
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }
@@ -311,7 +309,6 @@ public class DashboardController {
     private void handleCoachs() {
         // Gestion des paiements
         try {
-
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/gss/gss/fxml/coachs.fxml")
             );
@@ -322,7 +319,6 @@ public class DashboardController {
             contentPane.getChildren().add(coachsView);
 
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }
@@ -345,9 +341,9 @@ public class DashboardController {
 
 
         } catch (IOException e) {
-
             e.printStackTrace();
-        }    }
+        }
+    }
 
 
     // Déconnexion.
@@ -358,7 +354,6 @@ public class DashboardController {
         SessionManager.logout();
 
         try {
-
             // Retour vers le login
             FXMLLoader loader =
                     new FXMLLoader(

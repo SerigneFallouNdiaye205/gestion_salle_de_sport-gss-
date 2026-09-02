@@ -118,21 +118,17 @@ CREATE TABLE utilisateurs (
         username VARCHAR(50) NOT NULL,
         password VARCHAR(255) NOT NULL,
         type ENUM('ADMINISTRATEUR','RECEPTIONNISTE','COACH') NOT NULL,
-                              statut ENUM(
-                                  'ACTIF',
-                                  'INACTIF'
-                                  ) NOT NULL DEFAULT 'ACTIF',
-                              date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        statut ENUM('ACTIF','INACTIF') NOT NULL DEFAULT 'ACTIF',
+        date_creation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                              PRIMARY KEY (id),
-                              UNIQUE KEY uk_utilisateur_username (username),
-                              KEY idx_utilisateur_coach (coach_id),
-
-                              CONSTRAINT fk_utilisateur_coach
-                                  FOREIGN KEY (coach_id)
-                                      REFERENCES coachs(id)
-                                      ON DELETE SET NULL
-                                      ON UPDATE CASCADE
+        PRIMARY KEY (id),
+        UNIQUE KEY uk_utilisateur_username (username),
+        KEY idx_utilisateur_coach (coach_id),
+        CONSTRAINT fk_utilisateur_coach
+            FOREIGN KEY (coach_id)
+                REFERENCES coachs(id)
+                ON DELETE SET NULL
+                ON UPDATE CASCADE
 );
 
 CREATE TABLE receptionnistes (

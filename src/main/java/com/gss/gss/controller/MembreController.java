@@ -18,31 +18,22 @@ public class MembreController {
 
     @FXML
     private TextField searchField;
-
     @FXML
     private ComboBox<String> statusComboBox;
-
     @FXML
     private TableView<Membre> membersTable;
-
     @FXML
     private TableColumn<Membre, Number> idColumn;
-
     @FXML
     private TableColumn<Membre, String> nomColumn;
-
     @FXML
     private TableColumn<Membre, String> prenomColumn;
-
     @FXML
     private TableColumn<Membre, String> telephoneColumn;
-
     @FXML
     private TableColumn<Membre, String> emailColumn;
-
     @FXML
     private TableColumn<Membre, String> dateInscriptionColumn;
-
     @FXML
     private TableColumn<Membre, String> statutColumn;
 
@@ -184,18 +175,11 @@ public class MembreController {
 
     @FXML
     private void handleEdit() {
-
         Membre membre =
-                membersTable
-                        .getSelectionModel()
-                        .getSelectedItem();
+                membersTable.getSelectionModel().getSelectedItem();
 
         if (membre == null) {
-
-            afficherAvertissement(
-                    "Veuillez sélectionner un membre."
-            );
-
+            afficherAvertissement("Veuillez sélectionner un membre.");
             return;
         }
 
@@ -206,16 +190,10 @@ public class MembreController {
     private void handleDelete() {
 
         Membre membre =
-                membersTable
-                        .getSelectionModel()
-                        .getSelectedItem();
+                membersTable.getSelectionModel().getSelectedItem();
 
         if (membre == null) {
-
-            afficherAvertissement(
-                    "Veuillez sélectionner un membre."
-            );
-
+            afficherAvertissement("Veuillez sélectionner un membre.");
             return;
         }
 

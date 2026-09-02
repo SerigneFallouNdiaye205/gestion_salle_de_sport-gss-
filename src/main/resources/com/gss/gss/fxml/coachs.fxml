@@ -12,6 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.gss.gss.controller.CoachController"
@@ -106,53 +108,59 @@
                         bottom="10"
                         left="25"/>
             </padding>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
+                        layoutX="125.0" layoutY="160.0"
+                        prefHeight="400" prefWidth="900.0"
+                        AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+                <AnchorPane prefHeight="400" prefWidth="900.0">
+                    <TableView fx:id="coachsTable"
+                               style="-fx-background-color: white;"
+                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                               VBox.vgrow="ALWAYS">
 
-            <TableView fx:id="coachsTable"
-                       VBox.vgrow="ALWAYS"
-                       style="-fx-background-color: white;">
+                        <columns>
 
-                <columns>
+                            <TableColumn fx:id="idColumn"
+                                         text="ID"
+                                         prefWidth="55"/>
 
-                    <TableColumn fx:id="idColumn"
-                                 text="ID"
-                                 prefWidth="55"/>
+                            <TableColumn fx:id="nomColumn"
+                                         text="Nom"
+                                         prefWidth="110"/>
 
-                    <TableColumn fx:id="nomColumn"
-                                 text="Nom"
-                                 prefWidth="110"/>
+                            <TableColumn fx:id="prenomColumn"
+                                         text="Prénom"
+                                         prefWidth="110"/>
 
-                    <TableColumn fx:id="prenomColumn"
-                                 text="Prénom"
-                                 prefWidth="110"/>
+                            <TableColumn fx:id="telephoneColumn"
+                                         text="Téléphone"
+                                         prefWidth="120"/>
 
-                    <TableColumn fx:id="telephoneColumn"
-                                 text="Téléphone"
-                                 prefWidth="120"/>
+                            <TableColumn fx:id="emailColumn"
+                                         text="Email"
+                                         prefWidth="180"/>
 
-                    <TableColumn fx:id="emailColumn"
-                                 text="Email"
-                                 prefWidth="180"/>
+                            <TableColumn fx:id="specialiteColumn"
+                                         text="Spécialité"
+                                         prefWidth="130"/>
 
-                    <TableColumn fx:id="specialiteColumn"
-                                 text="Spécialité"
-                                 prefWidth="130"/>
+                            <TableColumn fx:id="salaireColumn"
+                                         text="Salaire"
+                                         prefWidth="100"/>
 
-                    <TableColumn fx:id="salaireColumn"
-                                 text="Salaire"
-                                 prefWidth="100"/>
+                            <TableColumn fx:id="disponibiliteColumn"
+                                         text="Disponibilité"
+                                         prefWidth="120"/>
 
-                    <TableColumn fx:id="disponibiliteColumn"
-                                 text="Disponibilité"
-                                 prefWidth="120"/>
+                        </columns>
 
-                </columns>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
 
-                <columnResizePolicy>
-                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-                </columnResizePolicy>
-
-            </TableView>
-
+                    </TableView>
+                </AnchorPane>
+            </ScrollPane>
         </VBox>
 
     </center>

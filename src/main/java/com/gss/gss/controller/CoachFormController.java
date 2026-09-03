@@ -177,7 +177,7 @@ public class CoachFormController {
                                     + "Nom utilisateur : coach"
                                     + nouveauCoach.getId()
                                     + "\n"
-                                    + "Mot de passe par défaut : Coach@123"
+                                    + "Mot de passe par défaut : gss"
                     );
 
                     fermerFenetre();

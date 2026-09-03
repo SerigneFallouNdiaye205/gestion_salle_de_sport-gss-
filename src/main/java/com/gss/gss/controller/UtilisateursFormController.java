@@ -51,11 +51,11 @@ public class UtilisateursFormController {
 
         typeComboBox.getItems().addAll(
                 "ADMINISTRATEUR",
-                "RÉCEPTIONNISTE",
+                "RECEPTIONNISTE",
                 "COACH"
         );
 
-        typeComboBox.setValue("COACH");
+        typeComboBox.setValue("Type");
 
         dateCreationPicker.setValue(
                 LocalDate.now()
@@ -70,12 +70,10 @@ public class UtilisateursFormController {
         saveButton.setText("Modifier");
 
         usernameField.setText(utilisateur.getUsername());
-        passwordField.setText(utilisateur.getPassword());
+        passwordField.clear();
+        typeComboBox.setValue(utilisateur.getType());
         dateCreationPicker.setValue(utilisateur.getDateCreation());
-
-        statutComboBox.setValue(
-                utilisateur.getStatut()
-        );
+        statutComboBox.setValue(utilisateur.getStatut());
     }
 
     @FXML
@@ -135,7 +133,13 @@ public class UtilisateursFormController {
     private void remplirUtilisateur(Utilisateur utilisateur) {
 
         utilisateur.setUsername(usernameField.getText().trim());
-        utilisateur.setPassword(passwordField.getText());
+        String password =
+                passwordField.getText().trim();
+
+        // Modifier uniquement si un nouveau mot de passe est saisi
+        if (!password.isEmpty()) {
+            utilisateur.setPassword(password);
+        }
 
         utilisateur.setType(
                 typeComboBox.getValue()
@@ -155,12 +159,19 @@ public class UtilisateursFormController {
             return false;
         }
 
-        if (passwordField.getText().trim().isEmpty()) {
-            afficherErreur("Le mot de passe est obligatoire.");
+        // Obligatoire seulement lors de la création
+        if (utilisateur == null &&
+                passwordField.getText().trim().isEmpty()) {
+
+            afficherErreur(
+                    "Le mot de passe est obligatoire."
+            );
+
             return false;
         }
 
-        if (typeComboBox.getValue() == null) {
+        if (typeComboBox.getValue() == null ||
+                typeComboBox.getValue().equals("Type")) {
             afficherErreur("Le type est obligatoire.");
             return false;
         }

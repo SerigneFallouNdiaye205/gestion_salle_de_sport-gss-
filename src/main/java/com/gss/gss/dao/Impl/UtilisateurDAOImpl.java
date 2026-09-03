@@ -3,6 +3,7 @@ package com.gss.gss.dao.Impl;
 import com.gss.gss.dao.UtilisateurDAO;
 import com.gss.gss.database.DatabaseConnection;
 import com.gss.gss.model.Utilisateur;
+import com.gss.gss.security.PasswordHasher;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -299,7 +300,11 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         ) {
 
             statement.setString(1, utilisateur.getUsername());
-            statement.setString(2, utilisateur.getPassword());
+
+            String passwordHash =
+                    PasswordHasher.hash(utilisateur.getPassword());
+
+            statement.setString(2, passwordHash);
             statement.setString(3, utilisateur.getType());
             statement.setString(4, utilisateur.getStatut());
 
@@ -335,7 +340,16 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
     @Override
     public boolean update(Utilisateur utilisateur) {
 
-        String sql = """
+        boolean modifierPassword =
+                utilisateur.getPassword() != null
+                        && !utilisateur.getPassword().isBlank()
+                        && !utilisateur.getPassword().startsWith("$2");
+
+        String sql;
+
+        if (modifierPassword) {
+
+            sql = """
                 UPDATE utilisateurs
                 SET username = ?,
                     password = ?,
@@ -344,23 +358,52 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
                 WHERE id = ?
                 """;
 
+        } else {
+
+            sql = """
+                UPDATE utilisateurs
+                SET username = ?,
+                    type = ?,
+                    statut = ?
+                WHERE id = ?
+                """;
+        }
+
         try (
-                Connection connection = DatabaseConnection.getConnection();
+                Connection connection =
+                        DatabaseConnection.getConnection();
                 PreparedStatement statement =
                         connection.prepareStatement(sql)
         ) {
 
-            statement.setString(1, utilisateur.getUsername());
-            statement.setString(2, utilisateur.getPassword());
-            statement.setString(3, utilisateur.getType());
-            statement.setString(4, utilisateur.getStatut());
-            statement.setInt(5, utilisateur.getId());
+            statement.setString(
+                    1,
+                    utilisateur.getUsername()
+            );
 
-            int lignes = statement.executeUpdate();
+            if (modifierPassword) {
 
-            return lignes > 0;
+                String passwordHash =
+                        PasswordHasher.hash(
+                                utilisateur.getPassword()
+                        );
+
+                statement.setString(2, passwordHash);
+                statement.setString(3, utilisateur.getType());
+                statement.setString(4, utilisateur.getStatut());
+                statement.setInt(5, utilisateur.getId());
+
+            } else {
+
+                statement.setString(2, utilisateur.getType());
+                statement.setString(3, utilisateur.getStatut());
+                statement.setInt(4, utilisateur.getId());
+            }
+
+            return statement.executeUpdate() > 0;
 
         } catch (SQLException e) {
+
             throw new RuntimeException(
                     "Erreur lors de la modification de l'utilisateur.",
                     e

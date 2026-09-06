@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.gss.gss.controller.PaiementFormController"
+        spacing="15"
+        prefWidth="500">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <Label
+            fx:id="titleLabel"
+            text="Nouveau paiement"
+            style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <Separator/>
+
+    <Label text="ID du membre"/>
+
+    <TextField
+            fx:id="membreIdField"
+            promptText="Exemple : 1"/>
+
+    <Label text="ID de l'abonnement"/>
+
+    <TextField
+            fx:id="abonnementIdField"
+            promptText="Exemple : 1"/>
+
+    <Label text="Montant"/>
+
+    <TextField
+            fx:id="montantField"
+            promptText="Exemple : 15000"/>
+
+    <Label text="Date du paiement"/>
+
+    <DatePicker
+            fx:id="datePaiementPicker"
+            maxWidth="Infinity"/>
+
+    <Label text="Mode de paiement"/>
+
+    <ComboBox
+            fx:id="modePaiementComboBox"
+            maxWidth="Infinity"/>
+
+    <Label text="Statut"/>
+
+    <ComboBox
+            fx:id="statutComboBox"
+            maxWidth="Infinity"/>
+
+    <Label text="Référence"/>
+
+    <TextField
+            fx:id="referenceField"
+            editable="false"/>
+
+    <Label
+            fx:id="errorLabel"
+            style="-fx-text-fill: red;"/>
+
+    <HBox
+            spacing="10"
+            alignment="CENTER_RIGHT">
+
+        <Button
+                text="Annuler"
+                onAction="#handleAnnuler"/>
+
+        <Button
+                text="Enregistrer"
+                onAction="#handleSave"
+                defaultButton="true"/>
+
+    </HBox>
+
+</VBox>

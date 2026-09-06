@@ -14,7 +14,8 @@ public class Seance {
     private String salle;
     private int capacite;
 
-    public Seance() {}
+    public Seance() {
+    }
 
     public Seance(
             int id,
@@ -39,6 +40,7 @@ public class Seance {
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -46,6 +48,7 @@ public class Seance {
     public int getCoachId() {
         return coachId;
     }
+
     public void setCoachId(int coachId) {
         this.coachId = coachId;
     }
@@ -53,6 +56,7 @@ public class Seance {
     public String getNom() {
         return nom;
     }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -60,6 +64,7 @@ public class Seance {
     public LocalDate getDateSeance() {
         return dateSeance;
     }
+
     public void setDateSeance(LocalDate dateSeance) {
         this.dateSeance = dateSeance;
     }
@@ -67,6 +72,7 @@ public class Seance {
     public LocalTime getHeureDebut() {
         return heureDebut;
     }
+
     public void setHeureDebut(LocalTime heureDebut) {
         this.heureDebut = heureDebut;
     }
@@ -74,6 +80,7 @@ public class Seance {
     public LocalTime getHeureFin() {
         return heureFin;
     }
+
     public void setHeureFin(LocalTime heureFin) {
         this.heureFin = heureFin;
     }
@@ -81,6 +88,7 @@ public class Seance {
     public String getSalle() {
         return salle;
     }
+
     public void setSalle(String salle) {
         this.salle = salle;
     }
@@ -88,6 +96,7 @@ public class Seance {
     public int getCapacite() {
         return capacite;
     }
+
     public void setCapacite(int capacite) {
         this.capacite = capacite;
     }

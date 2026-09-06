@@ -38,7 +38,7 @@
 
                 <TextField fx:id="searchField"
                            promptText="Rechercher un utilisateur..."
-                           prefHeight="40"
+                           prefHeight="38.0"
                            HBox.hgrow="ALWAYS"
                            onAction="#handleSearch"
                            style="-fx-background-color: white;
@@ -49,7 +49,7 @@
 
                 <Button text="Rechercher"
                         onAction="#handleSearch"
-                        prefHeight="40"
+                        prefHeight="38.0"
                         style="-fx-background-color: #2563eb;
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
@@ -61,12 +61,12 @@
                 </Button>
 
                 <ComboBox fx:id="statusComboBox"
-                          prefHeight="40"
+                          prefHeight="38.0"
                           prefWidth="140.0"
                           promptText="Statut"/>
 
                 <ComboBox fx:id="typeComboBox"
-                          prefHeight="40"
+                          prefHeight="38.0"
                           prefWidth="155.0"
                           promptText="Type"/>
 
@@ -81,7 +81,7 @@
 
                 <Button text="Actualiser"
                         onAction="#handleRefresh"
-                        prefHeight="40"
+                        prefHeight="38.0"
                         style="-fx-background-color: #64748b;
                                -fx-text-fill: white;
                                -fx-font-weight: bold;
@@ -155,7 +155,7 @@
 
             <Button text="Nouvel utilisateur"
                     onAction="#handleAdd"
-                    prefHeight="40.0"
+                    prefHeight="38.0"
                     style="-fx-background-color: #16a34a;
                            -fx-text-fill: white;
                            -fx-font-weight: bold;
@@ -168,7 +168,7 @@
 
             <Button text="Modifier"
                     onAction="#handleEdit"
-                    prefHeight="40.0"
+                    prefHeight="38.0"
                     style="-fx-background-color: #2563eb;
                            -fx-text-fill: white;
                            -fx-font-weight: bold;
@@ -181,7 +181,7 @@
 
             <Button text="Supprimer"
                     onAction="#handleDelete"
-                    prefHeight="40.0"
+                    prefHeight="38.0"
                     style="-fx-background-color: #dc2626;
                            -fx-text-fill: white;
                            -fx-font-weight: bold;

@@ -9,9 +9,12 @@ module com.gss.gss {
     requires net.synedra.validatorfx;
     requires java.sql;
     requires jdk.jshell;
+    requires com.github.librepdf.openpdf;
+    requires java.desktop;
 
     opens com.gss.gss to javafx.fxml;
     opens com.gss.gss.controller to javafx.fxml;
+    opens com.gss.gss.model to javafx.base;
 
     exports com.gss.gss;
     exports com.gss.gss.controller;

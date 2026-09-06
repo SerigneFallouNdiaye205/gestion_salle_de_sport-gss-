@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.gss.gss.controller.PaiementController"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.PaiementsController">
 
-</AnchorPane>
+    <top>
+
+        <VBox spacing="15">
+
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="20" />
+            </padding>
+
+            <HBox spacing="10">
+
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Gestion des paiements" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button onAction="#handleNouveau" prefHeight="38.0" style="-fx-background-color: #16a34a;                             -fx-text-fill: white;                             -fx-font-weight: bold;                             -fx-background-radius: 6px;                             -fx-cursor: hand;" text="Nouveau paiement">
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
+                    </graphic>
+                </Button>
+
+            </HBox>
+
+            <HBox spacing="10">
+
+                <TextField fx:id="searchField" prefHeight="38.0" promptText="Rechercher par ID, membre, abonnement ou référence..." HBox.hgrow="ALWAYS" />
+
+                <ComboBox fx:id="statutComboBox" prefHeight="38.0" prefWidth="150" />
+
+                <ComboBox fx:id="modeComboBox" prefHeight="38.0" prefWidth="170" />
+
+                <DatePicker fx:id="datePicker" prefHeight="38.0" promptText="Date" />
+
+                <Button onAction="#handleFiltrer" prefHeight="38.0" text="Filtrer" />
+
+                <Button onAction="#handleActualiser" prefHeight="38.0" style="-fx-background-color: #64748b;                                -fx-text-fill: white;                                -fx-font-weight: bold;                                -fx-background-radius: 6px;                                -fx-cursor: hand;" text="Actualiser">
+                    <graphic>
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="REFRESH" size="15" />
+                    </graphic>
+                </Button>
+
+            </HBox>
+
+        </VBox>
+
+    </top>
+
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="450" prefWidth="900.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="450" prefWidth="900.0">
+                <TableView fx:id="paiementTable" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
+                    <columns>
+
+                        <TableColumn fx:id="idColumn" prefWidth="60" text="ID" />
+
+                        <TableColumn fx:id="membreIdColumn" prefWidth="90" text="Membre" />
+
+                        <TableColumn fx:id="abonnementIdColumn" prefWidth="100" text="Abonnement" />
+
+                        <TableColumn fx:id="montantColumn" prefWidth="110" text="Montant" />
+
+                        <TableColumn fx:id="dateColumn" prefWidth="120" text="Date" />
+
+                        <TableColumn fx:id="modeColumn" prefWidth="150" text="Mode" />
+
+                        <TableColumn fx:id="statutColumn" prefWidth="110" text="Statut" />
+
+                        <TableColumn fx:id="referenceColumn" prefWidth="190" text="Référence" />
+
+                    </columns>
+                </TableView>
+            </AnchorPane>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+
+        <HBox spacing="40" style="-fx-padding: 15;">
+
+            <Label text="Nombre de paiements :" />
+
+            <Label fx:id="totalPaiementsLabel" style="-fx-font-weight: bold;" text="0" />
+
+            <Label text="Revenus validés :" />
+
+            <Label fx:id="totalRevenusLabel" style="-fx-font-weight: bold;" text="0 FCFA" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Button onAction="#handleModifier" prefHeight="38.0" style="-fx-background-color: #2563eb;                         -fx-text-fill: white;                         -fx-font-weight: bold;                         -fx-background-radius: 6px;                         -fx-cursor: hand;" text="Modifier">
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
+                </graphic>
+            </Button>
+
+            <Button onAction="#handleSupprimer" prefHeight="38.0" style="-fx-background-color: #dc2626;                         -fx-text-fill: white;                         -fx-font-weight: bold;                         -fx-background-radius: 6px;                         -fx-cursor: hand;" text="Supprimer">
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
+                </graphic>
+            </Button>
+
+        </HBox>
+
+    </bottom>
+
+</BorderPane>

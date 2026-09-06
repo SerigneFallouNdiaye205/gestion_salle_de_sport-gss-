@@ -101,12 +101,11 @@ public class HomeController {
                     String.valueOf(abonnementsActifs)
             );
 
-            long nombrePaiements =
-                    paiementService.countAll();
+            //long nombrePaiements =
+                    //paiementService.countAll();
 
-            paymentsCountLabel.setText(
-                    String.valueOf(nombrePaiements)
-            );
+            //paymentsCountLabel.setText(
+                    //String.valueOf(nombrePaiements));
 
             long nombreSeances =
                     seanceService.countAll();

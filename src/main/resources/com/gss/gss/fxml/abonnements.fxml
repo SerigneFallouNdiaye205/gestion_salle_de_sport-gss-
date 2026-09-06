@@ -32,7 +32,12 @@
 
                 <ComboBox fx:id="statutComboBox" onAction="#handleFilter" prefHeight="38.0" prefWidth="140.0" promptText="Statut" />
 
-                <Button onAction="#handleRefresh" prefHeight="38.0" style="-fx-background-color: #64748b;                                -fx-text-fill: white;                                -fx-font-weight: bold;                                -fx-background-radius: 6px;                                -fx-cursor: hand;" text="Actualiser">
+                <Button onAction="#handleRefresh" prefHeight="38.0"
+                        style="-fx-background-color: #64748b;
+                               -fx-text-fill: white;
+                               -fx-font-weight: bold;
+                               -fx-background-radius: 6px;
+                               -fx-cursor: hand;" text="Actualiser">
                     <graphic>
                         <FontAwesomeIconView fill="#eff0f5" glyphName="REFRESH" size="15" />
                     </graphic>
@@ -87,13 +92,23 @@
                 <Insets bottom="20.0" left="25.0" right="25.0" top="10.0" />
             </padding>
 
-            <Button onAction="#handleAdd" prefHeight="40.0" style="-fx-background-color: #16a34a;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-background-radius: 6px;                            -fx-cursor: hand;" text="Nouvel abonnement">
+            <Button onAction="#handleAdd" prefHeight="40.0"
+                    style="-fx-background-color: #16a34a;
+                    -fx-text-fill: white;
+                    -fx-font-weight: bold;
+                    -fx-background-radius: 6px;
+                    -fx-cursor: hand;" text="Nouvel abonnement">
                     <graphic>
                         <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
                     </graphic>
             </Button>
 
-            <Button onAction="#handleEdit" prefHeight="40.0" style="-fx-background-color: #2563eb;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-background-radius: 6px;                            -fx-cursor: hand;" text="Modifier">
+            <Button onAction="#handleEdit" prefHeight="40.0"
+                    style="-fx-background-color: #2563eb;
+                        -fx-text-fill: white;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 6px;
+                        -fx-cursor: hand;" text="Modifier">
                     <graphic>
                         <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
                     </graphic>
@@ -111,7 +126,11 @@
                 </graphic>
             </Button>
 
-            <Button onAction="#handleDelete" prefHeight="40.0" style="-fx-background-color: #dc2626;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-background-radius: 6px;                            -fx-cursor: hand;" text="Supprimer">
+            <Button onAction="#handleDelete" prefHeight="40.0" style="-fx-background-color: #dc2626;
+            -fx-text-fill: white;
+            -fx-font-weight: bold;
+            -fx-background-radius: 6px;
+            -fx-cursor: hand;" text="Supprimer">
                     <graphic>
                         <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
                     </graphic>

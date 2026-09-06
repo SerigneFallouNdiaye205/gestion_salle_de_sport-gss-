@@ -14,7 +14,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(loader.load());
 
-        stage.setTitle("GSS");
+        stage.setTitle("GSS-connexion");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

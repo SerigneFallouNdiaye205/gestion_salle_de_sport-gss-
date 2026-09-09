@@ -102,6 +102,18 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="CALENDAR" size="20" />
                 </graphic>
             </Button>
+            <!-- Inscriptions aux séances -->
+            <Button fx:id="inscriptionsButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleInscriptions"
+                    prefHeight="42" text="Inscriptions"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="CLIPBOARD" size="20" />
+                </graphic>
+            </Button>
             <!-- Coachs -->
             <Button fx:id="coachesButton" alignment="CENTER_LEFT"
                     maxWidth="250" onAction="#handleCoachs"

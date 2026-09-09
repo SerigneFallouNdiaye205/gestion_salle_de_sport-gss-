@@ -1,180 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.SeanceController">
-
+<BorderPane style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.SeanceController">
     <top>
-
         <VBox spacing="5">
-
-            <padding>
-                <Insets bottom="15" left="20" right="20" top="20" />
-            </padding>
-
+            <padding><Insets bottom="15" left="20" right="20" top="20" /></padding>
             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Gestion des séances" />
-
-            <Label style="-fx-text-fill: #666666;" text="Planification et gestion des séances de la salle de sport" />
-
+            <Label style="-fx-text-fill: #64748b;" text="Planification et gestion des séances de la salle de sport" />
         </VBox>
-
     </top>
-
-
     <center>
-
-        <VBox spacing="15">
-
-            <padding>
-                <Insets bottom="20" left="20" right="20" top="10" />
-            </padding>
-
-
-            <!-- FORMULAIRE -->
-
-            <GridPane alignment="CENTER" hgap="20.0" vgap="15.0">
-
-                <Label text="ID Coach :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-
-                <TextField fx:id="txtCoachId" prefHeight="34.0" promptText="Ex: 1" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-
-                <Label text="Nom de la séance :" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-
-                <TextField fx:id="txtNom" prefHeight="34.0" promptText="Ex: Musculation" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-
-
-                <Label text="Date :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-
-                <DatePicker fx:id="dateSeance" prefHeight="34.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-
-                <Label text="Heure début :" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-
-                <TextField fx:id="txtHeureDebut" prefHeight="34.0" promptText="08:00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-
-
-                <Label text="Heure fin :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-
-                <TextField fx:id="txtHeureFin" prefHeight="34.0" promptText="10:00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-
-                <Label text="Salle :" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-
-                <TextField fx:id="txtSalle" prefHeight="34.0" promptText="Ex: Salle A" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-
-
-                <Label text="Capacité :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-
-                <TextField fx:id="txtCapacite" prefHeight="34.0" promptText="Ex: 20" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
-            <padding>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
-
-            </GridPane>
-
-
-            <!-- BOUTONS -->
-
-            <HBox alignment="CENTER" spacing="20.0">
-
-                <Button fx:id="btnAjouter" onAction="#ajouter" prefHeight="38.0" prefWidth="100.0" style="-fx-background-radius: 6px; -fx-background-color: #16a34a;" text="Ajouter" textFill="WHITE">
-                   <font>
-                      <Font name="System Bold" size="12.0" />
-                   </font>
-                   <graphic>
-                       <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
-                   </graphic>
+        <VBox spacing="12">
+            <padding><Insets bottom="15" left="20" right="20" top="5" /></padding>
+            <HBox alignment="CENTER" spacing="10">
+                <Label alignment="CENTER_LEFT" style="-fx-text-fill: #64748b;                     -fx-font-size: 12px;" text="Sélectionnez une seance pour effectuer une action." />
+                <HBox HBox.hgrow="ALWAYS" />
+                <Button minHeight="38.0" onAction="#handleAdd" prefHeight="38.0" style="-fx-background-color: #16a34a; -fx-background-radius: 6px; -fx-text-fill: white;" text="Nouvelle séance">
+                    <graphic><FontAwesomeIconView fill="white" glyphName="PLUS" size="10" /></graphic>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
                 </Button>
-
-                <Button fx:id="btnModifier" onAction="#modifier" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px;" text="Modifier" textFill="WHITE">
+                <Button minHeight="38.0" onAction="#handleEdit" prefHeight="38.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white;" text="Modifier">
+                    <graphic><FontAwesomeIconView fill="white" glyphName="EDIT" size="15" /></graphic>
                     <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold Italic" size="12.0" />
                     </font>
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
-                    </graphic>
                 </Button>
-
-                <Button fx:id="btnSupprimer" onAction="#supprimer" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #dc2626; -fx-background-radius: 6px;" text="Supprimer" textFill="WHITE">
-                   <font>
-                      <Font name="System Bold" size="12.0" />
-                   </font>
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
-                    </graphic>
+                <Button minHeight="38.0" onAction="#handleDelete" prefHeight="38.0" style="-fx-background-color: #dc2626; -fx-background-radius: 6px; -fx-text-fill: white;" text="Supprimer">
+                    <graphic><FontAwesomeIconView fill="white" glyphName="TRASH" size="15" /></graphic>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
                 </Button>
-
-                <Button fx:id="btnAnnuler" onAction="#viderFormulaire" prefHeight="38.0" prefWidth="100.0" style="-fx-background-radius: 6px; -fx-background-color: #64748b;" text="Annuler" textFill="WHITE">
-                   <font>
-                      <Font name="System Bold" size="12.0" />
-                   </font>
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
-                    </graphic>
-                </Button>
-
             </HBox>
-
-
-            <!-- TABLE -->
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="400" prefWidth="900.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                <AnchorPane prefHeight="400" prefWidth="900.0">
-                    <TableView fx:id="tableSeances" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
-
-                        <columns>
-
-                            <TableColumn fx:id="colId" prefWidth="60" text="ID" />
-
-                            <TableColumn fx:id="colCoach" prefWidth="90" text="Coach ID" />
-
-                            <TableColumn fx:id="colNom" prefWidth="150" text="Séance" />
-
-                            <TableColumn fx:id="colDate" prefWidth="110" text="Date" />
-
-                            <TableColumn fx:id="colHeureDebut" prefWidth="90" text="Début" />
-
-                            <TableColumn fx:id="colHeureFin" prefWidth="90" text="Fin" />
-
-                            <TableColumn fx:id="colSalle" prefWidth="120" text="Salle" />
-
-                            <TableColumn fx:id="colCapacite" prefWidth="90" text="Capacité" />
-
-                        </columns>
-
-                    </TableView>
-                </AnchorPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="541.0" prefWidth="861.0">
+                <TableView fx:id="tableSeances" prefHeight="450">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="55" text="ID" />
+                        <TableColumn fx:id="colCoach" prefWidth="150" text="Coach" />
+                        <TableColumn fx:id="colNom" prefWidth="150" text="Séance" />
+                        <TableColumn fx:id="colDate" prefWidth="110" text="Date" />
+                        <TableColumn fx:id="colHeureDebut" prefWidth="90" text="Début" />
+                        <TableColumn fx:id="colHeureFin" prefWidth="90" text="Fin" />
+                        <TableColumn fx:id="colSalle" prefWidth="120" text="Salle" />
+                        <TableColumn fx:id="colCapacite" prefWidth="90" text="Capacité" />
+                    </columns>
+                </TableView>
             </ScrollPane>
         </VBox>
-
     </center>
-
 </BorderPane>

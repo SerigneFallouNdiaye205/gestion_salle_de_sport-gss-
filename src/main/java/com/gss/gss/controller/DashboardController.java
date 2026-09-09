@@ -34,6 +34,8 @@ public class DashboardController {
     @FXML
     private Button sessionsButton;
     @FXML
+    private Button inscriptionsButton;
+    @FXML
     private Button coachesButton;
     @FXML
     private Button usersButton;
@@ -78,6 +80,9 @@ public class DashboardController {
                 sessionsButton.setVisible(true);
                 sessionsButton.setManaged(true);
 
+                inscriptionsButton.setVisible(true);
+                inscriptionsButton.setManaged(true);
+
                 coachesButton.setVisible(true);
                 coachesButton.setManaged(true);
 
@@ -118,6 +123,9 @@ public class DashboardController {
                 sessionsButton.setVisible(true);
                 sessionsButton.setManaged(true);
 
+                inscriptionsButton.setVisible(true);
+                inscriptionsButton.setManaged(true);
+
                 try {
 
                     FXMLLoader loader = new FXMLLoader(
@@ -153,6 +161,10 @@ public class DashboardController {
 
                 sessionsButton.setVisible(true);
                 sessionsButton.setManaged(true);
+
+                inscriptionsButton.setVisible(true);
+                inscriptionsButton.setManaged(true);
+
                 try {
 
                     FXMLLoader loader = new FXMLLoader(
@@ -200,6 +212,9 @@ public class DashboardController {
 
                 sessionsButton.setVisible(false);
                 sessionsButton.setManaged(false);
+
+                inscriptionsButton.setVisible(false);
+                inscriptionsButton.setManaged(false);
 
                 coachesButton.setVisible(false);
                 coachesButton.setManaged(false);
@@ -299,6 +314,25 @@ public class DashboardController {
 
             contentPane.getChildren().clear();
             contentPane.getChildren().add(seancesView);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleInscriptions() {
+        // Gestion des inscriptions aux seances
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/gss/gss/fxml/inscriptions-seances.fxml")
+            );
+
+            Parent inscriptionsView = loader.load();
+
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(inscriptionsView);
 
         } catch (IOException e) {
 

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="gestion_salle_sport@localhost" uuid="d9849294-4d3c-4d48-b18a-1490914a144f">
+    <data-source source="LOCAL" name="gestion_salle_sport@localhost" uuid="c0ac658d-aa10-4c6e-8c4e-af06dc4781f7">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3307/gestion_salle_sport</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="database.introspection.mysql.dbe5060" value="true" />
+      </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

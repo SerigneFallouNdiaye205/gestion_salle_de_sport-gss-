@@ -6,11 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="650" prefWidth="1100"
-            style="-fx-background-color: #f8fafc;"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gss.gss.controller.MembreController">
+<BorderPane prefHeight="650" prefWidth="1100" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MembreController">
 
    <top>
 
@@ -20,61 +16,41 @@
             <Insets bottom="15" left="25" right="25" top="20" />
          </padding>
 
-         <Label
-                 style="-fx-font-size: 24px;
-                  -fx-font-weight: bold;
-                  -fx-text-fill: #1e293b;" text="Gestion des membres" />
+         <Label style="-fx-font-size: 24px;                   -fx-font-weight: bold;                   -fx-text-fill: #1e293b;" text="Gestion des membres" />
 
-         <Label
-                 style="-fx-font-size: 13px;
-                 -fx-text-fill: #64748b;"
-                 text="Ajoutez, modifiez, recherchez et gérez les membres de la salle." />
+         <Label style="-fx-font-size: 13px;                  -fx-text-fill: #64748b;" text="Ajoutez, modifiez, recherchez et gérez les membres de la salle." />
 
          <HBox spacing="10">
 
-            <TextField fx:id="searchField"
-                       onAction="#handleSearch"
-                       prefHeight="40"
-                       promptText="Rechercher par nom, prénom, téléphone, email..."
-                       style="-fx-background-color: white;
-                       -fx-border-color: #cbd5e1;
-                       -fx-border-radius: 6;
-                       -fx-background-radius: 6;
-                       -fx-padding: 0 12px;" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" onAction="#handleSearch" prefHeight="40" promptText="Rechercher par nom, prénom, téléphone, email..." style="-fx-background-color: white;                        -fx-border-color: #cbd5e1;                        -fx-border-radius: 6;                        -fx-background-radius: 6;                        -fx-padding: 0 12px;" HBox.hgrow="ALWAYS" />
 
-            <Button onAction="#handleSearch" prefHeight="40"
-                    style="-fx-background-color: #2563eb;
-                    -fx-text-fill: white;
-                    -fx-font-weight: bold;
-                    -fx-background-radius: 6px;
-                    -fx-cursor: hand;" text="Rechercher">
+            <Button onAction="#handleSearch" prefHeight="38.0" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-background-radius: 6px; -fx-cursor: hand;" text="Rechercher">
                <graphic>
                   <FontAwesomeIconView fill="#eff0f5" glyphName="SEARCH" size="15" />
                </graphic>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
             </Button>
 
-            <ComboBox fx:id="statusComboBox" prefHeight="40" prefWidth="150.0" promptText="Statut">
+            <ComboBox fx:id="statusComboBox" prefHeight="38.0" prefWidth="150.0" promptText="Statut">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </ComboBox>
 
-            <Button onAction="#handleRefresh" prefHeight="40"
-                    style="-fx-background-color: #64748b;
-                    -fx-text-fill: white;
-                    -fx-font-weight: bold;
-                    -fx-background-radius: 6px;
-                    -fx-cursor: hand;" text="Actualiser">
+            <Button onAction="#handleRefresh" prefHeight="38.0" style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-background-radius: 6px; -fx-cursor: hand;" text="Actualiser">
                <graphic>
                   <FontAwesomeIconView fill="#eff0f5" glyphName="REFRESH" size="15" />
                </graphic>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
             </Button>
 
-            <Button onAction="#handleAdd" prefHeight="40"
-                    style="-fx-background-color: #16a34a;"
-                    text="nouveau membre" textFill="#eff0f5">
+            <Button onAction="#handleAdd" prefHeight="40" style="-fx-background-color: #16a34a;" text="Nouveau membre" textFill="#eff0f5">
                <font>
-                  <Font name="Times New Roman" size="13.0" />
+                  <Font name="System Bold Italic" size="12.0" />
                </font>
                <HBox.margin>
                   <Insets left="20.0" />
@@ -100,15 +76,8 @@
          <padding>
             <Insets bottom="10" left="25" right="25" top="5" />
          </padding>
-         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
-                     layoutX="125.0" layoutY="160.0"
-                     prefHeight="400" prefWidth="900.0"
-                     AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-            <AnchorPane prefHeight="400" prefWidth="900.0">
-               <TableView fx:id="membersTable"
-                          style="-fx-background-color: white;"
-                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                          VBox.vgrow="ALWAYS">
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="400" prefWidth="900.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
+               <TableView fx:id="membersTable" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" VBox.vgrow="ALWAYS">
                   <columns>
                      <TableColumn fx:id="idColumn" prefWidth="55" text="ID" />
 
@@ -130,7 +99,6 @@
                   </columnResizePolicy>
 
                </TableView>
-            </AnchorPane>
          </ScrollPane>
 
       </VBox>
@@ -145,40 +113,28 @@
             <Insets bottom="20" left="25" right="25" top="10" />
          </padding>
 
-         <Button onAction="#handleEdit" prefHeight="40" prefWidth="100.0"
-                 style="-fx-background-color: #2563eb;
-                 -fx-text-fill: #eff0f5;
-                 -fx-font-weight: bold;
-                 -fx-background-radius: 6px;
-                 -fx-cursor: hand;" text="Modifier">
+         <Button onAction="#handleEdit" prefHeight="40" prefWidth="100.0" style="-fx-background-color: #2563eb;                  -fx-text-fill: #eff0f5;                  -fx-font-weight: bold;                  -fx-background-radius: 6px;                  -fx-cursor: hand;" text="Modifier">
             <font>
-               <Font name="Times New Roman Bold" size="13.0" />
+               <Font name="System Bold Italic" size="12.0" />
             </font>
             <graphic>
                <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
             </graphic>
          </Button>
 
-         <Button onAction="#handleDelete" prefHeight="40"
-                 style="-fx-background-color: #dc2626;
-                  -fx-text-fill: white;
-                  -fx-font-weight: bold;
-                  -fx-background-radius: 6px;
-                  -fx-cursor: hand;" text="Supprimer">
+         <Button onAction="#handleDelete" prefHeight="40" style="-fx-background-color: #dc2626;                   -fx-text-fill: white;                   -fx-font-weight: bold;                   -fx-background-radius: 6px;                   -fx-cursor: hand;" text="Supprimer">
             <font>
-               <Font name="Times New Roman Bold" size="13.0" />
+               <Font name="System Bold Italic" size="12.0" />
             </font>
             <graphic>
                <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
             </graphic>
          </Button>
 
-         <HBox HBox.hgrow="ALWAYS"/>
+         <HBox HBox.hgrow="ALWAYS" />
 
-         <Label text="Sélectionnez un membre pour effectuer une action."
-                style="-fx-text-fill: #64748b;
-                          -fx-font-size: 12px;"
-                alignment="CENTER_RIGHT"/>
+         <Label alignment="CENTER_RIGHT" style="-fx-text-fill: #64748b;
+         -fx-font-size: 12px;" text="Sélectionnez un membre pour effectuer une action." />
 
       </HBox>
 

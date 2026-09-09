@@ -512,99 +512,25 @@ public class CoachDAOImpl implements CoachDAO {
     @Override
     public boolean delete(int id) {
 
-        String sqlUtilisateur = """
+        // La table coachs dépend de utilisateurs(id).
+        // La suppression du compte utilisateur déclenche
+        // automatiquement la suppression du coach (ON DELETE CASCADE).
+        String sql = """
                 DELETE FROM utilisateurs
-                WHERE username = ?
+                WHERE id = ?
                   AND type = 'COACH'
                 """;
 
-        String sqlCoach = """
-                DELETE FROM coachs
-                WHERE id = ?
-                """;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-        Connection connection = null;
-
-        try {
-
-            connection =
-                    DatabaseConnection.getConnection();
-
-            connection.setAutoCommit(false);
-
-            /*
-             * 1. Suppression du compte utilisateur
-             */
-            try (
-                    PreparedStatement ps =
-                            connection.prepareStatement(
-                                    sqlUtilisateur
-                            )
-            ) {
-
-                ps.setString(
-                        1,
-                        "coach" + id
-                );
-
-                ps.executeUpdate();
-            }
-
-            /*
-             * 2. Suppression du coach
-             */
-            int lignes;
-
-            try (
-                    PreparedStatement ps =
-                            connection.prepareStatement(
-                                    sqlCoach
-                            )
-            ) {
-
-                ps.setInt(1, id);
-
-                lignes = ps.executeUpdate();
-            }
-
-            if (lignes == 0) {
-
-                connection.rollback();
-
-                return false;
-            }
-
-            connection.commit();
-
-            return true;
+            ps.setInt(1, id);
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
-
-            if (connection != null) {
-
-                try {
-                    connection.rollback();
-                } catch (SQLException rollbackException) {
-                    rollbackException.printStackTrace();
-                }
-            }
-
             throw new RuntimeException(
-                    "Erreur lors de la suppression du coach.",
-                    e
+                    "Erreur lors de la suppression du coach.", e
             );
-
-        } finally {
-
-            if (connection != null) {
-
-                try {
-                    connection.setAutoCommit(true);
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 

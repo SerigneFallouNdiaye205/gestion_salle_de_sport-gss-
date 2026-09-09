@@ -5,96 +5,70 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.gss.gss.controller.AbonnementFormController"
-      spacing="15"
-      prefWidth="500"
-      prefHeight="500">
+<VBox prefWidth="450.0" spacing="15" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementFormController">
 
     <padding>
-        <Insets top="25" right="30" bottom="25" left="30"/>
+        <Insets bottom="25" left="30" right="30" top="25" />
     </padding>
 
-    <Label text="Gestion de l'abonnement"
-           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Gestion de l'abonnement" />
+   <Separator prefWidth="200.0" />
 
     <GridPane hgap="15" vgap="12">
 
-        <Label text="ID membre :"
-               GridPane.rowIndex="0"
-               GridPane.columnIndex="0"/>
+        <Label text="Membre :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-        <TextField fx:id="membreIdField"
-                   promptText="Ex : 1"
-                   GridPane.rowIndex="0"
-                   GridPane.columnIndex="1"/>
+        <ComboBox fx:id="membreComboBox" prefWidth="250" promptText="Sélectionner un membre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-        <Label text="Type :"
-               GridPane.rowIndex="1"
-               GridPane.columnIndex="0"/>
+        <Label text="Type :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-        <ComboBox fx:id="typeComboBox"
-                  prefWidth="250"
-                  GridPane.rowIndex="1"
-                  GridPane.columnIndex="1"/>
+        <ComboBox fx:id="typeComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Label text="Prix :"
-               GridPane.rowIndex="2"
-               GridPane.columnIndex="0"/>
+        <Label text="Prix :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-        <TextField fx:id="prixField"
-                   promptText="Ex : 10000"
-                   GridPane.rowIndex="2"
-                   GridPane.columnIndex="1"/>
+        <TextField fx:id="prixField" promptText="Ex : 10000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Date début :"
-               GridPane.rowIndex="3"
-               GridPane.columnIndex="0"/>
+        <Label text="Date début :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-        <DatePicker fx:id="dateDebutPicker"
-                    GridPane.rowIndex="3"
-                    GridPane.columnIndex="1"/>
+        <DatePicker fx:id="dateDebutPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-        <Label text="Date fin :"
-               GridPane.rowIndex="4"
-               GridPane.columnIndex="0"/>
+        <Label text="Date fin :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-        <DatePicker fx:id="dateFinPicker"
-                    GridPane.rowIndex="4"
-                    GridPane.columnIndex="1"/>
+        <DatePicker fx:id="dateFinPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-        <Label text="Statut :"
-               GridPane.rowIndex="5"
-               GridPane.columnIndex="0"/>
+        <Label text="Statut :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-        <ComboBox fx:id="statutComboBox"
-                  prefWidth="250"
-                  GridPane.rowIndex="5"
-                  GridPane.columnIndex="1"/>
+        <ComboBox fx:id="statutComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
 
     </GridPane>
 
-    <Label fx:id="errorLabel"
-           visible="false"
-           managed="false"
-           wrapText="true"
-           style="-fx-text-fill: #dc2626;"/>
+    <Label fx:id="errorLabel" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
 
-    <HBox spacing="10">
+    <HBox alignment="CENTER_RIGHT" spacing="10">
 
-        <Button text="Enregistrer"
-                onAction="#handleSave"
-                prefWidth="120"/>
+        <Button onAction="#handleCancel" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #64748b; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Annuler" />
 
-        <Button text="Annuler"
-                onAction="#handleCancel"
-                prefWidth="120"/>
+        <Button onAction="#handleSave" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Enregistrer" />
 
     </HBox>
 

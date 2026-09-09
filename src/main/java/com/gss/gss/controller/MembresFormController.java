@@ -21,6 +21,9 @@ public class MembresFormController {
     private TextField prenomField;
 
     @FXML
+    private ComboBox<String> sexeComboBox;
+
+    @FXML
     private TextField telephoneField;
 
     @FXML
@@ -51,6 +54,12 @@ public class MembresFormController {
     @FXML
     public void initialize() {
 
+        sexeComboBox.getItems().addAll(
+                "M",
+                "F"
+        );
+        sexeComboBox.setValue("M");
+
         statutComboBox.getItems().addAll(
                 "ACTIF",
                 "INACTIF"
@@ -72,6 +81,9 @@ public class MembresFormController {
 
         nomField.setText(membre.getNom());
         prenomField.setText(membre.getPrenom());
+        sexeComboBox.setValue(
+                membre.getSexe() == null ? "M" : membre.getSexe()
+        );
         telephoneField.setText(membre.getTelephone());
         emailField.setText(membre.getEmail());
         adresseField.setText(membre.getAdresse());
@@ -147,6 +159,7 @@ public class MembresFormController {
 
         membre.setNom(nomField.getText().trim());
         membre.setPrenom(prenomField.getText().trim());
+        membre.setSexe(sexeComboBox.getValue());
         membre.setTelephone(telephoneField.getText().trim());
         membre.setEmail(emailField.getText().trim());
         membre.setAdresse(adresseField.getText().trim());
@@ -173,6 +186,11 @@ public class MembresFormController {
 
         if (prenomField.getText().trim().isEmpty()) {
             afficherErreur("Le prénom est obligatoire.");
+            return false;
+        }
+
+        if (sexeComboBox.getValue() == null) {
+            afficherErreur("Veuillez sélectionner le sexe.");
             return false;
         }
 

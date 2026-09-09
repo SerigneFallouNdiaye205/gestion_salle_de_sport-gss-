@@ -1,133 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="604.0" prefWidth="966.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
-   <HBox alignment="CENTER" prefHeight="73.0" prefWidth="966.0" spacing="20.0" style="-fx-background-color: #3051A0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-      <children>
-         <VBox prefHeight="64.0" prefWidth="809.0" spacing="5.0">
-            <children>
-               <Label text="Tableau de bord" textFill="#eff0f5">
-                  <font>
-                     <Font name="Impact" size="19.0" />
-                  </font>
-               </Label>
-               <Label text="Vue generale de votre salle de sport" textFill="#eff0f5">
-                  <font>
-                     <Font name="Times New Roman" size="13.0" />
-                  </font>
-               </Label>
-            </children>
+<BorderPane prefHeight="1150.0" prefWidth="1051.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="76.0" spacing="20" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0;">
             <padding>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                <Insets bottom="15" left="28" right="28" top="15" />
             </padding>
-         </VBox>
-         <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="51.0" prefWidth="109.0" spacing="5.0" style="-fx-background-color: #eff0f5; -fx-background-radius: 10;">
-            <children>
-               <Label fx:id="username" text="label" textFill="#3051a0">
-                  <font>
-                     <Font name="Impact" size="14.0" />
-                  </font>
-               </Label>
-               <Label fx:id="localDateTime" text="label">
-                  <font>
-                     <Font name="Times New Roman" size="13.0" />
-                  </font>
-               </Label>
-            </children>
-         </VBox>
-      </children>
-      <padding>
-         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-      </padding>
-   </HBox>
 
-          <VBox layoutY="-50.666666666666664" prefHeight="516.0" prefWidth="966.0" spacing="25.0" style="-fx-background-color: #f3f4f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <padding>
-            <Insets bottom="30" left="30" right="30" top="30" />
-        </padding>
-        <Label fx:id="welcomeLabel" text="Vue d'ensemble">
-         <font>
-            <Font name="Impact" size="20.0" />
-         </font>
-      </Label>
+            <VBox spacing="3">
 
-              <!-- CARTES -->
-        <HBox fx:id="countHBox" alignment="CENTER" prefHeight="117.0" prefWidth="906.0" spacing="20.0">
-            <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                              -fx-background-radius: 10;                              -fx-padding: 20;">
-                <Label text="Membres">
-               <font>
-                  <Font name="Times New Roman" size="19.0" />
-               </font>
-            </Label>
-                <Label fx:id="membersCountLabel" style="-fx-font-size: 30px;                            -fx-font-weight: bold;                            -fx-text-fill: #111827;" text="0" />
-            <HBox.margin>
-               <Insets />
-            </HBox.margin>
+                 <Label style="-fx-text-fill: #0f172a; -fx-font-size: 25px; -fx-font-weight: bold;" text="Tableau de bord" />
+                <Label style="-fx-text-fill: #64748b; -fx-font-size: 12px;" text="Vue d'ensemble de votre salle de sport" />
             </VBox>
 
-                  <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                              -fx-background-radius: 10;                              -fx-padding: 20;">
-                <Label text="Abonnements actifs">
-               <font>
-                  <Font name="Times New Roman" size="19.0" />
-               </font>
-            </Label>
-                <Label fx:id="activeSubscriptionsLabel" style="-fx-font-size: 30px;                            -fx-font-weight: bold;                            -fx-text-fill: #111827;" text="0" />
-            <HBox.margin>
-               <Insets />
-            </HBox.margin>
+            <Region HBox.hgrow="ALWAYS" />
+
+            <VBox alignment="CENTER_RIGHT" spacing="2">
+                <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Date et heure" />
+                <Label fx:id="localDateTime" style="-fx-text-fill: #3051A0; -fx-font-size: 13px; -fx-font-weight: bold;" wrapText="true" />
             </VBox>
 
-      
-                  <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                              -fx-background-radius: 10;                              -fx-padding: 20;">
-
-                      <Label text="Paiements">
-               <font>
-                  <Font name="Times New Roman" size="19.0" />
-               </font>
-            </Label>
-                <Label fx:id="paymentsCountLabel" style="-fx-font-size: 30px;                             -fx-font-weight: bold;                             -fx-text-fill: #111827;" text="0" />
-            <HBox.margin>
-               <Insets />
-            </HBox.margin>
-
-                  </VBox>
-
-      
-                  <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                        -fx-background-radius: 10;                        -fx-padding: 20;">
-
-                      <Label text="Séances">
-               <font>
-                  <Font name="Times New Roman" size="19.0" />
-               </font>
-            </Label>
-                <Label fx:id="sessionsCountLabel" style="-fx-font-size: 30px;                                        -fx-font-weight: bold;                                        -fx-text-fill: #111827;" text="0" />
+            <VBox alignment="CENTER_RIGHT" spacing="2">
+                <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Connecté en tant que" />
+                <Label fx:id="username" style="-fx-text-fill: #3051A0; -fx-font-size: 13px; -fx-font-weight: bold;" />
             </VBox>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
+        </HBox>
+    </top>
+   <right>
+       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="1126.0" prefWidth="1051.0" style="-fx-background-color: transparent; -fx-background: #f1f5f9;" BorderPane.alignment="CENTER">
+           <VBox alignment="CENTER" prefHeight="1065.0" prefWidth="1049.0" spacing="22" style="-fx-background-color: #f1f5f9;">
+               <padding>
+                   <Insets bottom="35" left="28" right="28" top="25" />
+               </padding>
 
-              </HBox>
+               <!-- ===================== CARTES ===================== -->
+               <GridPane hgap="16" vgap="16">
+                   <columnConstraints>
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="25" />
+                       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+                   </columnConstraints>
 
-              <AnchorPane prefHeight="570.0" prefWidth="966.0">
-         <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="1.0" prefHeight="327.0" prefWidth="840.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <content>
-                <AnchorPane>
-                     <children>
-                        <StackPane fx:id="contentPane" prefHeight="275.0" prefWidth="803.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-         </children>
-        </AnchorPane>
-    </VBox>
-</AnchorPane>
+                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="0">
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="MEMBRES" />
+                       <Label fx:id="membersCountLabel" style="-fx-text-fill: #7c3aed; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Total enregistré" />
+                   </VBox>
+
+                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="2">
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="ABONNEMENTS ACTIFS" />
+                       <Label fx:id="activeSubscriptionsLabel" style="-fx-text-fill: #059669; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Non expirés" />
+                   </VBox>
+
+                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="3">
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="PAIEMENTS" />
+                       <Label fx:id="paymentsCountLabel" style="-fx-text-fill: #0284c7; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Transactions enregistrées" />
+                   </VBox>
+
+                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="4">
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="SÉANCES" />
+                       <Label fx:id="sessionsCountLabel" style="-fx-text-fill: #ea580c; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Séances programmées" />
+                   </VBox>
+                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="1">
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="UTILISATEURS " />
+                       <Label fx:id="utilisateursCountLabel" style="-fx-text-fill: #ea580c; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Dans le systeme" />
+                   </VBox>
+                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="5">
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="REVENUS GENERES" />
+                       <Label fx:id="totalPaymentAmountLabel" style="-fx-text-fill: #ea580c; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
+                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Totaux des revenus" />
+                   </VBox>
+                   <rowConstraints>
+                       <RowConstraints />
+                   </rowConstraints>
+               </GridPane>
+               <HBox prefHeight="395.0">
+                   <VBox prefHeight="319.0" prefWidth="980.0" spacing="12" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;">
+                       <Label style="-fx-text-fill: #0f172a; -fx-font-size: 17px; -fx-font-weight: bold;" text="Fréquentation" />
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px;" text="Inscriptions confirmées aux séances — 7 derniers jours" />
+
+                       <LineChart fx:id="attendanceChart" animated="false" createSymbols="true" legendVisible="false" prefHeight="290.0" prefWidth="534.0" style="-fx-background-color: transparent;" verticalGridLinesVisible="false">
+                           <xAxis>
+                               <CategoryAxis label="Jour" side="BOTTOM" tickLabelFill="#64748b" />
+                           </xAxis>
+                           <yAxis>
+                               <NumberAxis forceZeroInRange="true" label="Inscriptions" side="LEFT" tickLabelFill="#64748b" />
+                           </yAxis>
+                       </LineChart>
+                   </VBox>
+               </HBox>
+
+               <!-- ===================== MEMBRES + ABONNEMENTS ===================== -->
+               <GridPane hgap="18" prefHeight="251.0" prefWidth="979.0">
+                   <columnConstraints>
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                   </columnConstraints>
+
+                   <VBox prefHeight="180.0" prefWidth="314.0" spacing="12" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="0">
+                       <HBox alignment="CENTER_LEFT">
+                           <Label style="-fx-text-fill: #0f172a; -fx-font-size: 17px; -fx-font-weight: bold;" text="Membres récents" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="5 derniers" />
+                       </HBox>
+                       <VBox fx:id="recentMembersContainer" spacing="8" />
+                   </VBox>
+
+                   <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="1">
+                       <HBox alignment="CENTER_LEFT">
+                           <Label style="-fx-text-fill: #0f172a; -fx-font-size: 17px; -fx-font-weight: bold;" text="Abonnements récents" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="5 derniers" />
+                       </HBox>
+                       <VBox fx:id="recentSubscriptionsContainer" spacing="8" />
+                   </VBox>
+
+                   <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="2">
+                       <HBox alignment="CENTER_LEFT">
+                           <Label style="-fx-text-fill: #0f172a; -fx-font-size: 17px; -fx-font-weight: bold;" text="Paiements récents" />
+                           <Region HBox.hgrow="ALWAYS" />
+                           <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="5 dernières transactions" />
+                       </HBox>
+                       <VBox fx:id="recentPaymentsContainer" spacing="8" />
+                   </VBox>
+                   <rowConstraints>
+                       <RowConstraints />
+                   </rowConstraints>
+               </GridPane>
+
+               <!-- ===================== PAIEMENTS + NOTIFICATIONS ===================== -->
+               <GridPane hgap="18">
+                   <columnConstraints>
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="60" />
+                       <ColumnConstraints hgrow="ALWAYS" percentWidth="40" />
+                   </columnConstraints>
+
+                   <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="1">
+                       <Label style="-fx-text-fill: #0f172a; -fx-font-size: 17px; -fx-font-weight: bold;" text="Notifications" />
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px;" text="Alertes calculées depuis MySQL" />
+                       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="250.0" minHeight="-Infinity" prefHeight="250.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+                           <VBox fx:id="notificationsContainer" maxWidth="Infinity" prefWidth="300.0" spacing="8" />
+                       </ScrollPane>
+                   </VBox>
+
+                   <VBox spacing="12" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;">
+                       <Label style="-fx-text-fill: #0f172a; -fx-font-size: 17px; -fx-font-weight: bold;" text="Planning aujourd'hui" />
+                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px;" text="Séances programmées pour la date du jour" />
+
+                       <VBox fx:id="planningContainer" spacing="9" />
+                   </VBox>
+                   <rowConstraints>
+                       <RowConstraints />
+                   </rowConstraints>
+               </GridPane>
+            <Label text="© gestion salle de sport 2026" />
+
+           </VBox>
+       </ScrollPane>
+   </right>
+</BorderPane>

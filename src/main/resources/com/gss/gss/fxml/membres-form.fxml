@@ -5,131 +5,75 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.gss.gss.controller.MembresFormController"
-      spacing="15"
-      style="-fx-background-color: white;">
+<VBox spacing="15" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MembresFormController">
 
     <padding>
-        <Insets top="25" right="30" bottom="25" left="30"/>
+        <Insets bottom="25" left="30" right="30" top="25" />
     </padding>
 
-    <Label fx:id="titleLabel"
-           text="Nouveau membre"
-           style="-fx-font-size: 22px;
-                  -fx-font-weight: bold;
-                  -fx-text-fill: #111827;"/>
+    <Label fx:id="titleLabel" style="-fx-font-size: 22px;                   -fx-font-weight: bold;                   -fx-text-fill: #111827;" text="Nouveau membre" />
+   <Separator prefWidth="200.0" />
 
-    <GridPane hgap="15"
-              vgap="12">
+    <GridPane hgap="15" vgap="12">
 
-        <Label text="Nom :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="0"/>
+        <Label text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="nomField" prefWidth="250" promptText="Nom" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-        <TextField fx:id="nomField"
-                   promptText="Nom"
-                   prefWidth="250"
-                   GridPane.columnIndex="1"
-                   GridPane.rowIndex="0"/>
+        <Label text="Prénom :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="prenomField" prefWidth="250" promptText="Prénom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
+        <Label text="Sexe :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <ComboBox fx:id="sexeComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Prénom :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="1"/>
+        <Label text="Téléphone :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="telephoneField" prefWidth="250" promptText="Téléphone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-        <TextField fx:id="prenomField"
-                   promptText="Prénom"
-                   GridPane.columnIndex="1"
-                   GridPane.rowIndex="1"/>
+        <Label text="Email :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField fx:id="emailField" prefWidth="250" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
+        <Label text="Adresse :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+        <TextField fx:id="adresseField" prefWidth="250" promptText="Adresse" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-        <Label text="Téléphone :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="2"/>
+        <Label text="Date de naissance :" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <DatePicker fx:id="dateNaissancePicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-        <TextField fx:id="telephoneField"
-                   promptText="Téléphone"
-                   GridPane.columnIndex="1"
-                   GridPane.rowIndex="2"/>
+        <Label text="Date d'inscription :" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+        <DatePicker fx:id="dateInscriptionPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-
-        <Label text="Email :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="3"/>
-
-        <TextField fx:id="emailField"
-                   promptText="Email"
-                   GridPane.columnIndex="1"
-                   GridPane.rowIndex="3"/>
-
-
-        <Label text="Adresse :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="4"/>
-
-        <TextField fx:id="adresseField"
-                   promptText="Adresse"
-                   GridPane.columnIndex="1"
-                   GridPane.rowIndex="4"/>
-
-
-        <Label text="Date de naissance :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="5"/>
-
-        <DatePicker fx:id="dateNaissancePicker"
-                    GridPane.columnIndex="1"
-                    GridPane.rowIndex="5"/>
-
-
-        <Label text="Date d'inscription :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="6"/>
-
-        <DatePicker fx:id="dateInscriptionPicker"
-                    GridPane.columnIndex="1"
-                    GridPane.rowIndex="6"/>
-
-
-        <Label text="Statut :"
-               GridPane.columnIndex="0"
-               GridPane.rowIndex="7"/>
-
-        <ComboBox fx:id="statutComboBox"
-                  prefWidth="250"
-                  GridPane.columnIndex="1"
-                  GridPane.rowIndex="7"/>
+        <Label text="Statut :" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+        <ComboBox fx:id="statutComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
 
     </GridPane>
 
-    <Label fx:id="errorLabel"
-           visible="false"
-           managed="false"
-           wrapText="true"
-           style="-fx-text-fill: #dc2626;"/>
+    <Label fx:id="errorLabel" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
 
-    <HBox spacing="10"
-          alignment="CENTER_RIGHT">
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button onAction="#handleCancel" prefHeight="38.0" prefWidth="100" style="-fx-background-color: #64748b; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Annuler" />
 
-        <Button text="Annuler"
-                onAction="#handleCancel"
-                prefWidth="100"/>
-
-        <Button fx:id="saveButton"
-                text="Enregistrer"
-                onAction="#handleSave"
-                prefWidth="120"
-                style="-fx-background-color: #2563eb;
-                       -fx-text-fill: white;
-                       -fx-font-weight: bold;"/>
-
+        <Button fx:id="saveButton" onAction="#handleSave" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-style: italic; -fx-font-weight: bold; -fx-font-size: 13; -fx-cursor: hand;" text="Enregistrer" />
     </HBox>
 
 </VBox>

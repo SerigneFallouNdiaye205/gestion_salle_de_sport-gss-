@@ -488,6 +488,7 @@ public class AbonnementsDAOImpl implements AbonnementDAO {
                 SELECT COUNT(*)
                 FROM abonnements
                 WHERE statut = 'ACTIF'
+                  AND date_fin >= CURDATE()
                 """;
 
         try (

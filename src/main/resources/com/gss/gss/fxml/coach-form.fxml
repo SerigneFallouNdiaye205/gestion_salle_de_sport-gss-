@@ -4,125 +4,79 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.gss.gss.controller.CoachFormController"
-      prefWidth="500"
-      prefHeight="520"
-      spacing="20"
-      style="-fx-background-color: #f8fafc;">
+<VBox prefWidth="450.0" spacing="20" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.CoachFormController">
 
     <padding>
-        <Insets top="25"
-                right="30"
-                bottom="25"
-                left="30"/>
+        <Insets bottom="25" left="30" right="30" top="25" />
     </padding>
 
-    <Label text="Informations du coach"
-           style="-fx-font-size: 22px;
-                  -fx-font-weight: bold;
-                  -fx-text-fill: #1e293b;"/>
+    <Label style="-fx-font-size: 22px;                   -fx-font-weight: bold;                   -fx-text-fill: #1e293b;" text="Informations du coach" />
+   <Separator prefWidth="200.0" />
 
-    <GridPane hgap="12"
-              vgap="15">
+    <GridPane hgap="12" vgap="15">
 
-        <Label text="Nom :"
-               GridPane.rowIndex="0"
-               GridPane.columnIndex="0"/>
+        <Label text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
-        <TextField fx:id="nomField"
-                   promptText="Nom"
-                   GridPane.rowIndex="0"
-                   GridPane.columnIndex="1"/>
+        <TextField fx:id="nomField" promptText="Nom" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
 
-        <Label text="Prénom :"
-               GridPane.rowIndex="1"
-               GridPane.columnIndex="0"/>
+        <Label text="Prénom :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-        <TextField fx:id="prenomField"
-                   promptText="Prénom"
-                   GridPane.rowIndex="1"
-                   GridPane.columnIndex="1"/>
+        <TextField fx:id="prenomField" promptText="Prénom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
 
-        <Label text="Téléphone :"
-               GridPane.rowIndex="2"
-               GridPane.columnIndex="0"/>
+        <Label text="Téléphone :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-        <TextField fx:id="telephoneField"
-                   promptText="Téléphone"
-                   GridPane.rowIndex="2"
-                   GridPane.columnIndex="1"/>
+        <TextField fx:id="telephoneField" promptText="Téléphone" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
 
-        <Label text="Email :"
-               GridPane.rowIndex="3"
-               GridPane.columnIndex="0"/>
+        <Label text="Email :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
-        <TextField fx:id="emailField"
-                   promptText="Email"
-                   GridPane.rowIndex="3"
-                   GridPane.columnIndex="1"/>
+        <TextField fx:id="emailField" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
 
-        <Label text="Spécialité :"
-               GridPane.rowIndex="4"
-               GridPane.columnIndex="0"/>
+        <Label text="Spécialité :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 
-        <ComboBox fx:id="specialiteComboBox"
-                  prefWidth="250"
-                  GridPane.rowIndex="4"
-                  GridPane.columnIndex="1"/>
+        <ComboBox fx:id="specialiteComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
 
-        <Label text="Salaire :"
-               GridPane.rowIndex="5"
-               GridPane.columnIndex="0"/>
+        <Label text="Salaire :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
 
-        <TextField fx:id="salaireField"
-                   promptText="Ex : 150000"
-                   GridPane.rowIndex="5"
-                   GridPane.columnIndex="1"/>
+        <TextField fx:id="salaireField" promptText="Ex : 150000" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
-        <Label text="Disponibilité :"
-               GridPane.rowIndex="6"
-               GridPane.columnIndex="0"/>
+        <Label text="Disponibilité :" GridPane.columnIndex="0" GridPane.rowIndex="6" />
 
-        <ComboBox fx:id="disponibiliteComboBox"
-                  prefWidth="250"
-                  GridPane.rowIndex="6"
-                  GridPane.columnIndex="1"/>
+        <ComboBox fx:id="disponibiliteComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
 
     </GridPane>
 
-    <HBox spacing="10">
+    <HBox alignment="CENTER_RIGHT" spacing="10">
 
-        <Button text="Annuler"
-                onAction="#handleCancel"
-                prefWidth="110"
-                prefHeight="40"
-                style="-fx-background-color: #64748b;
-                       -fx-text-fill: white;
-                       -fx-background-radius: 6px;
-                       -fx-cursor: hand;"/>
+        <Button onAction="#handleCancel" prefHeight="40" prefWidth="110" style="-fx-background-color: #64748b; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-style: italic; -fx-font-size: 13; -fx-background-radius: 6px; -fx-cursor: hand;" text="Annuler" />
 
-        <Button text="Enregistrer"
-                onAction="#handleSave"
-                prefWidth="130"
-                prefHeight="40"
-                style="-fx-background-color: #2563eb;
-                       -fx-text-fill: white;
-                       -fx-font-weight: bold;
-                       -fx-background-radius: 6px;
-                       -fx-cursor: hand;"/>
+        <Button onAction="#handleSave" prefHeight="40" prefWidth="130" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-style: italic; -fx-font-size: 13; -fx-background-radius: 6px; -fx-cursor: hand;" text="Enregistrer" />
 
     </HBox>
 

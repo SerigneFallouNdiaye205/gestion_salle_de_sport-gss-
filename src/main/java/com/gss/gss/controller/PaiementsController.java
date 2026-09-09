@@ -1,6 +1,8 @@
 package com.gss.gss.controller;
 
 import com.gss.gss.model.Paiement;
+import com.gss.gss.model.Membre;
+import com.gss.gss.service.MembreService;
 import com.gss.gss.service.PaiementService;
 
 import javafx.collections.FXCollections;
@@ -21,53 +23,26 @@ import java.time.LocalDateTime;
 
 public class PaiementsController {
 
-    @FXML
-    private TableView<Paiement> paiementTable;
+    @FXML private TableView<Paiement> paiementTable;
+    @FXML private TableColumn<Paiement, Number> idColumn;
+    @FXML private TableColumn<Paiement, String> membreIdColumn;
+    @FXML private TableColumn<Paiement, Number> abonnementIdColumn;
+    @FXML private TableColumn<Paiement, Number> montantColumn;
+    @FXML private TableColumn<Paiement, LocalDateTime> dateColumn;
+    @FXML private TableColumn<Paiement, String> modeColumn;
+    @FXML private TableColumn<Paiement, String> statutColumn;
+    @FXML private TableColumn<Paiement, String> referenceColumn;
 
-    @FXML
-    private TableColumn<Paiement, Number> idColumn;
-
-    @FXML
-    private TableColumn<Paiement, Number> membreIdColumn;
-
-    @FXML
-    private TableColumn<Paiement, Number> abonnementIdColumn;
-
-    @FXML
-    private TableColumn<Paiement, Number> montantColumn;
-
-    @FXML
-    private TableColumn<Paiement, LocalDateTime> dateColumn;
-
-    @FXML
-    private TableColumn<Paiement, String> modeColumn;
-
-    @FXML
-    private TableColumn<Paiement, String> statutColumn;
-
-    @FXML
-    private TableColumn<Paiement, String> referenceColumn;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private ComboBox<String> statutComboBox;
-
-    @FXML
-    private ComboBox<String> modeComboBox;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private Label totalPaiementsLabel;
-
-    @FXML
-    private Label totalRevenusLabel;
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> statutComboBox;
+    @FXML private ComboBox<String> modeComboBox;
+    @FXML private DatePicker datePicker;
+    @FXML private Label totalPaiementsLabel;
+    @FXML private Label totalRevenusLabel;
 
     private final PaiementService paiementService =
             new PaiementService();
+    private final MembreService membreService = new MembreService();
 
     private final ObservableList<Paiement> paiementList =
             FXCollections.observableArrayList();
@@ -117,10 +92,16 @@ public class PaiementsController {
         );
 
         membreIdColumn.setCellValueFactory(
-                cellData ->
-                        new javafx.beans.property.SimpleIntegerProperty(
-                                cellData.getValue().getMembreId()
-                        )
+                cellData -> {
+                    Membre membre = membreService.findById(
+                            cellData.getValue().getMembreId()
+                    );
+                    return new javafx.beans.property.SimpleStringProperty(
+                            membre == null
+                                    ? "Membre introuvable"
+                                    : membre.getPrenom() + " " + membre.getNom()
+                    );
+                }
         );
 
         abonnementIdColumn.setCellValueFactory(

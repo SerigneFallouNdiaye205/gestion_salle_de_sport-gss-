@@ -29,9 +29,9 @@ public class UtilisateurService {
 
     public Optional<Utilisateur> findById(int id) {return utilisateurDAO.findById(id);}
 
-    public List<Utilisateur> findAll() {
-        return utilisateurDAO.findAll();
-    }
+    public List<Utilisateur> findAll() {return utilisateurDAO.findAll();}
+
+    public long countAll() {return utilisateurDAO.findAll().size();}
 
     public List<Utilisateur> search(String recherche) {
         return utilisateurDAO.search(recherche);

@@ -37,6 +37,7 @@ public class MembreService {
     public List<Membre> rechercher(String recherche) {
         return membreDAO.rechercher(recherche);
     }
+
     public long countAll(){
         return membreDAO.findAll().size();
     }

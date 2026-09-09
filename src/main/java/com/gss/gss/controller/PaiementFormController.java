@@ -1,6 +1,10 @@
 package com.gss.gss.controller;
 
 import com.gss.gss.model.Paiement;
+import com.gss.gss.model.Abonnement;
+import com.gss.gss.model.Membre;
+import com.gss.gss.service.AbonnementService;
+import com.gss.gss.service.MembreService;
 import com.gss.gss.service.PaiementService;
 import com.gss.gss.util.PaiementReferenceGenerator;
 import com.gss.gss.util.RecuPaiement;
@@ -17,10 +21,10 @@ import java.time.LocalDateTime;
 public class PaiementFormController {
 
     @FXML
-    private TextField membreIdField;
+    private ComboBox<Membre> membreComboBox;
 
     @FXML
-    private TextField abonnementIdField;
+    private ComboBox<Abonnement> abonnementComboBox;
 
     @FXML
     private TextField montantField;
@@ -49,9 +53,52 @@ public class PaiementFormController {
 
     private final PaiementService paiementService =
             new PaiementService();
+    private final MembreService membreService = new MembreService();
+    private final AbonnementService abonnementService = new AbonnementService();
 
     @FXML
     public void initialize() {
+        membreComboBox.setItems(FXCollections.observableArrayList(membreService.findAll()));
+        membreComboBox.setCellFactory(list -> new ListCell<>() {
+            @Override
+            protected void updateItem(Membre membre, boolean empty) {
+                super.updateItem(membre, empty);
+                setText(empty || membre == null ? null
+                        : membre.getPrenom() + " " + membre.getNom());
+            }
+        });
+        membreComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Membre membre, boolean empty) {
+                super.updateItem(membre, empty);
+                setText(empty || membre == null ? null
+                        : membre.getPrenom() + " " + membre.getNom());
+            }
+        });
+        membreComboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
+            abonnementComboBox.setItems(newValue == null
+                    ? FXCollections.observableArrayList()
+                    : FXCollections.observableArrayList(
+                    abonnementService.findByMembreId(newValue.getId())));
+        });
+        abonnementComboBox.setCellFactory(list -> new ListCell<>() {
+            @Override
+            protected void updateItem(Abonnement abonnement, boolean empty) {
+                super.updateItem(abonnement, empty);
+                setText(empty || abonnement == null ? null
+                        : abonnement.getType() + " - " + abonnement.getPrix()
+                        + " FCFA (" + abonnement.getDateDebut()
+                        + " au " + abonnement.getDateFin() + ")");
+            }
+        });
+        abonnementComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Abonnement abonnement, boolean empty) {
+                super.updateItem(abonnement, empty);
+                setText(empty || abonnement == null ? null
+                        : abonnement.getType() + " - " + abonnement.getPrix() + " FCFA");
+            }
+        });
 
         // Modes de paiement
         modePaiementComboBox.setItems(
@@ -96,13 +143,8 @@ public class PaiementFormController {
 
         titleLabel.setText("Modifier le paiement");
 
-        membreIdField.setText(
-                String.valueOf(paiement.getMembreId())
-        );
-
-        abonnementIdField.setText(
-                String.valueOf(paiement.getAbonnementId())
-        );
+        membreComboBox.setValue(membreService.findById(paiement.getMembreId()));
+        abonnementComboBox.setValue(abonnementService.findById(paiement.getAbonnementId()).orElse(null));
 
         montantField.setText(
                 String.valueOf(paiement.getMontant())
@@ -216,17 +258,8 @@ public class PaiementFormController {
 
     private void remplirPaiement() {
 
-        paiement.setMembreId(
-                Integer.parseInt(
-                        membreIdField.getText().trim()
-                )
-        );
-
-        paiement.setAbonnementId(
-                Integer.parseInt(
-                        abonnementIdField.getText().trim()
-                )
-        );
+        paiement.setMembreId(membreComboBox.getValue().getId());
+        paiement.setAbonnementId(abonnementComboBox.getValue().getId());
 
         paiement.setMontant(
                 Double.parseDouble(
@@ -271,20 +304,14 @@ public class PaiementFormController {
 
         errorLabel.setText("");
 
-        if (membreIdField.getText().isBlank()) {
-
-            afficherErreur(
-                    "Veuillez saisir le numéro du membre."
-            );
+        if (membreComboBox.getValue() == null) {
+            afficherErreur("Veuillez sélectionner le membre.");
 
             return false;
         }
 
-        if (abonnementIdField.getText().isBlank()) {
-
-            afficherErreur(
-                    "Veuillez saisir l'abonnement."
-            );
+        if (abonnementComboBox.getValue() == null) {
+            afficherErreur("Veuillez sélectionner l'abonnement.");
 
             return false;
         }
@@ -327,38 +354,10 @@ public class PaiementFormController {
 
         try {
 
-            int membreId =
-                    Integer.parseInt(
-                            membreIdField.getText().trim()
-                    );
-
-            int abonnementId =
-                    Integer.parseInt(
-                            abonnementIdField.getText().trim()
-                    );
-
             double montant =
                     Double.parseDouble(
                             montantField.getText().trim()
                     );
-
-            if (membreId <= 0) {
-
-                afficherErreur(
-                        "Le numéro du membre est invalide."
-                );
-
-                return false;
-            }
-
-            if (abonnementId <= 0) {
-
-                afficherErreur(
-                        "L'abonnement est invalide."
-                );
-
-                return false;
-            }
 
             if (montant <= 0) {
 
@@ -372,7 +371,7 @@ public class PaiementFormController {
         } catch (NumberFormatException e) {
 
             afficherErreur(
-                    "Les identifiants et le montant doivent être numériques."
+                    "Le montant doit être numérique."
             );
 
             return false;
@@ -407,7 +406,7 @@ public class PaiementFormController {
     private void fermer() {
 
         ((javafx.stage.Stage)
-                membreIdField.getScene().getWindow())
+                membreComboBox.getScene().getWindow())
                 .close();
     }
 }

@@ -1,7 +1,9 @@
 package com.gss.gss.controller;
 
 import com.gss.gss.model.Abonnement;
+import com.gss.gss.model.Membre;
 import com.gss.gss.service.AbonnementService;
+import com.gss.gss.service.MembreService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,7 +14,7 @@ import java.time.LocalDate;
 public class AbonnementFormController {
 
     @FXML
-    private TextField membreIdField;
+    private ComboBox<Membre> membreComboBox;
     @FXML
     private ComboBox<String> typeComboBox;
     @FXML
@@ -28,11 +30,29 @@ public class AbonnementFormController {
 
     private final AbonnementService abonnementService =
             new AbonnementService();
+    private final MembreService membreService = new MembreService();
 
     private Abonnement abonnement;
 
     @FXML
     public void initialize() {
+        membreComboBox.setItems(FXCollections.observableArrayList(membreService.findAll()));
+        membreComboBox.setCellFactory(list -> new ListCell<>() {
+            @Override
+            protected void updateItem(Membre membre, boolean empty) {
+                super.updateItem(membre, empty);
+                setText(empty || membre == null ? null
+                        : membre.getPrenom() + " " + membre.getNom());
+            }
+        });
+        membreComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Membre membre, boolean empty) {
+                super.updateItem(membre, empty);
+                setText(empty || membre == null ? null
+                        : membre.getPrenom() + " " + membre.getNom());
+            }
+        });
 
         typeComboBox.setItems(
                 FXCollections.observableArrayList(
@@ -66,11 +86,7 @@ public class AbonnementFormController {
 
         this.abonnement = abonnement;
 
-        membreIdField.setText(
-                String.valueOf(
-                        abonnement.getMembreId()
-                )
-        );
+        membreComboBox.setValue(membreService.findById(abonnement.getMembreId()));
 
         typeComboBox.setValue(
                 abonnement.getType()
@@ -100,10 +116,10 @@ public class AbonnementFormController {
 
         try {
 
-            int membreId =
-                    Integer.parseInt(
-                            membreIdField.getText().trim()
-                    );
+            Membre membre = membreComboBox.getValue();
+            if (membre == null) {
+                throw new IllegalArgumentException("Veuillez sélectionner un membre.");
+            }
 
             String type =
                     typeComboBox.getValue();
@@ -124,7 +140,7 @@ public class AbonnementFormController {
                 Abonnement nouveau =
                         new Abonnement();
 
-                nouveau.setMembreId(membreId);
+                nouveau.setMembreId(membre.getId());
                 nouveau.setType(type);
                 nouveau.setPrix(prix);
                 nouveau.setDateDebut(dateDebut);
@@ -135,7 +151,7 @@ public class AbonnementFormController {
 
             } else {
 
-                abonnement.setMembreId(membreId);
+                abonnement.setMembreId(membre.getId());
                 abonnement.setType(type);
                 abonnement.setPrix(prix);
                 abonnement.setDateDebut(dateDebut);
@@ -168,7 +184,7 @@ public class AbonnementFormController {
     private void fermer() {
 
         Stage stage =
-                (Stage) membreIdField.getScene().getWindow();
+                (Stage) membreComboBox.getScene().getWindow();
         stage.close();
     }
 

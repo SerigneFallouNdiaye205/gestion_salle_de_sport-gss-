@@ -68,6 +68,9 @@ public class UtilisateursController {
         );
 
         chargerUtilisateurs();
+
+        statusComboBox.setOnAction(event -> handleSearch());
+        typeComboBox.setOnAction(event -> handleSearch());
     }
 
     private void configurerColonnes() {
@@ -134,42 +137,28 @@ public class UtilisateursController {
     @FXML
     private void handleSearch() {
 
-        String recherche = searchField.getText().trim();
+        String recherche = searchField.getText() == null
+                ? ""
+                : searchField.getText().trim().toLowerCase();
+
         String statut = statusComboBox.getValue();
         String type = typeComboBox.getValue();
 
-        if (!recherche.isEmpty()) {
-            utilisateursTable.setItems(
-                    FXCollections.observableArrayList(
-                            utilisateurService.search(recherche)
-                    )
-            );
+        var resultats = utilisateurService.findAll().stream()
+                .filter(u -> recherche.isEmpty()
+                        || String.valueOf(u.getId()).contains(recherche)
+                        || (u.getUsername() != null && u.getUsername().toLowerCase().contains(recherche))
+                        || (u.getType() != null && u.getType().toLowerCase().contains(recherche))
+                        || (u.getStatut() != null && u.getStatut().toLowerCase().contains(recherche)))
+                .filter(u -> statut == null || statut.equals("Tous")
+                        || statut.equals(u.getStatut()))
+                .filter(u -> type == null || type.equals("Tous")
+                        || type.equals(u.getType()))
+                .toList();
 
-            return;
-        }
-
-        if (statut != null && !statut.equals("Tous")) {
-            utilisateursTable.setItems(
-                    FXCollections.observableArrayList(
-                            utilisateurService.findByStatut(statut)
-                    )
-            );
-
-            return;
-        }
-
-
-        if (type != null && !type.equals("Tous")) {
-            utilisateursTable.setItems(
-                    FXCollections.observableArrayList(
-                            utilisateurService.findByType(type)
-                    )
-            );
-
-            return;
-        }
-
-        chargerUtilisateurs();
+        utilisateursTable.setItems(
+                FXCollections.observableArrayList(resultats)
+        );
     }
 
     @FXML

@@ -15,9 +15,9 @@ public class MembreDAOImpl implements MembreDAO {
 
         String sql = """
                 INSERT INTO membres
-                (nom, prenom, telephone, email, adresse,
+                (nom, prenom, sexe, telephone, email, adresse,
                  date_naissance, date_inscription, statut)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -25,18 +25,19 @@ public class MembreDAOImpl implements MembreDAO {
 
             ps.setString(1, membre.getNom());
             ps.setString(2, membre.getPrenom());
-            ps.setString(3, membre.getTelephone());
-            ps.setString(4, membre.getEmail());
-            ps.setString(5, membre.getAdresse());
+            ps.setString(3, membre.getSexe() == null ? "M" : membre.getSexe());
+            ps.setString(4, membre.getTelephone());
+            ps.setString(5, membre.getEmail());
+            ps.setString(6, membre.getAdresse());
 
             if (membre.getDateNaissance() != null) {
-                ps.setDate(6, Date.valueOf(membre.getDateNaissance()));
+                ps.setDate(7, Date.valueOf(membre.getDateNaissance()));
             } else {
-                ps.setNull(6, Types.DATE);
+                ps.setNull(7, Types.DATE);
             }
 
-            ps.setDate(7, Date.valueOf(membre.getDateInscription()));
-            ps.setString(8, membre.getStatut());
+            ps.setDate(8, Date.valueOf(membre.getDateInscription()));
+            ps.setString(9, membre.getStatut());
 
             return ps.executeUpdate() > 0;
 
@@ -53,6 +54,7 @@ public class MembreDAOImpl implements MembreDAO {
                 UPDATE membres
                 SET nom = ?,
                     prenom = ?,
+                    sexe = ?,
                     telephone = ?,
                     email = ?,
                     adresse = ?,
@@ -67,19 +69,20 @@ public class MembreDAOImpl implements MembreDAO {
 
             ps.setString(1, membre.getNom());
             ps.setString(2, membre.getPrenom());
-            ps.setString(3, membre.getTelephone());
-            ps.setString(4, membre.getEmail());
-            ps.setString(5, membre.getAdresse());
+            ps.setString(3, membre.getSexe() == null ? "M" : membre.getSexe());
+            ps.setString(4, membre.getTelephone());
+            ps.setString(5, membre.getEmail());
+            ps.setString(6, membre.getAdresse());
 
             if (membre.getDateNaissance() != null) {
-                ps.setDate(6, Date.valueOf(membre.getDateNaissance()));
+                ps.setDate(7, Date.valueOf(membre.getDateNaissance()));
             } else {
-                ps.setNull(6, Types.DATE);
+                ps.setNull(7, Types.DATE);
             }
 
-            ps.setDate(7, Date.valueOf(membre.getDateInscription()));
-            ps.setString(8, membre.getStatut());
-            ps.setInt(9, membre.getId());
+            ps.setDate(8, Date.valueOf(membre.getDateInscription()));
+            ps.setString(9, membre.getStatut());
+            ps.setInt(10, membre.getId());
 
             return ps.executeUpdate() > 0;
 
@@ -228,6 +231,7 @@ public class MembreDAOImpl implements MembreDAO {
         membre.setId(rs.getInt("id"));
         membre.setNom(rs.getString("nom"));
         membre.setPrenom(rs.getString("prenom"));
+        membre.setSexe(rs.getString("sexe"));
         membre.setTelephone(rs.getString("telephone"));
         membre.setEmail(rs.getString("email"));
         membre.setAdresse(rs.getString("adresse"));

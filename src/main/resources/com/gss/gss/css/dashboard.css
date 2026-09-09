@@ -24,3 +24,57 @@
     -fx-border-radius: 10px;
     -fx-text-fill: #eff0f5;
 }
+
+/* =============================================================
+   HOME / DASHBOARD
+   ============================================================= */
+
+.dashboard-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.dashboard-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.dashboard-scroll > .corner {
+    -fx-background-color: transparent;
+}
+
+.dashboard-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.dashboard-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #CBD5E1;
+    -fx-background-radius: 8;
+}
+
+.dashboard-scroll .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.chart {
+    -fx-padding: 8px;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines,
+.chart-horizontal-grid-lines {
+    -fx-stroke: #EEF1F6;
+}
+
+.axis {
+    -fx-tick-label-fill: #8A94A6;
+    -fx-font-size: 10px;
+}
+
+.axis-label {
+    -fx-text-fill: #737E91;
+    -fx-font-size: 10px;
+}

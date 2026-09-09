@@ -7,6 +7,7 @@ public class Membre {
     private int id;
     private String nom;
     private String prenom;
+    private String sexe;
     private String telephone;
     private String email;
     private String adresse;
@@ -78,6 +79,14 @@ public class Membre {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
     }
 
     public String getTelephone() {

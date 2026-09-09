@@ -79,4 +79,6 @@ public class PaiementService {
     public List<Paiement> findByDate(LocalDateTime date) {
         return paiementDAO.findByDate(date);
     }
+
+    public long countAll(){return paiementDAO.findAll().size();}
 }

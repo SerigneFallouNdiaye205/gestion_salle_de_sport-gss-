@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.InscriptionSeanceController">
+    <top>
+        <VBox spacing="5">
+            <padding><Insets bottom="15" left="20" right="20" top="20" /></padding>
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Inscriptions aux séances" />
+            <Label style="-fx-text-fill: #64748b;" text="Inscrivez les membres aux séances pour suivre la fréquentation" />
+        </VBox>
+    </top>
+    <center>
+        <VBox spacing="12">
+            <padding><Insets bottom="15" left="20" right="20" top="5" /></padding>
+            <HBox alignment="CENTER" spacing="10">
+                <Label alignment="CENTER_LEFT" style="-fx-text-fill: #64748b;
+                    -fx-font-size: 12px;" text="Sélectionnez une inscription pour effectuer une action." />
+                <HBox HBox.hgrow="ALWAYS" />
+                <Button onAction="#ajouter" prefHeight="38.0" style="-fx-background-color: #16a34a; -fx-background-radius: 6px; -fx-text-fill: white;" text="Nouvelle inscription">
+                   <font>
+                      <Font name="System Bold Italic" size="12.0" />
+                   </font>
+                    <graphic><FontAwesomeIconView fill="white" glyphName="PLUS" size="10" /></graphic>
+                </Button>
+                <Button onAction="#handleEdit" prefHeight="38.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white;" text="Modifier">
+                    <graphic><FontAwesomeIconView fill="white" glyphName="EDIT" size="15" /></graphic>
+                    <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                    </font>
+                </Button>
+                <Button onAction="#handleDelete" prefHeight="38.0" style="-fx-background-color: #dc2626; -fx-background-radius: 6px; -fx-text-fill: white;" text="Supprimer">
+                    <graphic><FontAwesomeIconView fill="white" glyphName="TRASH" size="15" /></graphic>
+                    <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                    </font>
+                </Button>
+                <Button onAction="#handleRefresh"
+                        prefHeight="38.0" style="-fx-background-color: #64748b;
+                        -fx-text-fill: white;
+                        -fx-font-weight: bold;
+                        -fx-background-radius: 6px;
+                        -fx-cursor: hand;" text="Rafraîchir" >
+                    <graphic><FontAwesomeIconView fill="white" glyphName="REFRESH" size="15" /></graphic>
+                    <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                    </font>
+                </Button>
+            </HBox>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
+                <TableView fx:id="inscriptionsTable" prefHeight="450">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="55" text="ID" />
+                        <TableColumn fx:id="colMembre" prefWidth="160" text="Membre" />
+                        <TableColumn fx:id="colSeance" prefWidth="300" text="Séance" />
+                        <TableColumn fx:id="colDateSeance" prefWidth="120" text="Date séance" />
+                        <TableColumn fx:id="colDateInscription" prefWidth="130" text="Date inscription" />
+                        <TableColumn fx:id="colStatut" prefWidth="110" text="Statut" />
+                    </columns>
+                </TableView>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

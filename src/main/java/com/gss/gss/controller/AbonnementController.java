@@ -1,7 +1,9 @@
 package com.gss.gss.controller;
 
 import com.gss.gss.model.Abonnement;
+import com.gss.gss.model.Membre;
 import com.gss.gss.service.AbonnementService;
+import com.gss.gss.service.MembreService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,7 @@ public class AbonnementController {
     @FXML
     private TableColumn<Abonnement, Number> idColumn;
     @FXML
-    private TableColumn<Abonnement, Number> membreIdColumn;
+    private TableColumn<Abonnement, String> membreIdColumn;
     @FXML
     private TableColumn<Abonnement, String> typeColumn;
     @FXML
@@ -42,6 +44,7 @@ public class AbonnementController {
 
     private final AbonnementService abonnementService =
             new AbonnementService();
+    private final MembreService membreService = new MembreService();
 
     @FXML
     public void initialize() {
@@ -87,10 +90,14 @@ public class AbonnementController {
         );
 
         membreIdColumn.setCellValueFactory(
-                cell ->
-                        new javafx.beans.property.SimpleIntegerProperty(
-                                cell.getValue().getMembreId()
-                        )
+                cell -> {
+                    Membre membre = membreService.findById(cell.getValue().getMembreId());
+                    return new javafx.beans.property.SimpleStringProperty(
+                            membre == null
+                                    ? "Membre introuvable"
+                                    : membre.getPrenom() + " " + membre.getNom()
+                    );
+                }
         );
 
         typeColumn.setCellValueFactory(

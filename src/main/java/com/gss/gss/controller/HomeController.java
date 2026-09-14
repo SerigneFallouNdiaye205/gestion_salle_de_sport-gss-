@@ -1,13 +1,11 @@
 package com.gss.gss.controller;
 
-import com.gss.gss.model.Paiement;
+
 import com.gss.gss.model.Utilisateur;
 import com.gss.gss.security.SessionManager;
 import com.gss.gss.service.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
@@ -31,8 +29,6 @@ public class HomeController {
     @FXML private Label paymentsCountLabel;
     @FXML private Label sessionsCountLabel;
     @FXML private Label utilisateursCountLabel;
-    @FXML private Label totalPaymentAmountLabel;
-
 
     @FXML private Label username;
     @FXML private Label localDateTime;
@@ -121,7 +117,6 @@ public class HomeController {
             paymentsCountLabel.setText("0");
             sessionsCountLabel.setText("0");
             utilisateursCountLabel.setText("0");
-            totalPaymentAmountLabel.setText("0");
         }
     }
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="1150.0" prefWidth="1051.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
+<BorderPane prefHeight="1150.0" prefWidth="1051.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
 
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="76.0" spacing="20" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-width: 0 0 1 0;">
@@ -86,11 +86,6 @@
                        <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="UTILISATEURS " />
                        <Label fx:id="utilisateursCountLabel" style="-fx-text-fill: #ea580c; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
                        <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Dans le systeme" />
-                   </VBox>
-                   <VBox spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e2e8f0; -fx-border-radius: 14; -fx-padding: 18;" GridPane.columnIndex="5">
-                       <Label style="-fx-text-fill: #64748b; -fx-font-size: 11px; -fx-font-weight: bold;" text="REVENUS GENERES" />
-                       <Label fx:id="totalPaymentAmountLabel" style="-fx-text-fill: #ea580c; -fx-font-size: 28px; -fx-font-weight: bold;" text="0" />
-                       <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 11px;" text="Totaux des revenus" />
                    </VBox>
                    <rowConstraints>
                        <RowConstraints />

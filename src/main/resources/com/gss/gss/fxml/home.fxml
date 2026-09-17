@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="900.0" prefWidth="1120.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
+<BorderPane prefHeight="900.0" prefWidth="1120.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
     <stylesheets>
         <URL value="@../css/dashboard.css" />
     </stylesheets>
@@ -46,7 +46,7 @@
                 </Label>
                 <Label prefHeight="18.0" prefWidth="0.0" style="-fx-background-color: black; -fx-background-radius: 50px;">
                     <graphic>
-                        <FontAwesomeIconView fill="white" glyphName="USER" size="20" />
+                        <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
                     </graphic>
                   <padding>
                      <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
@@ -67,65 +67,104 @@
                     </padding>
    
                     <HBox fx:id="countHBox" spacing="14" styleClass="kpi-row">
-                        <VBox spacing="7" styleClass="kpi-purple" HBox.hgrow="ALWAYS">
-                            <Label styleClass="kpi-label" text="NOMBRE DE MEMBRES">
-                                <graphic>
-                                    <FontAwesomeIconView fill="#2367ec" glyphName="USERS" size="20" />
-                                </graphic>
-                            </Label>
+                        <VBox prefHeight="114.0" prefWidth="187.0" spacing="7" styleClass="kpi-purple" HBox.hgrow="ALWAYS">
+                     <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="104.0" spacing="5.0">
+                        <children>
+                                  <Label style="-fx-background-color: #7654e8; -fx-background-radius: 10px;">
+                                      <graphic>
+                                          <FontAwesomeIconView fill="#eff0f5" glyphName="USERS" size="20" />
+                                      </graphic>
+                              <padding>
+                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                                  </Label>
+                           <Label styleClass="kpi-label" text="Nombre de membres" />
+                        </children>
+                     </HBox>
                             <Label fx:id="membersCountLabel" styleClass="kpi-value" text="0" />
                             <Label fx:id="activeMembersLabel" styleClass="kpi-meta kpi-meta-positive" text="0 actifs" />
                         </VBox>
    
                         <VBox spacing="7" styleClass="kpi-green" HBox.hgrow="ALWAYS">
-                            <Label lineSpacing="10" styleClass="kpi-label" text="ABONNEMRNTS ACTIFS">
-                                <graphic>
-                                    <FontAwesomeIconView fill="#2367ec" glyphName="CREDIT_CARD" size="20" />
-                                </graphic>
-                            </Label>
+                     <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="129.0" spacing="5.0">
+                        <children>
+                                  <Label lineSpacing="10" style="-fx-background-color: #12ae83; -fx-background-radius: 10px;" styleClass="kpi-label">
+                                      <graphic>
+                                          <FontAwesomeIconView fill="#eff0f5" glyphName="CREDIT_CARD" size="20" />
+                                      </graphic>
+                              <padding>
+                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                                  </Label>
+                           <Label styleClass="kpi-label" text="Abonnements actifs" />
+                        </children>
+                     </HBox>
                             <Label fx:id="activeSubscriptionsLabel" styleClass="kpi-value" text="0" />
                             <Label fx:id="expiredSubscriptionsLabel" styleClass="kpi-meta kpi-meta-danger" text="0 expirés" />
                         </VBox>
    
                         <VBox spacing="7" styleClass="kpi-blue" HBox.hgrow="ALWAYS">
-                            <Label styleClass="kpi-label" text="COACHS">
-                                <graphic>
-                                    <FontAwesomeIconView fill="#2367ec" glyphName="USERS" size="20" />
-                                </graphic>
-                            </Label>
+                     <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="73.0" spacing="5.0">
+                        <children>
+                                  <Label style="-fx-background-color: #2367ec; -fx-background-radius: 10px;" styleClass="kpi-label">
+                                      <graphic>
+                                          <FontAwesomeIconView fill="#eff0f5" glyphName="USERS" size="20" />
+                                      </graphic>
+                              <padding>
+                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                                  </Label>
+                           <Label styleClass="kpi-label" text="Coachs" />
+                        </children>
+                     </HBox>
                             <Label fx:id="coachesCountLabel" styleClass="kpi-value" text="0" />
                             <Label styleClass="kpi-meta" text="Équipe enregistrée" />
                         </VBox>
    
-                        <VBox spacing="7" styleClass="kpi-cyan" HBox.hgrow="ALWAYS">
-                            <Label styleClass="kpi-label" text="REVENUS VALIDÉS">
-                                <graphic>
-                                    <FontAwesomeIconView fill="#2367ec" glyphName="MONEY" size="20" />
-                                </graphic>
-                            </Label>
+                        <VBox prefHeight="114.0" prefWidth="177.0" spacing="7" styleClass="kpi-cyan" HBox.hgrow="ALWAYS">
+                     <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="1.0" spacing="5.0">
+                        <children>
+                                  <Label style="-fx-background-color: #19a5c4; -fx-background-radius: 10px;" styleClass="kpi-label">
+                                      <graphic>
+                                          <FontAwesomeIconView fill="#eff0f5" glyphName="MONEY" size="20" />
+                                      </graphic>
+                              <padding>
+                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                                  </Label>
+                           <Label styleClass="kpi-label" text="Revenus validés" />
+                        </children>
+                     </HBox>
                             <Label fx:id="revenueLabel" styleClass="kpi-value" text="0 FCFA" />
                             <Label fx:id="paymentsCountLabel" styleClass="kpi-meta" text="0 paiements" />
                         </VBox>
    
                         <VBox spacing="7" styleClass="kpi-orange" HBox.hgrow="ALWAYS">
-                            <Label styleClass="kpi-label" text="SÉANCES">
-                                <graphic>
-                                    <FontAwesomeIconView fill="#2367ec" glyphName="CALENDAR" size="20" />
-                                </graphic>
-                            </Label>
+                     <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="9.0" spacing="5.0">
+                        <children>
+                                  <Label style="-fx-background-color: #ff8b22; -fx-background-radius: 10px;" styleClass="kpi-label">
+                                      <graphic>
+                                          <FontAwesomeIconView fill="#eff0f5" glyphName="CALENDAR" size="20" />
+                                      </graphic>
+                              <padding>
+                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                                  </Label>
+                           <Label styleClass="kpi-label" text="Séances" />
+                        </children>
+                     </HBox>
                             <Label fx:id="sessionsCountLabel" styleClass="kpi-value" text="0" />
                             <Label styleClass="kpi-meta" text="Planning programmé" />
                         </VBox>
                     </HBox>
    
-                    <GridPane hgap="18" vgap="18">
+                          <GridPane hgap="18" vgap="18">
                         <columnConstraints>
                             <ColumnConstraints hgrow="ALWAYS" percentWidth="67" />
                             <ColumnConstraints hgrow="ALWAYS" percentWidth="33" />
-                     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
                         </columnConstraints>
    
-                        <VBox prefHeight="304.0" prefWidth="343.0" spacing="12" styleClass="panel-card">
+                              <VBox prefHeight="304.0" prefWidth="343.0" spacing="12" styleClass="panel-card">
                             <HBox alignment="CENTER_LEFT" spacing="10">
                                 <VBox spacing="3">
                                     <Label styleClass="panel-title" text="Fréquentation">
@@ -148,7 +187,7 @@
                             </LineChart>
                         </VBox>
    
-                        <VBox prefHeight="304.0" prefWidth="304.0" spacing="12" styleClass="panel-card" GridPane.columnIndex="1">
+                              <VBox prefHeight="304.0" prefWidth="304.0" spacing="12" styleClass="panel-card" GridPane.columnIndex="1">
                             <HBox alignment="CENTER_LEFT">
                                 <VBox spacing="3">
                                     <Label styleClass="panel-title" text="Planning du jour">
@@ -162,19 +201,6 @@
                                 <Label styleClass="live-badge" text="LIVE" />
                             </HBox>
                             <VBox fx:id="planningContainer" spacing="9" />
-                        </VBox>
-   
-                           <VBox spacing="12" styleClass="panel-card" GridPane.columnIndex="2">
-                            <HBox alignment="CENTER_LEFT">
-                                <Label styleClass="panel-title" text="Membres récents">
-                                    <graphic>
-                                        <FontAwesomeIconView fill="#2367ec" glyphName="USERS" size="15" />
-                                    </graphic>
-                                </Label>
-                                <Region HBox.hgrow="ALWAYS" />
-                                <Label styleClass="panel-count" text="5 derniers" />
-                            </HBox>
-                            <VBox fx:id="recentMembersContainer" spacing="8" />
                         </VBox>
                   <rowConstraints>
                      <RowConstraints />
@@ -215,30 +241,50 @@
                         </VBox>
                          <Region GridPane.columnIndex="2" />
    
-                       <VBox spacing="12" styleClass="panel-card" GridPane.columnIndex="2">
-                           <HBox alignment="CENTER_LEFT">
-                               <VBox spacing="3">
-                                   <Label styleClass="panel-title" text="Notifications">
-                                       <graphic>
-                                           <FontAwesomeIconView fill="#2367ec" glyphName="BELL" size="15" />
-                                       </graphic>
-                                   </Label>
-                                   <Label styleClass="panel-subtitle" text="Alertes et activités récentes de la salle" />
-                               </VBox>
-                               <Label styleClass="panel-badge" text="ACTIVITÉ RÉCENTE" />
-                           </HBox>
-                           <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="220.0" styleClass="notifications-scroll">
-                               <VBox fx:id="notificationsContainer" spacing="8" />
-                           </ScrollPane>
-                       </VBox>
+                           <VBox spacing="12" styleClass="panel-card" GridPane.columnIndex="2">
+                            <HBox alignment="CENTER_LEFT">
+                                <Label styleClass="panel-title" text="Membres récents">
+                                    <graphic>
+                                        <FontAwesomeIconView fill="#2367ec" glyphName="USERS" size="15" />
+                                    </graphic>
+                                </Label>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label styleClass="panel-count" text="5 derniers" />
+                            </HBox>
+                            <VBox fx:id="recentMembersContainer" spacing="8" />
+                        </VBox>
                   <rowConstraints>
                      <RowConstraints />
                   </rowConstraints>
                     </GridPane>
-   
-                    <HBox alignment="CENTER">
-                        <Label styleClass="dashboard-footer" text="© Gestion salle de sport · 2026" />
-                    </HBox>
+               <VBox prefHeight="300.0" spacing="20.0">
+                  <children>
+      
+                          <VBox prefHeight="300.0" spacing="12" styleClass="panel-card">
+                              <HBox alignment="CENTER_LEFT">
+                                  <VBox spacing="3">
+                                      <Label styleClass="panel-title" text="Notifications">
+                                          <graphic>
+                                              <FontAwesomeIconView fill="#2367ec" glyphName="BELL" size="15" />
+                                          </graphic>
+                                      </Label>
+                                      <Label styleClass="panel-subtitle" text="Alertes et activités récentes de la salle" />
+                                  </VBox>
+                                  <Label styleClass="panel-badge" text="ACTIVITÉ RÉCENTE" />
+                              </HBox>
+                              <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" styleClass="notifications-scroll">
+                                  <VBox fx:id="notificationsContainer" prefHeight="300.0" spacing="8" />
+                              </ScrollPane>
+                          </VBox>
+               
+                                      <HBox alignment="CENTER">
+                              <Label styleClass="dashboard-footer" text="© Gestion salle de sport · 2026" />
+                        <padding>
+                           <Insets bottom="10.0" top="20.0" />
+                        </padding>
+                          </HBox>
+                  </children>
+               </VBox>
    
                 </VBox>
             </ScrollPane>

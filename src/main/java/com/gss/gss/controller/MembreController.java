@@ -2,6 +2,8 @@ package com.gss.gss.controller;
 
 import com.gss.gss.model.Membre;
 import com.gss.gss.service.MembreService;
+import com.gss.gss.security.PermissionManager;
+import com.gss.gss.security.SessionManager;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -13,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MembreController {
 
@@ -36,14 +39,40 @@ public class MembreController {
     private TableColumn<Membre, String> dateInscriptionColumn;
     @FXML
     private TableColumn<Membre, String> statutColumn;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
 
     private final MembreService membreService =
             new MembreService();
+    private boolean coach;
+    private int coachId;
 
     @FXML
     public void initialize() {
 
         configurerColonnes();
+        coach = PermissionManager.isCoach();
+        coachId = coach ? SessionManager.getCurrentUser().getId() : 0;
+        if (coach) {
+            membersTable.setPlaceholder(new Label("Aucun membre inscrit à vos séances."));
+            addButton.setVisible(false);
+            addButton.setManaged(false);
+            editButton.setVisible(false);
+            editButton.setManaged(false);
+            deleteButton.setVisible(false);
+            deleteButton.setManaged(false);
+        } else if (!PermissionManager.canManageMembers()) {
+            addButton.setVisible(false);
+            addButton.setManaged(false);
+            editButton.setVisible(false);
+            editButton.setManaged(false);
+            deleteButton.setVisible(false);
+            deleteButton.setManaged(false);
+        }
 
         statusComboBox.setItems(
                 FXCollections.observableArrayList(
@@ -115,12 +144,9 @@ public class MembreController {
     }
 
     private void chargerMembres() {
-
-        membersTable.setItems(
-                FXCollections.observableArrayList(
-                        membreService.findAll()
-                )
-        );
+        membersTable.setItems(FXCollections.observableArrayList(
+                coach ? membreService.findByCoachId(coachId) : membreService.findAll()
+        ));
     }
 
     @FXML
@@ -136,50 +162,49 @@ public class MembreController {
     @FXML
     private void handleSearch() {
 
-        String recherche = searchField.getText().trim();
+        String recherche = searchField.getText() == null
+                ? "" : searchField.getText().trim();
         String statut = statusComboBox.getValue();
+        List<Membre> source = coach
+                ? membreService.findByCoachId(coachId)
+                : membreService.findAll();
 
-        if (!recherche.isEmpty()) {
-
-            membersTable.setItems(
-                    FXCollections.observableArrayList(
-                            membreService.rechercher(
-                                    recherche
-                            )
-                    )
-            );
-
-            return;
-        }
-
-        if (statut != null &&
-                !statut.equals("Tous")) {
-
-            membersTable.setItems(
-                    FXCollections.observableArrayList(
-                            membreService.findByStatut(statut)
-                    )
-            );
-
-            return;
-        }
-
-        chargerMembres();
+        List<Membre> resultats = source.stream()
+                .filter(membre -> recherche.isEmpty() || contient(membre, recherche))
+                .filter(membre -> statut == null || "Tous".equals(statut)
+                        || statut.equalsIgnoreCase(membre.getStatut()))
+                .toList();
+        membersTable.setItems(FXCollections.observableArrayList(resultats));
     }
 
     @FXML
     private void handleAdd() {
-
+        if (coach) {
+            afficherAvertissement("Un coach ne peut gérer que les membres déjà inscrits à ses séances.");
+            return;
+        }
+        if (!PermissionManager.canManageMembers()) {
+            afficherAvertissement("Vous n'avez pas la permission de modifier les membres.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleEdit() {
+        if (!PermissionManager.canManageMembers()) {
+            afficherAvertissement("La modification des membres est réservée à l'administration et à la réception.");
+            return;
+        }
         Membre membre =
                 membersTable.getSelectionModel().getSelectedItem();
 
         if (membre == null) {
             afficherAvertissement("Veuillez sélectionner un membre.");
+            return;
+        }
+        if (coach && !membreService.isManagedByCoach(membre.getId(), coachId)) {
+            afficherAvertissement("Ce membre n'est pas rattaché à vos séances.");
             return;
         }
 
@@ -188,6 +213,11 @@ public class MembreController {
 
     @FXML
     private void handleDelete() {
+
+        if (!PermissionManager.canManageMembers()) {
+            afficherAvertissement("La suppression des membres est réservée à l'administration et à la réception.");
+            return;
+        }
 
         Membre membre =
                 membersTable.getSelectionModel().getSelectedItem();
@@ -334,5 +364,15 @@ public class MembreController {
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+
+    private boolean contient(Membre membre, String recherche) {
+        String valeur = recherche.toLowerCase();
+        return String.valueOf(membre.getId()).contains(recherche)
+                || (membre.getNom() != null && membre.getNom().toLowerCase().contains(valeur))
+                || (membre.getPrenom() != null && membre.getPrenom().toLowerCase().contains(valeur))
+                || (membre.getTelephone() != null && membre.getTelephone().contains(recherche))
+                || (membre.getEmail() != null && membre.getEmail().toLowerCase().contains(valeur))
+                || String.valueOf(membre.getId()).contains(recherche);
     }
 }

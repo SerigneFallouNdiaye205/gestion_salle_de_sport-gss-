@@ -77,11 +77,6 @@ public class AbonnementService {
         return abonnementDAO.delete(id);
     }
 
-    public boolean suspendre(int id) {
-
-        return abonnementDAO.suspendre(id);
-    }
-
     public boolean renouveler(
             int id,
             LocalDate nouvelleDateFin,
@@ -199,6 +194,16 @@ public class AbonnementService {
 
             throw new IllegalArgumentException(
                     "La date de fin doit être après la date de début."
+            );
+        }
+
+        if (abonnement.getStatut() != null &&
+                !abonnement.getStatut().isBlank() &&
+                !"ACTIF".equals(abonnement.getStatut()) &&
+                !"EXPIRE".equals(abonnement.getStatut())) {
+
+            throw new IllegalArgumentException(
+                    "Le statut de l'abonnement est invalide."
             );
         }
     }

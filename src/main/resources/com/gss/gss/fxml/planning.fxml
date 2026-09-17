@@ -6,9 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import java.net.URL?>
+<AnchorPane styleClass="app-page" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller=""
             prefHeight="400.0" prefWidth="600.0">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
 
 </AnchorPane>

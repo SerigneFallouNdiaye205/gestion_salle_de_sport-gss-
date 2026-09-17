@@ -5,7 +5,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementController">
+<?import java.net.URL?>
+<BorderPane styleClass="app-page" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
 
     <top>
         <VBox spacing="12.0">
@@ -92,7 +96,7 @@
                 <Insets bottom="20.0" left="25.0" right="25.0" top="10.0" />
             </padding>
 
-            <Button onAction="#handleAdd" prefHeight="40.0"
+            <Button fx:id="addButton" onAction="#handleAdd" prefHeight="40.0"
                     style="-fx-background-color: #16a34a;
                     -fx-text-fill: white;
                     -fx-font-weight: bold;
@@ -103,7 +107,7 @@
                     </graphic>
             </Button>
 
-            <Button onAction="#handleEdit" prefHeight="40.0"
+            <Button fx:id="editButton" onAction="#handleEdit" prefHeight="40.0"
                     style="-fx-background-color: #2563eb;
                         -fx-text-fill: white;
                         -fx-font-weight: bold;
@@ -114,19 +118,13 @@
                     </graphic>
             </Button>
 
-            <Button onAction="#handleSuspend" prefHeight="40.0" style="-fx-background-color: #f59e0b;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-background-radius: 6px;                            -fx-cursor: hand;" text="Suspendre">
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="PAUSE" size="15" />
-                    </graphic>
-            </Button>
-
-            <Button onAction="#handleRenew" prefHeight="40.0" style="-fx-background-color: #7c3aed;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-background-radius: 6px;                            -fx-cursor: hand;" text="Renouveler">
+            <Button fx:id="renewButton" onAction="#handleRenew" prefHeight="40.0" style="-fx-background-color: #7c3aed;                            -fx-text-fill: white;                            -fx-font-weight: bold;                            -fx-background-radius: 6px;                            -fx-cursor: hand;" text="Renouveler">
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="PLAY" size="15" />
                 </graphic>
             </Button>
 
-            <Button onAction="#handleDelete" prefHeight="40.0" style="-fx-background-color: #dc2626;
+            <Button fx:id="deleteButton" onAction="#handleDelete" prefHeight="40.0" style="-fx-background-color: #dc2626;
             -fx-text-fill: white;
             -fx-font-weight: bold;
             -fx-background-radius: 6px;

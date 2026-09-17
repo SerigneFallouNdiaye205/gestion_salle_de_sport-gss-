@@ -1,54 +1,75 @@
-.nav-button{
-    -fx-background-color: transparent;
-    -fx-text-fill: #eff0f5;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-}
-.nav-button:hover{
-    -fx-background-color: #4873d7;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-    -fx-text-fill: #eff0f5;
-
+.dashboard-page {
+    -fx-background-color: #f5f8fd;
+    -fx-font-family: "Segoe UI";
 }
 
-.logout-button{
-    -fx-background-color: transparent;
-    -fx-text-fill: #eff0f5;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-}
-.logout-button:hover{
-    -fx-background-color: #c02424;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-    -fx-text-fill: #eff0f5;
+.dashboard-topbar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e7edf6;
+    -fx-border-width: 0 0 1 0;
 }
 
-/* =============================================================
-   HOME / DASHBOARD
-   ============================================================= */
-
-.dashboard-scroll {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-padding: 0;
+.dashboard-eyebrow {
+    -fx-text-fill: #0f2d63;
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
 }
 
-.dashboard-scroll > .viewport {
-    -fx-background-color: transparent;
+.dashboard-title {
+    -fx-text-fill: #17325f;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
 }
 
+.dashboard-subtitle {
+    -fx-text-fill: #7183a1;
+    -fx-font-size: 12px;
+}
+
+.session-card {
+    -fx-background-color: #f7faff;
+    -fx-background-radius: 12;
+    -fx-border-color: #e3ebf7;
+    -fx-border-radius: 12;
+    -fx-padding: 10 15;
+}
+
+.session-caption {
+    -fx-text-fill: #7b8ca8;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+
+.session-user {
+    -fx-text-fill: #17325f;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+}
+
+.session-time {
+    -fx-text-fill: #5c7193;
+    -fx-font-size: 11px;
+}
+
+.dashboard-content,
+.dashboard-scroll,
+.dashboard-scroll > .viewport,
 .dashboard-scroll > .corner {
     -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.dashboard-body {
+    -fx-background-color: #f5f8fd;
 }
 
 .dashboard-scroll .scroll-bar:vertical {
     -fx-background-color: transparent;
+    -fx-padding: 0 4 0 0;
 }
 
 .dashboard-scroll .scroll-bar:vertical .thumb {
-    -fx-background-color: #CBD5E1;
+    -fx-background-color: #b8c9e4;
     -fx-background-radius: 8;
 }
 
@@ -56,8 +77,143 @@
     -fx-background-color: transparent;
 }
 
-.chart {
-    -fx-padding: 8px;
+.kpi-row {
+    -fx-fill-height: true;
+}
+
+.kpi-purple {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-padding: 10px 10px;
+    -fx-border-radius: 14;
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-color: #7654e8;
+}
+.kpi-purple:hover {
+    -fx-effect: dropshadow(gaussian, #17325f25, 18px, 0px, 0px, 5px);
+}
+.kpi-blue {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-padding: 10px 10px;
+    -fx-border-radius: 14;
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-color: #2367ec;
+}
+.kpi-blue:hover {
+    -fx-effect: dropshadow(gaussian, #17325f25, 18px, 0px, 0px, 5px);
+}
+.kpi-green {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-padding: 10px 10px;
+    -fx-border-radius: 14;
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-color: #12ae83;
+}
+.kpi-green:hover {
+    -fx-effect: dropshadow(gaussian, #17325f25, 18px, 0px, 0px, 5px);
+}
+.kpi-orange {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-padding: 10px 10px;
+    -fx-border-radius: 14;
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-color: #ff8b22;
+}
+.kpi-orange:hover {
+    -fx-effect: dropshadow(gaussian, #17325f25, 18px, 0px, 0px, 5px);
+}
+.kpi-cyan {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-padding: 10px 10px;
+    -fx-border-radius: 14;
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-color: #19a5c4;
+}
+.kpi-cyan:hover {
+    -fx-effect: dropshadow(gaussian, #17325f25, 18px, 0px, 0px, 5px);
+}
+
+.kpi-label {
+    -fx-text-fill: #6f819f;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.kpi-value {
+    -fx-text-fill: #142b54;
+    -fx-font-size: 27px;
+    -fx-font-weight: 800;
+}
+
+.kpi-money {
+    -fx-font-size: 21px;
+}
+
+.kpi-meta {
+    -fx-text-fill: #7183a1;
+    -fx-font-size: 11px;
+}
+
+.kpi-meta-positive {
+    -fx-text-fill: #0ca477;
+    -fx-font-weight: 700;
+}
+
+.kpi-meta-danger {
+    -fx-text-fill: #e15f56;
+    -fx-font-weight: 700;
+}
+
+.panel-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-color: #e4ebf5;
+    -fx-border-radius: 14;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, #17325f0f, 14, 0.14, 0, 3);
+}
+
+.panel-title {
+    -fx-text-fill: #142b54;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+}
+
+.panel-subtitle {
+    -fx-text-fill: #7a8ba7;
+    -fx-font-size: 11px;
+}
+
+.panel-badge,
+.live-badge,
+.panel-count {
+    -fx-background-radius: 20;
+    -fx-padding: 5 9;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+
+.panel-badge {
+    -fx-background-color: #eaf1ff;
+    -fx-text-fill: #2367ec;
+}
+
+.live-badge {
+    -fx-background-color: #ddf7ed;
+    -fx-text-fill: #0b9d73;
+}
+
+.panel-count {
+    -fx-background-color: #f1f5fa;
+    -fx-text-fill: #7183a1;
+}
+
+.attendance-chart {
+    -fx-padding: 5px;
 }
 
 .chart-plot-background {
@@ -66,15 +222,41 @@
 
 .chart-vertical-grid-lines,
 .chart-horizontal-grid-lines {
-    -fx-stroke: #EEF1F6;
+    -fx-stroke: #e7eef8;
+}
+
+.chart-series-line {
+    -fx-stroke: #2367ec;
+    -fx-stroke-width: 3px;
+}
+
+.chart-line-symbol {
+    -fx-background-color: #2367ec, white;
+    -fx-background-insets: 0, 3;
+    -fx-background-radius: 7px;
+    -fx-padding: 7px;
 }
 
 .axis {
-    -fx-tick-label-fill: #8A94A6;
+    -fx-tick-label-fill: #7183a1;
     -fx-font-size: 10px;
 }
 
 .axis-label {
-    -fx-text-fill: #737E91;
+    -fx-text-fill: #7183a1;
     -fx-font-size: 10px;
+}
+
+.notifications-scroll {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.notifications-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.dashboard-footer {
+    -fx-text-fill: #8a9ab4;
+    -fx-font-size: 11px;
 }

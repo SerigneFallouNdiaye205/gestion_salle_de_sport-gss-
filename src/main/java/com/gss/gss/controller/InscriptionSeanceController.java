@@ -6,6 +6,8 @@ import com.gss.gss.model.Membre;
 import com.gss.gss.model.Seance;
 import com.gss.gss.service.MembreService;
 import com.gss.gss.service.SeanceService;
+import com.gss.gss.security.SessionManager;
+import com.gss.gss.security.PermissionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +30,9 @@ public class InscriptionSeanceController {
     @FXML private TableColumn<InscriptionSeanceRow, String> colDateSeance;
     @FXML private TableColumn<InscriptionSeanceRow, String> colDateInscription;
     @FXML private TableColumn<InscriptionSeanceRow, String> colStatut;
+    @FXML private Button addButton;
+    @FXML private Button editButton;
+    @FXML private Button deleteButton;
 
     private final InscriptionSeanceDAOImpl dao = new InscriptionSeanceDAOImpl();
     private final MembreService membreService = new MembreService();
@@ -35,11 +40,22 @@ public class InscriptionSeanceController {
     private final ObservableList<InscriptionSeanceRow> rows = FXCollections.observableArrayList();
     private List<Membre> membres;
     private List<Seance> seances;
+    private boolean coach;
+    private int coachId;
 
     @FXML
     public void initialize() {
         membres = membreService.findAll();
-        seances = seanceService.findAll();
+        coach = SessionManager.hasRole("COACH");
+        coachId = coach ? SessionManager.getCurrentUser().getId() : 0;
+        seances = coach ? seanceService.findByCoachId(coachId) : seanceService.findAll();
+        boolean canManage = PermissionManager.canManageInscriptions();
+        addButton.setVisible(canManage);
+        addButton.setManaged(canManage);
+        editButton.setVisible(canManage);
+        editButton.setManaged(canManage);
+        deleteButton.setVisible(canManage);
+        deleteButton.setManaged(canManage);
         configurerColonnes();
         handleRefresh();
     }
@@ -56,11 +72,19 @@ public class InscriptionSeanceController {
 
     @FXML
     private void ajouter() {
+        if (!PermissionManager.canManageInscriptions()) {
+            afficherAvertissement("Un coach peut uniquement consulter les inscriptions.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleEdit() {
+        if (!PermissionManager.canManageInscriptions()) {
+            afficherAvertissement("Un coach peut uniquement consulter les inscriptions.");
+            return;
+        }
         InscriptionSeanceRow selection = inscriptionsTable.getSelectionModel().getSelectedItem();
         if (selection == null) {
             afficherAvertissement("Veuillez sélectionner une inscription.");
@@ -71,6 +95,10 @@ public class InscriptionSeanceController {
 
     @FXML
     private void handleDelete() {
+        if (!PermissionManager.canManageInscriptions()) {
+            afficherAvertissement("Un coach peut uniquement consulter les inscriptions.");
+            return;
+        }
         InscriptionSeanceRow selection = inscriptionsTable.getSelectionModel().getSelectedItem();
         if (selection == null) {
             afficherAvertissement("Veuillez sélectionner une inscription.");
@@ -93,9 +121,13 @@ public class InscriptionSeanceController {
     @FXML
     private void handleRefresh() {
         membres = membreService.findAll();
-        seances = seanceService.findAll();
+        seances = coach ? seanceService.findByCoachId(coachId) : seanceService.findAll();
         rows.clear();
         for (InscriptionSeance inscription : dao.getAll()) {
+            if (coach && seances.stream().noneMatch(
+                    seance -> seance.getId() == inscription.getSeance_id())) {
+                continue;
+            }
             rows.add(new InscriptionSeanceRow(
                     inscription,
                     trouverMembreNom(inscription.getMembre_id()),
@@ -112,6 +144,7 @@ public class InscriptionSeanceController {
             Parent root = loader.load();
             InscriptionSeanceFormController controller = loader.getController();
             controller.setInscription(inscription);
+            controller.setAvailableSeances(seances);
             controller.setOnSaved(this::handleRefresh);
 
             Stage stage = new Stage();

@@ -24,6 +24,10 @@ public class SeanceService {
         return seanceDAO.findById(id);
     }
 
+    public List<Seance> findByCoachId(int coachId) {
+        return seanceDAO.findByCoachId(coachId);
+    }
+
     public long countAll() {
         return seanceDAO.findAll().size();
     }

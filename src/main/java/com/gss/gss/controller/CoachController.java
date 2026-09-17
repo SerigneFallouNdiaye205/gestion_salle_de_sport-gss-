@@ -2,6 +2,7 @@ package com.gss.gss.controller;
 
 import com.gss.gss.model.Coach;
 import com.gss.gss.service.CoachService;
+import com.gss.gss.security.PermissionManager;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -17,6 +18,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -49,6 +54,18 @@ public class CoachController {
     private TableColumn<Coach, Number> salaireColumn;
     @FXML
     private TableColumn<Coach, String> disponibiliteColumn;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Label totalCoachsLabel;
+    @FXML
+    private Label disponiblesLabel;
+    @FXML
+    private Label indisponiblesLabel;
 
     private final CoachService coachService =
             new CoachService();
@@ -83,6 +100,22 @@ public class CoachController {
 
         specialiteComboBox.setValue("Toutes");
         disponibiliteComboBox.setValue("Toutes");
+
+        disponibiliteColumn.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(String value, boolean empty) {
+                super.updateItem(value, empty);
+                setText(empty || value == null ? null : value);
+                getStyleClass().removeAll("status-available", "status-unavailable");
+                if (!empty && value != null) {
+                    getStyleClass().add(
+                            "DISPONIBLE".equalsIgnoreCase(value)
+                                    ? "status-available"
+                                    : "status-unavailable"
+                    );
+                }
+            }
+        });
 
         chargerCoachs();
     }
@@ -153,37 +186,21 @@ public class CoachController {
     }
 
     private void chargerCoachs() {
-
-        coachsTable.setItems(
-                FXCollections.observableArrayList(
-                        coachService.findAll()
-                )
-        );
+        filtrer();
     }
 
     @FXML
     private void handleSearch() {
 
-        String recherche =
-                searchField.getText().trim();
-
-        if (recherche.isEmpty()) {
-            chargerCoachs();
-            return;
-        }
-
-        coachsTable.setItems(
-                FXCollections.observableArrayList(
-                        coachService.search(
-                                recherche
-                        )
-                )
-        );
+        filtrer();
     }
 
     @FXML
     private void handleFilter() {
+        filtrer();
+    }
 
+    private void filtrer() {
         String specialite =
                 specialiteComboBox.getValue();
 
@@ -192,6 +209,15 @@ public class CoachController {
 
         List<Coach> coachs =
                 coachService.findAll();
+
+        String recherche = searchField.getText() == null
+                ? "" : searchField.getText().trim().toLowerCase();
+
+        if (!recherche.isEmpty()) {
+            coachs = coachs.stream()
+                    .filter(coach -> contient(coach, recherche))
+                    .toList();
+        }
 
         if (specialite != null &&
                 !specialite.equals("Toutes")) {
@@ -224,6 +250,7 @@ public class CoachController {
                         coachs
                 )
         );
+        mettreAJourStatistiques(coachs);
     }
 
     @FXML
@@ -242,13 +269,44 @@ public class CoachController {
         chargerCoachs();
     }
 
+    private boolean contient(Coach coach, String recherche) {
+        return String.valueOf(coach.getId()).contains(recherche)
+                || texte(coach.getNom()).contains(recherche)
+                || texte(coach.getPrenom()).contains(recherche)
+                || texte(coach.getTelephone()).contains(recherche)
+                || texte(coach.getEmail()).contains(recherche)
+                || texte(coach.getSpecialite()).contains(recherche);
+    }
+
+    private String texte(String valeur) {
+        return valeur == null ? "" : valeur.toLowerCase();
+    }
+
+    private void mettreAJourStatistiques(List<Coach> coachs) {
+        totalCoachsLabel.setText(String.valueOf(coachs.size()));
+        disponiblesLabel.setText(String.valueOf(coachs.stream()
+                .filter(coach -> "DISPONIBLE".equalsIgnoreCase(coach.getDisponibilite()))
+                .count()));
+        indisponiblesLabel.setText(String.valueOf(coachs.stream()
+                .filter(coach -> "INDISPONIBLE".equalsIgnoreCase(coach.getDisponibilite()))
+                .count()));
+    }
+
     @FXML
     private void handleAdd() {
+        if (!PermissionManager.canManageCoaches()) {
+            afficherAvertissement("La gestion des coachs est réservée à l'administrateur.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleEdit() {
+        if (!PermissionManager.canManageCoaches()) {
+            afficherAvertissement("La gestion des coachs est réservée à l'administrateur.");
+            return;
+        }
 
         Coach coach =
                 coachsTable
@@ -269,6 +327,10 @@ public class CoachController {
 
     @FXML
     private void handleDelete() {
+        if (!PermissionManager.canManageCoaches()) {
+            afficherAvertissement("La gestion des coachs est réservée à l'administrateur.");
+            return;
+        }
 
         Coach coach =
                 coachsTable

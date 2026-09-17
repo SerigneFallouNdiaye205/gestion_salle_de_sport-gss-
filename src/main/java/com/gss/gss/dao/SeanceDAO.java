@@ -15,4 +15,6 @@ public interface SeanceDAO {
     boolean update(Seance seance);
 
     boolean delete(int id);
+
+    List<Seance> findByCoachId(int coachId);
 }

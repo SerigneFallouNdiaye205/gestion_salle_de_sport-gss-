@@ -14,20 +14,20 @@
 <?import javafx.scene.text.Font?>
 
 <?import java.net.URL?>
-<BorderPane fx:id="container" prefHeight="618.0" prefWidth="950.0"
+<BorderPane styleClass="dashboard-page" fx:id="container" prefHeight="618.0" prefWidth="950.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.gss.gss.controller.DashboardController">
     <stylesheets>
+        <URL value="@../css/style.css"/>
         <URL value="@../css/dashboard.css"/>
     </stylesheets>
-
-    <!-- ========================= -->
+<!-- ========================= -->
     <!-- SIDEBAR -->
     <!-- ========================= -->
 
     <left>
-        <VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: #3051A0;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="230.0" spacing="10.0" styleClass="dashboard-sidebar" style="-fx-background-color: #3051A0;" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20" left="15" right="15" top="25" />
             </padding>
@@ -138,6 +138,17 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
                 </graphic>
             </Button>
+            <Button fx:id="reportsButton" alignment="CENTER_LEFT"
+                    maxWidth="250" onAction="#handleRapports"
+                    prefHeight="42" text="Rapports"
+                    styleClass="nav-button">
+                <font>
+                    <Font name="Times New Roman Bold" size="15.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="BAR_CHART" size="20" />
+                </graphic>
+            </Button>
 
 
             <VBox VBox.vgrow="ALWAYS" />
@@ -166,7 +177,7 @@
         <BorderPane prefHeight="539.0" prefWidth="380.0">
             <!-- HEADER -->
             <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="70" spacing="15" style="-fx-background-color: #eff0f5;                 -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_LEFT" prefHeight="70" spacing="15" styleClass="dashboard-topbar" style="-fx-background-color: #eff0f5;                 -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
                     <padding>
                         <Insets left="30" right="30" />
                     </padding>
@@ -176,7 +187,7 @@
             </top>
             <!-- CONTENU -->
             <center>
-                <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" style="-fx-background-color: #f3f4f6;">
+                <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" styleClass="dashboard-content" style="-fx-background-color: #f3f4f6;">
                     <padding>
                         <Insets bottom="30" left="30" right="30" top="30" />
                     </padding>
@@ -185,19 +196,19 @@
                     <!-- CARTES -->
                     <HBox spacing="20">
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
                             <Label style="-fx-font-size: 15px;
                             -fx-text-fill: #6b7280;" text="Membres" />
                         </VBox>
 
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
                             <Label style="-fx-font-size: 15px;
                             -fx-text-fill: #6b7280;" text="Abonnements actifs" />
                         </VBox>
 
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
 
                             <Label style="-fx-font-size: 15px;
                             -fx-text-fill: #6b7280;" text="Paiements" />
@@ -205,18 +216,18 @@
                         </VBox>
 
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
 
                             <Label style="-fx-font-size: 15px;
                             -fx-text-fill: #6b7280;" text="Séances" />
                         </VBox>
                     </HBox>
-               <ScrollPane prefHeight="600.0" prefWidth="1000.0">
+               <ScrollPane styleClass="dashboard-scroll" prefHeight="600.0" prefWidth="1000.0">
                  <content>
                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="970.0">
                         <children>
                                 <!-- MESSAGE -->
-                                <StackPane fx:id="contentPane" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;                                     -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                <StackPane fx:id="contentPane" styleClass="content-card" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;                                     -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                     </StackPane>
                         </children>
                      </AnchorPane>

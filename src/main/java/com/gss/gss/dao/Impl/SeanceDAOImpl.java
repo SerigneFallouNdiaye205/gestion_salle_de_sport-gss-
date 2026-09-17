@@ -177,6 +177,30 @@ public class SeanceDAOImpl implements SeanceDAO {
         }
     }
 
+    @Override
+    public List<Seance> findByCoachId(int coachId) {
+        List<Seance> seances = new ArrayList<>();
+        String sql = """
+                SELECT *
+                FROM seances
+                WHERE coach_id = ?
+                ORDER BY date_seance DESC, heure_debut DESC
+                """;
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, coachId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    seances.add(convertir(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seances;
+    }
+
     private Seance convertir(ResultSet rs) throws SQLException {
 
         Seance seance = new Seance();

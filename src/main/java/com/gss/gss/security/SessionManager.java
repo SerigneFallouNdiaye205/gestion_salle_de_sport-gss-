@@ -34,6 +34,6 @@ public final class SessionManager {
 
     public static boolean hasRole(String role) {
         if (!isLoggedIn()) {return false;}
-        return role.equals(currentUser.getType());
+        return role != null && role.equalsIgnoreCase(currentUser.getType());
     }
 }

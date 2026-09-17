@@ -32,8 +32,6 @@ public interface AbonnementDAO {
 
     boolean delete(int id);
 
-    boolean suspendre(int id);
-
     boolean renouveler(
             int id,
             LocalDate nouvelleDateFin,

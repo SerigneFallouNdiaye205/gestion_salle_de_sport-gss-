@@ -25,10 +25,13 @@ import java.util.Map;
 public class HomeController {
 
     @FXML private Label membersCountLabel;
+    @FXML private Label activeMembersLabel;
+    @FXML private Label coachesCountLabel;
     @FXML private Label activeSubscriptionsLabel;
+    @FXML private Label expiredSubscriptionsLabel;
     @FXML private Label paymentsCountLabel;
+    @FXML private Label revenueLabel;
     @FXML private Label sessionsCountLabel;
-    @FXML private Label utilisateursCountLabel;
 
     @FXML private Label username;
     @FXML private Label localDateTime;
@@ -47,7 +50,6 @@ public class HomeController {
     private final AbonnementService abonnementService = new AbonnementService();
     private final PaiementService paiementService = new PaiementService();
     private final SeanceService seanceService = new SeanceService();
-    private final UtilisateurService utilisateurService = new UtilisateurService();
     private final DashboardService dashboardService = new DashboardService();
 
     private Timeline clock;
@@ -99,24 +101,33 @@ public class HomeController {
         try {
             // Les quatre cartes sont alimentées directement par les services JDBC.
             membersCountLabel.setText(String.valueOf(membreService.countAll()));
+            activeMembersLabel.setText(String.valueOf(membreService.findByStatut("ACTIF").size()));
+            coachesCountLabel.setText(String.valueOf(new CoachService().count()));
 
             // On corrige les statuts expirés avant de compter les actifs.
             abonnementService.mettreAJourStatutsExpires();
             activeSubscriptionsLabel.setText(
                     String.valueOf(abonnementService.countActive())
             );
+            expiredSubscriptionsLabel.setText(String.valueOf(abonnementService.countExpired()));
 
-            paymentsCountLabel.setText(String.valueOf(paiementService.countAll()));
+            var paiements = paiementService.findAll();
+            paymentsCountLabel.setText(String.valueOf(paiements.size()));
+            revenueLabel.setText(formatMoney(paiements.stream()
+                    .filter(p -> "VALIDE".equalsIgnoreCase(p.getStatut()))
+                    .mapToDouble(com.gss.gss.model.Paiement::getMontant)
+                    .sum()));
             sessionsCountLabel.setText(String.valueOf(seanceService.countAll()));
-            utilisateursCountLabel.setText(String.valueOf(utilisateurService.countAll()));
-
         } catch (Exception e) {
             e.printStackTrace();
             membersCountLabel.setText("0");
+            activeMembersLabel.setText("0");
+            coachesCountLabel.setText("0");
             activeSubscriptionsLabel.setText("0");
+            expiredSubscriptionsLabel.setText("0");
             paymentsCountLabel.setText("0");
+            revenueLabel.setText("0 FCFA");
             sessionsCountLabel.setText("0");
-            utilisateursCountLabel.setText("0");
         }
     }
 

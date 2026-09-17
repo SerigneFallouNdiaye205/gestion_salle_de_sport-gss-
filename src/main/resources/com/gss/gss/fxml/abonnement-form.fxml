@@ -13,7 +13,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="450.0" spacing="15" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementFormController">
+<?import java.net.URL?>
+<VBox styleClass="form-page" prefWidth="450.0" spacing="15" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementFormController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+        <URL value="@../css/forms.css"/>
+    </stylesheets>
 
     <padding>
         <Insets bottom="25" left="30" right="30" top="25" />
@@ -62,9 +67,9 @@
 
     </GridPane>
 
-    <Label fx:id="errorLabel" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
+    <Label fx:id="errorLabel" styleClass="error-label" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
 
-    <HBox alignment="CENTER_RIGHT" spacing="10">
+    <HBox styleClass="form-actions" alignment="CENTER_RIGHT" spacing="10">
 
         <Button onAction="#handleCancel" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #64748b; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Annuler" />
 

@@ -4,6 +4,7 @@ import com.gss.gss.model.Abonnement;
 import com.gss.gss.model.Membre;
 import com.gss.gss.service.AbonnementService;
 import com.gss.gss.service.MembreService;
+import com.gss.gss.security.PermissionManager;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +42,10 @@ public class AbonnementController {
     private TableColumn<Abonnement, String> statutColumn;
     @FXML
     private TableColumn<Abonnement, String> joursRestantsColumn;
+    @FXML private Button addButton;
+    @FXML private Button editButton;
+    @FXML private Button renewButton;
+    @FXML private Button deleteButton;
 
     private final AbonnementService abonnementService =
             new AbonnementService();
@@ -50,6 +55,15 @@ public class AbonnementController {
     public void initialize() {
 
         configurerColonnes();
+        boolean canManage = PermissionManager.canManageSubscriptions();
+        addButton.setVisible(canManage);
+        addButton.setManaged(canManage);
+        editButton.setVisible(canManage);
+        editButton.setManaged(canManage);
+        renewButton.setVisible(canManage);
+        renewButton.setManaged(canManage);
+        deleteButton.setVisible(canManage);
+        deleteButton.setManaged(canManage);
 
         typeComboBox.setItems(
                 FXCollections.observableArrayList(
@@ -67,8 +81,7 @@ public class AbonnementController {
                 FXCollections.observableArrayList(
                         "Tous",
                         "ACTIF",
-                        "EXPIRE",
-                        "SUSPENDU"
+                        "EXPIRE"
                 )
         );
 
@@ -165,22 +178,6 @@ public class AbonnementController {
 
     @FXML
     private void handleSearch() {
-
-        String recherche =
-                searchField.getText()
-                        .trim();
-
-        if (!recherche.isEmpty()) {
-
-            abonnementsTable.setItems(
-                    FXCollections.observableArrayList(
-                            abonnementService.search(recherche)
-                    )
-            );
-
-            return;
-        }
-
         filtrer();
     }
 
@@ -194,32 +191,17 @@ public class AbonnementController {
 
         String type = typeComboBox.getValue();
         String statut = statutComboBox.getValue();
+        String recherche = searchField.getText() == null
+                ? "" : searchField.getText().trim().toLowerCase();
 
-        if (type != null &&
-                !type.equals("Tous")) {
-
-            abonnementsTable.setItems(
-                    FXCollections.observableArrayList(
-                            abonnementService.findByType(type)
-                    )
-            );
-
-            return;
-        }
-
-        if (statut != null &&
-                !statut.equals("Tous")) {
-
-            abonnementsTable.setItems(
-                    FXCollections.observableArrayList(
-                            abonnementService.findByStatut(statut)
-                    )
-            );
-
-            return;
-        }
-
-        chargerAbonnements();
+        var resultats = abonnementService.findAll().stream()
+                .filter(a -> type == null || "Tous".equals(type)
+                        || type.equalsIgnoreCase(a.getType()))
+                .filter(a -> statut == null || "Tous".equals(statut)
+                        || statut.equalsIgnoreCase(a.getStatut()))
+                .filter(a -> recherche.isEmpty() || abonnementContient(a, recherche))
+                .toList();
+        abonnementsTable.setItems(FXCollections.observableArrayList(resultats));
     }
 
     @FXML
@@ -237,12 +219,19 @@ public class AbonnementController {
 
     @FXML
     private void handleAdd() {
-
+        if (!PermissionManager.canManageSubscriptions()) {
+            afficherAvertissement("Vous n'avez pas la permission de gérer les abonnements.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleEdit() {
+        if (!PermissionManager.canManageSubscriptions()) {
+            afficherAvertissement("Vous n'avez pas la permission de modifier les abonnements.");
+            return;
+        }
 
         Abonnement abonnement =
                 abonnementsTable
@@ -263,6 +252,10 @@ public class AbonnementController {
 
     @FXML
     private void handleDelete() {
+        if (!PermissionManager.canManageSubscriptions()) {
+            afficherAvertissement("Vous n'avez pas la permission de supprimer les abonnements.");
+            return;
+        }
 
         Abonnement abonnement =
                 abonnementsTable
@@ -323,45 +316,11 @@ public class AbonnementController {
     }
 
     @FXML
-    private void handleSuspend() {
-
-        Abonnement abonnement =
-                abonnementsTable
-                        .getSelectionModel()
-                        .getSelectedItem();
-
-        if (abonnement == null) {
-
-            afficherAvertissement(
-                    "Veuillez sélectionner un abonnement."
-            );
-
+    private void handleRenew() {
+        if (!PermissionManager.canManageSubscriptions()) {
+            afficherAvertissement("Vous n'avez pas la permission de renouveler les abonnements.");
             return;
         }
-
-        boolean resultat =
-                abonnementService.suspendre(
-                        abonnement.getId()
-                );
-
-        if (resultat) {
-
-            chargerAbonnements();
-
-            afficherInformation(
-                    "L'abonnement a été suspendu."
-            );
-
-        } else {
-
-            afficherErreur(
-                    "Impossible de suspendre l'abonnement."
-            );
-        }
-    }
-
-    @FXML
-    private void handleRenew() {
 
         Abonnement abonnement =
                 abonnementsTable
@@ -435,6 +394,20 @@ public class AbonnementController {
                     "Impossible d'ouvrir le formulaire."
             );
         }
+    }
+
+    private boolean abonnementContient(Abonnement abonnement, String recherche) {
+        Membre membre = membreService.findById(abonnement.getMembreId());
+        String nom = membre == null ? "" : membre.getPrenom() + " " + membre.getNom();
+        return String.valueOf(abonnement.getId()).contains(recherche)
+                || String.valueOf(abonnement.getMembreId()).contains(recherche)
+                || safe(abonnement.getType()).contains(recherche)
+                || safe(abonnement.getStatut()).contains(recherche)
+                || nom.toLowerCase().contains(recherche);
+    }
+
+    private String safe(String value) {
+        return value == null ? "" : value.toLowerCase();
     }
 
     private void afficherAvertissement(

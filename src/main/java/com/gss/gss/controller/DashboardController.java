@@ -2,6 +2,7 @@ package com.gss.gss.controller;
 
 import com.gss.gss.model.Utilisateur;
 import com.gss.gss.security.SessionManager;
+import com.gss.gss.security.PermissionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,32 +16,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class DashboardController {
-    @FXML
-    private BorderPane container;
-    @FXML
-    private Label roleLabel;
-    @FXML
-    private Label welcomeLabel;
-    @FXML
-    private StackPane contentPane;
-    @FXML
-    private Button homeButton;
-    @FXML
-    private Button membersButton;
-    @FXML
-    private Button paymentsButton;
-    @FXML
-    private Button subscriptionsButton;
-    @FXML
-    private Button sessionsButton;
-    @FXML
-    private Button inscriptionsButton;
-    @FXML
-    private Button coachesButton;
-    @FXML
-    private Button usersButton;
-    @FXML
-    private Button logoutButton;
+    @FXML private BorderPane container;
+    @FXML private Label roleLabel;
+    @FXML private Label welcomeLabel;
+    @FXML private StackPane contentPane;
+    @FXML private Button homeButton;
+    @FXML private Button membersButton;
+    @FXML private Button paymentsButton;
+    @FXML private Button subscriptionsButton;
+    @FXML private Button sessionsButton;
+    @FXML private Button inscriptionsButton;
+    @FXML private Button coachesButton;
+    @FXML private Button usersButton;
+    @FXML private Button reportsButton;
+    @FXML private Button logoutButton;
 
 
     @FXML
@@ -62,32 +51,17 @@ public class DashboardController {
     // Configure les boutons selon le rôle.
 
     private void configureMenu(String role) {
-        switch (role) {
-            case "ADMINISTRATEUR":
-                // L'administrateur a accès à tout
-                homeButton.setVisible(true);
-                homeButton.setManaged(true);
+        setVisible(homeButton, PermissionManager.canViewDashboard());
+        setVisible(membersButton, PermissionManager.canViewMembers());
+        setVisible(paymentsButton, PermissionManager.canViewPayments());
+        setVisible(subscriptionsButton, PermissionManager.canViewSubscriptions());
+        setVisible(sessionsButton, PermissionManager.canViewSessions());
+        setVisible(inscriptionsButton, PermissionManager.canViewInscriptions());
+        setVisible(coachesButton, PermissionManager.canManageCoaches());
+        setVisible(usersButton, PermissionManager.canManageUsers());
+        setVisible(reportsButton, PermissionManager.canViewReports());
 
-                membersButton.setVisible(true);
-                membersButton.setManaged(true);
-
-                paymentsButton.setVisible(true);
-                paymentsButton.setManaged(true);
-
-                subscriptionsButton.setVisible(true);
-                subscriptionsButton.setManaged(true);
-
-                sessionsButton.setVisible(true);
-                sessionsButton.setManaged(true);
-
-                inscriptionsButton.setVisible(true);
-                inscriptionsButton.setManaged(true);
-
-                coachesButton.setVisible(true);
-                coachesButton.setManaged(true);
-
-                usersButton.setVisible(true);
-                usersButton.setManaged(true);
+        if (PermissionManager.canViewDashboard()) {
                 try {
 
                     FXMLLoader loader = new FXMLLoader(
@@ -104,28 +78,7 @@ public class DashboardController {
 
                     e.printStackTrace();
                 }
-                break;
-
-
-            case "RECEPTIONNISTE":
-
-                // Le réceptionniste gère les membres,
-                // abonnements et paiements.
-                membersButton.setVisible(true);
-                membersButton.setManaged(true);
-
-                paymentsButton.setVisible(true);
-                paymentsButton.setManaged(true);
-
-                subscriptionsButton.setVisible(true);
-                subscriptionsButton.setManaged(true);
-
-                sessionsButton.setVisible(true);
-                sessionsButton.setManaged(true);
-
-                inscriptionsButton.setVisible(true);
-                inscriptionsButton.setManaged(true);
-
+        } else if (PermissionManager.canViewMembers()) {
                 try {
 
                     FXMLLoader loader = new FXMLLoader(
@@ -142,91 +95,18 @@ public class DashboardController {
 
                     e.printStackTrace();
                 }
-
-                homeButton.setVisible(false);
-                homeButton.setManaged(false);
-
-                coachesButton.setVisible(false);
-                coachesButton.setManaged(false);
-
-                usersButton.setVisible(false);
-                usersButton.setManaged(false);
-                break;
-
-            case "COACH":
-                // Le coach travaille principalement
-                // avec les séances et les membres.
-                membersButton.setVisible(true);
-                membersButton.setManaged(true);
-
-                sessionsButton.setVisible(true);
-                sessionsButton.setManaged(true);
-
-                inscriptionsButton.setVisible(true);
-                inscriptionsButton.setManaged(true);
-
-                try {
-
-                    FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("/com/gss/gss/fxml/membres.fxml")
-                    );
-
-                    Parent membresView = loader.load();
-
-                    contentPane.getChildren().clear();
-                    contentPane.getChildren().add(membresView);
-                    container.setCenter(contentPane);
-
-                } catch (IOException e) {
-
-                    e.printStackTrace();
-                }
-
-                homeButton.setVisible(false);
-                homeButton.setManaged(false);
-
-                paymentsButton.setVisible(false);
-                paymentsButton.setManaged(false);
-
-                subscriptionsButton.setVisible(false);
-                subscriptionsButton.setManaged(false);
-
-                coachesButton.setVisible(false);
-                coachesButton.setManaged(false);
-
-                usersButton.setVisible(false);
-                usersButton.setManaged(false);
-                break;
-
-            default:
-                // Si le rôle est inconnu,
-                // on masque les menus sensibles.
-                membersButton.setVisible(false);
-                membersButton.setManaged(false);
-
-                paymentsButton.setVisible(false);
-                paymentsButton.setManaged(false);
-
-                subscriptionsButton.setVisible(false);
-                subscriptionsButton.setManaged(false);
-
-                sessionsButton.setVisible(false);
-                sessionsButton.setManaged(false);
-
-                inscriptionsButton.setVisible(false);
-                inscriptionsButton.setManaged(false);
-
-                coachesButton.setVisible(false);
-                coachesButton.setManaged(false);
-
-                usersButton.setVisible(false);
-                usersButton.setManaged(false);
         }
+    }
+
+    private void setVisible(Button button, boolean visible) {
+        button.setVisible(visible);
+        button.setManaged(visible);
     }
 
 
     @FXML
     private void handleHome() {
+        if (!PermissionManager.canViewDashboard()) return;
         // Tableau de bord
         try {
 
@@ -247,6 +127,7 @@ public class DashboardController {
 
     @FXML
     private void handleMembers() {
+        if (!PermissionManager.canViewMembers()) return;
         //Gestion des membres
         try {
 
@@ -267,6 +148,7 @@ public class DashboardController {
     }
     @FXML
     private void handlePaiements() {
+        if (!PermissionManager.canViewPayments()) return;
         // Gestion des paiements
         try {
 
@@ -285,6 +167,7 @@ public class DashboardController {
     }
     @FXML
     private void handleAbonnements() {
+        if (!PermissionManager.canViewSubscriptions()) return;
         // Gestion des abonnements
         try {
 
@@ -303,6 +186,7 @@ public class DashboardController {
     }
     @FXML
     private void handleSeances() {
+        if (!PermissionManager.canViewSessions()) return;
         // Gestion des seances
         try {
 
@@ -322,6 +206,7 @@ public class DashboardController {
     }
     @FXML
     private void handleInscriptions() {
+        if (!PermissionManager.canViewInscriptions()) return;
         // Gestion des inscriptions aux seances
         try {
 
@@ -341,6 +226,7 @@ public class DashboardController {
     }
     @FXML
     private void handleCoachs() {
+        if (!PermissionManager.canManageCoaches()) return;
         // Gestion des paiements
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -360,6 +246,7 @@ public class DashboardController {
 
     @FXML
     private void handleUtilisateurs() {
+        if (!PermissionManager.canManageUsers()) return;
     // Gestion des utilisateurs
         try {
 
@@ -374,6 +261,20 @@ public class DashboardController {
             container.setCenter(contentPane);
 
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleRapports() {
+        if (!PermissionManager.canViewReports()) return;
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com/gss/gss/fxml/rapports.fxml"));
+            Parent rapportsView = loader.load();
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(rapportsView);
         } catch (IOException e) {
             e.printStackTrace();
         }

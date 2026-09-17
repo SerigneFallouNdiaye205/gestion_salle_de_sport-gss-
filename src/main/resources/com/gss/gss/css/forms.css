@@ -1,0 +1,31 @@
+.form-page {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16;
+    -fx-border-color: #e3e8f0;
+    -fx-border-radius: 16;
+    -fx-padding: 26;
+}
+
+.form-page .grid-pane {
+    -fx-background-color: #fbfcfe;
+    -fx-background-radius: 12;
+    -fx-border-color: #edf0f5;
+    -fx-border-radius: 12;
+    -fx-padding: 16;
+}
+
+.form-page .form-title {
+    -fx-text-fill: #172033;
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+}
+
+.form-page .form-actions {
+    -fx-padding: 8 0 0 0;
+}
+
+.form-page .error-label {
+    -fx-background-color: #fff1f2;
+    -fx-background-radius: 8;
+    -fx-padding: 8 10;
+}

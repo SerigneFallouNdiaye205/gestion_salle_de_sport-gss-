@@ -45,4 +45,13 @@ public class MembreService {
     public List<Membre> findByStatut(String statut) {
         return membreDAO.findByStatut(statut);
     }
+
+    public List<Membre> findByCoachId(int coachId) {
+        return membreDAO.findByCoachId(coachId);
+    }
+
+    public boolean isManagedByCoach(int membreId, int coachId) {
+        return findByCoachId(coachId).stream()
+                .anyMatch(membre -> membre.getId() == membreId);
+    }
 }

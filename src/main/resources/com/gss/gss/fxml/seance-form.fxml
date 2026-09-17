@@ -13,9 +13,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="450.0" spacing="14" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.SeanceFormController">
+<?import java.net.URL?>
+<VBox styleClass="form-page" prefWidth="450.0" spacing="14" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.SeanceFormController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+        <URL value="@../css/forms.css"/>
+    </stylesheets>
     <padding><Insets bottom="25" left="30" right="30" top="25" /></padding>
-    <Label fx:id="titleLabel" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Nouvelle séance" />
+    <Label fx:id="titleLabel" styleClass="form-title" style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Nouvelle séance" />
     <Separator />
     <GridPane hgap="12" vgap="12">
         <Label text="Coach :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -46,8 +51,8 @@
          <RowConstraints />
       </rowConstraints>
     </GridPane>
-    <Label fx:id="errorLabel" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
-    <HBox alignment="CENTER_RIGHT" spacing="10">
+    <Label fx:id="errorLabel" styleClass="error-label" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
+    <HBox styleClass="form-actions" alignment="CENTER_RIGHT" spacing="10">
         <Button onAction="#handleCancel" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #64748b; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13; -fx-font-style: italic;" text="Annuler" />
         <Button fx:id="saveButton" defaultButton="true" onAction="#handleSave" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-style: italic; -fx-font-size: 13; -fx-background-radius: 6px;" text="Enregistrer" />
     </HBox>

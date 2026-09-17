@@ -4,6 +4,8 @@ import com.gss.gss.model.Coach;
 import com.gss.gss.model.Seance;
 import com.gss.gss.service.CoachService;
 import com.gss.gss.service.SeanceService;
+import com.gss.gss.security.SessionManager;
+import com.gss.gss.security.PermissionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +29,9 @@ public class SeanceController {
     @FXML private TableColumn<Seance, String> colHeureFin;
     @FXML private TableColumn<Seance, String> colSalle;
     @FXML private TableColumn<Seance, Integer> colCapacite;
+    @FXML private Button addButton;
+    @FXML private Button editButton;
+    @FXML private Button deleteButton;
 
     private final SeanceService seanceService = new SeanceService();
     private final CoachService coachService = new CoachService();
@@ -35,6 +40,14 @@ public class SeanceController {
     @FXML
     public void initialize() {
         configurerColonnes();
+        if (!PermissionManager.canManageSessions()) {
+            addButton.setVisible(false);
+            addButton.setManaged(false);
+            editButton.setVisible(false);
+            editButton.setManaged(false);
+            deleteButton.setVisible(false);
+            deleteButton.setManaged(false);
+        }
         chargerSeances();
     }
 
@@ -82,17 +95,27 @@ public class SeanceController {
     }
 
     private void chargerSeances() {
-        listeSeances.setAll(seanceService.findAll());
+        listeSeances.setAll(SessionManager.hasRole("COACH")
+                ? seanceService.findByCoachId(SessionManager.getCurrentUser().getId())
+                : seanceService.findAll());
         tableSeances.setItems(listeSeances);
     }
 
     @FXML
     private void handleAdd() {
+        if (!PermissionManager.canManageSessions()) {
+            afficherAvertissement("La gestion des séances est réservée à l'administrateur.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleEdit() {
+        if (!PermissionManager.canManageSessions()) {
+            afficherAvertissement("La gestion des séances est réservée à l'administrateur.");
+            return;
+        }
         Seance selection = tableSeances.getSelectionModel().getSelectedItem();
         if (selection == null) {
             afficherAvertissement("Veuillez sélectionner une séance.");
@@ -103,6 +126,10 @@ public class SeanceController {
 
     @FXML
     private void handleDelete() {
+        if (!PermissionManager.canManageSessions()) {
+            afficherAvertissement("La gestion des séances est réservée à l'administrateur.");
+            return;
+        }
         Seance selection = tableSeances.getSelectionModel().getSelectedItem();
         if (selection == null) {
             afficherAvertissement("Veuillez sélectionner une séance.");

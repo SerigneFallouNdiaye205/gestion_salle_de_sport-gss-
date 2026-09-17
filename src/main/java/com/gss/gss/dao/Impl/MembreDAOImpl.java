@@ -163,7 +163,8 @@ public class MembreDAOImpl implements MembreDAO {
 
         String sql = """
                 SELECT * FROM membres
-                WHERE nom LIKE ?
+                WHERE CAST(id AS CHAR) LIKE ?
+                   OR nom LIKE ?
                    OR prenom LIKE ?
                    OR telephone LIKE ?
                    OR email LIKE ?
@@ -179,6 +180,7 @@ public class MembreDAOImpl implements MembreDAO {
             ps.setString(2, valeur);
             ps.setString(3, valeur);
             ps.setString(4, valeur);
+            ps.setString(5, valeur);
 
             try (ResultSet rs = ps.executeQuery()) {
 
@@ -217,6 +219,34 @@ public class MembreDAOImpl implements MembreDAO {
                 }
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return membres;
+    }
+
+    @Override
+    public List<Membre> findByCoachId(int coachId) {
+        List<Membre> membres = new ArrayList<>();
+
+        String sql = """
+                SELECT DISTINCT m.*
+                FROM membres m
+                JOIN inscriptions_seances i ON i.membre_id = m.id
+                JOIN seances s ON s.id = i.seance_id
+                WHERE s.coach_id = ?
+                ORDER BY m.id DESC
+                """;
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, coachId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    membres.add(convertir(rs));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

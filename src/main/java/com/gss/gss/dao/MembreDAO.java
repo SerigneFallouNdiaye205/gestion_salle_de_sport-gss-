@@ -19,4 +19,6 @@ public interface MembreDAO {
     List<Membre> rechercher(String recherche);
 
     List<Membre> findByStatut(String statut);
+
+    List<Membre> findByCoachId(int coachId);
 }

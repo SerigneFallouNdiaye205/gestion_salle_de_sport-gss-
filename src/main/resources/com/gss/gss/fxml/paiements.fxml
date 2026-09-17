@@ -16,7 +16,11 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.PaiementsController">
+<?import java.net.URL?>
+<BorderPane styleClass="app-page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.PaiementsController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
 
     <top>
 
@@ -32,7 +36,7 @@
 
                 <Region HBox.hgrow="ALWAYS" />
 
-                <Button onAction="#handleNouveau" prefHeight="38.0" style="-fx-background-color: #16a34a;                             -fx-text-fill: white;                             -fx-font-weight: bold;                             -fx-background-radius: 6px;                             -fx-cursor: hand;" text="Nouveau paiement">
+                <Button fx:id="nouveauButton" onAction="#handleNouveau" prefHeight="38.0" style="-fx-background-color: #16a34a;                             -fx-text-fill: white;                             -fx-font-weight: bold;                             -fx-background-radius: 6px;                             -fx-cursor: hand;" text="Nouveau paiement">
                     <graphic>
                         <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
                     </graphic>
@@ -109,13 +113,13 @@
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button onAction="#handleModifier" prefHeight="38.0" style="-fx-background-color: #2563eb;                         -fx-text-fill: white;                         -fx-font-weight: bold;                         -fx-background-radius: 6px;                         -fx-cursor: hand;" text="Modifier">
+            <Button fx:id="modifierButton" onAction="#handleModifier" prefHeight="38.0" style="-fx-background-color: #2563eb;                         -fx-text-fill: white;                         -fx-font-weight: bold;                         -fx-background-radius: 6px;                         -fx-cursor: hand;" text="Modifier">
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
                 </graphic>
             </Button>
 
-            <Button onAction="#handleSupprimer" prefHeight="38.0" style="-fx-background-color: #dc2626;                         -fx-text-fill: white;                         -fx-font-weight: bold;                         -fx-background-radius: 6px;                         -fx-cursor: hand;" text="Supprimer">
+            <Button fx:id="supprimerButton" onAction="#handleSupprimer" prefHeight="38.0" style="-fx-background-color: #dc2626;                         -fx-text-fill: white;                         -fx-font-weight: bold;                         -fx-background-radius: 6px;                         -fx-cursor: hand;" text="Supprimer">
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
                 </graphic>

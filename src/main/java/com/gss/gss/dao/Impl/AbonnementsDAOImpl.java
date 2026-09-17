@@ -422,32 +422,6 @@ public class AbonnementsDAOImpl implements AbonnementDAO {
     }
 
     @Override
-    public boolean suspendre(int id) {
-
-        String sql = """
-                UPDATE abonnements
-                SET statut = 'SUSPENDU'
-                WHERE id = ?
-                """;
-
-        try (
-                Connection connection = DatabaseConnection.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)
-        ) {
-
-            ps.setInt(1, id);
-
-            return ps.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(
-                    "Erreur lors de la suspension de l'abonnement.",
-                    e
-            );
-        }
-    }
-
-    @Override
     public boolean renouveler(
             int id,
             LocalDate nouvelleDateFin,

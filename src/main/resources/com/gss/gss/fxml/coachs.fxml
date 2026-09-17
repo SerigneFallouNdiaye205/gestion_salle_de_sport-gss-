@@ -1,229 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import java.lang.String?>
+<?import java.net.URL?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<BorderPane xmlns="http://javafx.com/javafx/21"
+<BorderPane prefHeight="720.0" prefWidth="1120.0"
+            styleClass="coaches-page app-page"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gss.gss.controller.CoachController"
-            prefWidth="1100"
-            prefHeight="650"
-            style="-fx-background-color: #f8fafc;">
-
+            fx:controller="com.gss.gss.controller.CoachController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+        <URL value="@../css/coachs.css"/>
+    </stylesheets>
     <top>
-
-        <VBox spacing="12">
-
+        <VBox spacing="18" styleClass="page-header">
             <padding>
-                <Insets top="20"
-                        right="25"
-                        bottom="15"
-                        left="25"/>
+                <Insets bottom="22" left="30" right="30" top="28"/>
             </padding>
-
-            <Label text="Gestion des coachs"
-                   style="-fx-font-size: 24px;
-                          -fx-font-weight: bold;
-                          -fx-text-fill: #1e293b;"/>
-
-            <Label text="Ajoutez, modifiez, recherchez et gérez les coachs de la salle."
-                   style="-fx-font-size: 13px;
-                          -fx-text-fill: #64748b;"/>
-
-            <HBox spacing="10">
-
-                <TextField fx:id="searchField"
-                           promptText="Rechercher par nom, prénom, téléphone, email..."
-                           prefHeight="38"
-                           HBox.hgrow="ALWAYS"
-                           onAction="#handleSearch"
-                           style="-fx-background-color: white;
-                                  -fx-border-color: #cbd5e1;
-                                  -fx-border-radius: 6;
-                                  -fx-background-radius: 6;
-                                  -fx-padding: 0 12px;"/>
-
-                <Button text="Rechercher"
-                        onAction="#handleSearch"
-                        prefHeight="38.0"
-                        style="-fx-background-color: #2563eb;
-                               -fx-text-fill: white;
-                               -fx-font-weight: bold;
-                               -fx-background-radius: 6px;
-                               -fx-cursor: hand;">
+            <HBox alignment="CENTER_LEFT" spacing="14">
+                <VBox spacing="4">
+                    <Label text="Coachs" styleClass="page-title"/>
+                    <Label text="Pilotez l'équipe sportive et les disponibilités de la salle."
+                           styleClass="page-subtitle"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="addButton" onAction="#handleAdd"
+                        text="Nouveau coach" styleClass="primary-button">
                     <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="SEARCH" size="15" />
+                        <FontAwesomeIconView glyphName="PLUS" size="13"/>
                     </graphic>
                 </Button>
-
-                <ComboBox fx:id="specialiteComboBox"
-                          prefWidth="150"
-                          prefHeight="38.0"
-                          promptText="Spécialité"
-                          onAction="#handleFilter"/>
-
-                <ComboBox fx:id="disponibiliteComboBox"
-                          prefWidth="150"
-                          prefHeight="38.0"
-                          promptText="Disponibilité"
-                          onAction="#handleFilter"/>
-
-                <Button text="Actualiser"
-                        onAction="#handleRefresh"
-                        prefHeight="38.0"
-                        style="-fx-background-color: #64748b;
-                               -fx-text-fill: white;
-                               -fx-font-weight: bold;
-                               -fx-background-radius: 6px;
-                               -fx-cursor: hand;">
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="REFRESH" size="15" />
-                    </graphic>
-                </Button>
-
             </HBox>
-
+            <GridPane hgap="14">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS"/>
+                    <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS"/>
+                    <ColumnConstraints percentWidth="33.33" hgrow="ALWAYS"/>
+                </columnConstraints>
+                <VBox spacing="4" styleClass="metric-card" GridPane.columnIndex="0">
+                    <Label text="COACHS AFFICHÉS" styleClass="metric-caption"/>
+                    <Label fx:id="totalCoachsLabel" text="0" styleClass="metric-value"/>
+                    <Label text="selon les filtres actifs" styleClass="metric-detail"/>
+                </VBox>
+                <VBox spacing="4" styleClass="metric-card" GridPane.columnIndex="1">
+                    <Label text="DISPONIBLES" styleClass="metric-caption"/>
+                    <Label fx:id="disponiblesLabel" text="0">
+                        <styleClass>
+                            <String fx:value="metric-value"/>
+                            <String fx:value="metric-positive"/>
+                        </styleClass>
+                    </Label>
+                    <Label text="prêts à encadrer une séance" styleClass="metric-detail"/>
+                </VBox>
+                <VBox spacing="4" styleClass="metric-card" GridPane.columnIndex="2">
+                    <Label text="INDISPONIBLES" styleClass="metric-caption"/>
+                    <Label fx:id="indisponiblesLabel" text="0">
+                        <styleClass>
+                            <String fx:value="metric-value"/>
+                            <String fx:value="metric-warning"/>
+                        </styleClass>
+                    </Label>
+                    <Label text="à planifier ultérieurement" styleClass="metric-detail"/>
+                </VBox>
+            </GridPane>
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="filter-bar">
+                <TextField fx:id="searchField" onAction="#handleSearch"
+                           promptText="Rechercher un nom, une spécialité, un téléphone..."
+                           styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                <Button onAction="#handleSearch" text="Rechercher"
+                        styleClass="primary-button">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="SEARCH" size="13"/>
+                    </graphic>
+                </Button>
+                <ComboBox fx:id="specialiteComboBox" onAction="#handleFilter"
+                          promptText="Spécialité" styleClass="filter-box"/>
+                <ComboBox fx:id="disponibiliteComboBox" onAction="#handleFilter"
+                          promptText="Disponibilité" styleClass="filter-box"/>
+                <Button onAction="#handleRefresh" text="Réinitialiser"
+                        styleClass="ghost-button">
+                    <graphic>
+                        <FontAwesomeIconView glyphName="REFRESH" size="13"/>
+                    </graphic>
+                </Button>
+            </HBox>
         </VBox>
-
     </top>
-
     <center>
-
-        <VBox spacing="10">
-
+        <VBox spacing="12" styleClass="table-section">
             <padding>
-                <Insets top="5"
-                        right="25"
-                        bottom="10"
-                        left="25"/>
+                <Insets bottom="18" left="30" right="30" top="18"/>
             </padding>
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Équipe des coachs" styleClass="section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Sélectionnez une ligne pour modifier ou supprimer un coach."
+                       styleClass="helper-text"/>
+            </HBox>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
-                        layoutX="125.0" layoutY="160.0"
-                        prefHeight="400" prefWidth="900.0"
-                        AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-                <AnchorPane prefHeight="400" prefWidth="900.0">
-                    <TableView fx:id="coachsTable"
-                               style="-fx-background-color: white;"
-                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                               VBox.vgrow="ALWAYS">
-
-                        <columns>
-
-                            <TableColumn fx:id="idColumn"
-                                         text="ID"
-                                         prefWidth="55"/>
-
-                            <TableColumn fx:id="nomColumn"
-                                         text="Nom"
-                                         prefWidth="110"/>
-
-                            <TableColumn fx:id="prenomColumn"
-                                         text="Prénom"
-                                         prefWidth="110"/>
-
-                            <TableColumn fx:id="telephoneColumn"
-                                         text="Téléphone"
-                                         prefWidth="120"/>
-
-                            <TableColumn fx:id="emailColumn"
-                                         text="Email"
-                                         prefWidth="180"/>
-
-                            <TableColumn fx:id="specialiteColumn"
-                                         text="Spécialité"
-                                         prefWidth="130"/>
-
-                            <TableColumn fx:id="salaireColumn"
-                                         text="Salaire"
-                                         prefWidth="100"/>
-
-                            <TableColumn fx:id="disponibiliteColumn"
-                                         text="Disponibilité"
-                                         prefWidth="120"/>
-
-                        </columns>
-
-                        <columnResizePolicy>
-                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-                        </columnResizePolicy>
-
-                    </TableView>
-                </AnchorPane>
+                        styleClass="table-scroll">
+                <TableView fx:id="coachsTable" styleClass="coaches-table">
+                    <placeholder>
+                        <Label text="Aucun coach ne correspond aux critères."
+                               style="-fx-text-fill: #718096; -fx-font-size: 13px;"/>
+                    </placeholder>
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="#" prefWidth="55"/>
+                        <TableColumn fx:id="nomColumn" text="Nom" prefWidth="120"/>
+                        <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="125"/>
+                        <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="125"/>
+                        <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                        <TableColumn fx:id="specialiteColumn" text="Spécialité" prefWidth="145"/>
+                        <TableColumn fx:id="salaireColumn" text="Salaire" prefWidth="110"/>
+                        <TableColumn fx:id="disponibiliteColumn" text="Statut" prefWidth="135"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
             </ScrollPane>
         </VBox>
-
     </center>
-
     <bottom>
-
-        <HBox spacing="10">
-
+        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="action-bar">
             <padding>
-                <Insets top="10"
-                        right="25"
-                        bottom="20"
-                        left="25"/>
+                <Insets bottom="22" left="30" right="30" top="8"/>
             </padding>
-
-            <Button text="Nouveau coach"
-                    onAction="#handleAdd"
-                    prefHeight="38.0"
-                    style="-fx-background-color: #16a34a;
-                           -fx-text-fill: white;
-                           -fx-font-weight: bold;
-                           -fx-background-radius: 6px;
-                           -fx-cursor: hand;">
+            <Button fx:id="editButton" onAction="#handleEdit" text="Modifier"
+                    styleClass="secondary-button">
                 <graphic>
-                    <FontAwesomeIconView fill="#eff0f5" glyphName="PLUS" size="10" />
+                    <FontAwesomeIconView glyphName="EDIT" size="13"/>
                 </graphic>
             </Button>
-
-            <Button text="Modifier"
-                    onAction="#handleEdit"
-                    prefHeight="38.0"
-                    style="-fx-background-color: #2563eb;
-                           -fx-text-fill: white;
-                           -fx-font-weight: bold;
-                           -fx-background-radius: 6px;
-                           -fx-cursor: hand;">
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="EDIT" size="15" />
-                    </graphic>
-            </Button>
-
-            <Button text="Supprimer"
-                    onAction="#handleDelete"
-                    prefHeight="38.0"
-                    style="-fx-background-color: #dc2626;
-                           -fx-text-fill: white;
-                           -fx-font-weight: bold;
-                           -fx-background-radius: 6px;
-                           -fx-cursor: hand;">
+            <Button fx:id="deleteButton" onAction="#handleDelete" text="Supprimer"
+                    styleClass="danger-button">
                 <graphic>
-                    <FontAwesomeIconView fill="#eff0f5" glyphName="TRASH" size="15" />
+                    <FontAwesomeIconView glyphName="TRASH" size="13"/>
                 </graphic>
             </Button>
-
-            <HBox HBox.hgrow="ALWAYS"/>
-
-            <Label text="Sélectionnez un coach pour effectuer une action."
-                   style="-fx-text-fill: #64748b;
-                          -fx-font-size: 12px;"
-                   alignment="CENTER_RIGHT"/>
-
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="Les informations professionnelles restent accessibles à l'administrateur."
+                   styleClass="helper-text"/>
         </HBox>
-
     </bottom>
-
 </BorderPane>

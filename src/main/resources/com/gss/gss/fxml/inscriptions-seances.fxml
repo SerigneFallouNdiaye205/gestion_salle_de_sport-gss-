@@ -6,7 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.InscriptionSeanceController">
+<?import java.net.URL?>
+<BorderPane styleClass="app-page" style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.InscriptionSeanceController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
     <top>
         <VBox spacing="5">
             <padding><Insets bottom="15" left="20" right="20" top="20" /></padding>
@@ -21,19 +25,19 @@
                 <Label alignment="CENTER_LEFT" style="-fx-text-fill: #64748b;
                     -fx-font-size: 12px;" text="Sélectionnez une inscription pour effectuer une action." />
                 <HBox HBox.hgrow="ALWAYS" />
-                <Button onAction="#ajouter" prefHeight="38.0" style="-fx-background-color: #16a34a; -fx-background-radius: 6px; -fx-text-fill: white;" text="Nouvelle inscription">
+                <Button fx:id="addButton" onAction="#ajouter" prefHeight="38.0" style="-fx-background-color: #16a34a; -fx-background-radius: 6px; -fx-text-fill: white;" text="Nouvelle inscription">
                    <font>
                       <Font name="System Bold Italic" size="12.0" />
                    </font>
                     <graphic><FontAwesomeIconView fill="white" glyphName="PLUS" size="10" /></graphic>
                 </Button>
-                <Button onAction="#handleEdit" prefHeight="38.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white;" text="Modifier">
+                <Button fx:id="editButton" onAction="#handleEdit" prefHeight="38.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white;" text="Modifier">
                     <graphic><FontAwesomeIconView fill="white" glyphName="EDIT" size="15" /></graphic>
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </Button>
-                <Button onAction="#handleDelete" prefHeight="38.0" style="-fx-background-color: #dc2626; -fx-background-radius: 6px; -fx-text-fill: white;" text="Supprimer">
+                <Button fx:id="deleteButton" onAction="#handleDelete" prefHeight="38.0" style="-fx-background-color: #dc2626; -fx-background-radius: 6px; -fx-text-fill: white;" text="Supprimer">
                     <graphic><FontAwesomeIconView fill="white" glyphName="TRASH" size="15" /></graphic>
                     <font>
                         <Font name="System Bold Italic" size="12.0" />

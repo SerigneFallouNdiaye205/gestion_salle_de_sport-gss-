@@ -4,6 +4,7 @@ import com.gss.gss.model.Paiement;
 import com.gss.gss.model.Membre;
 import com.gss.gss.service.MembreService;
 import com.gss.gss.service.PaiementService;
+import com.gss.gss.security.PermissionManager;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +40,9 @@ public class PaiementsController {
     @FXML private DatePicker datePicker;
     @FXML private Label totalPaiementsLabel;
     @FXML private Label totalRevenusLabel;
+    @FXML private Button nouveauButton;
+    @FXML private Button modifierButton;
+    @FXML private Button supprimerButton;
 
     private final PaiementService paiementService =
             new PaiementService();
@@ -51,6 +55,13 @@ public class PaiementsController {
     public void initialize() {
 
         configurerColonnes();
+        boolean canManage = PermissionManager.canManagePayments();
+        nouveauButton.setVisible(canManage);
+        nouveauButton.setManaged(canManage);
+        modifierButton.setVisible(canManage);
+        modifierButton.setManaged(canManage);
+        supprimerButton.setVisible(canManage);
+        supprimerButton.setManaged(canManage);
 
         statutComboBox.setItems(
                 FXCollections.observableArrayList(
@@ -160,13 +171,19 @@ public class PaiementsController {
 
     @FXML
     private void handleNouveau() {
-
+        if (!PermissionManager.canManagePayments()) {
+            afficherAlerte("Accès refusé", "Vous n'avez pas la permission de gérer les paiements.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleModifier() {
-
+        if (!PermissionManager.canManagePayments()) {
+            afficherAlerte("Accès refusé", "Vous n'avez pas la permission de modifier les paiements.");
+            return;
+        }
         Paiement paiement =
                 paiementTable.getSelectionModel()
                         .getSelectedItem();
@@ -186,7 +203,10 @@ public class PaiementsController {
 
     @FXML
     private void handleSupprimer() {
-
+        if (!PermissionManager.canManagePayments()) {
+            afficherAlerte("Accès refusé", "Vous n'avez pas la permission de supprimer les paiements.");
+            return;
+        }
         Paiement paiement =
                 paiementTable.getSelectionModel()
                         .getSelectedItem();

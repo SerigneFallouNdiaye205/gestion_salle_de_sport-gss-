@@ -89,7 +89,9 @@ CREATE TABLE IF NOT EXISTS membres (
     statut ENUM('ACTIF','INACTIF') NOT NULL DEFAULT 'ACTIF',
     PRIMARY KEY (id),
     KEY idx_membre_nom (nom),
-    KEY idx_membre_telephone (telephone)
+    KEY idx_membre_prenom (prenom),
+    KEY idx_membre_telephone (telephone),
+    KEY idx_membre_statut (statut)
 ) ENGINE=InnoDB;
 
 -- =============================================================
@@ -103,13 +105,24 @@ CREATE TABLE IF NOT EXISTS abonnements (
     prix DECIMAL(10,2) NOT NULL,
     date_debut DATE NOT NULL,
     date_fin DATE NOT NULL,
-    statut ENUM('ACTIF','EXPIRE','SUSPENDU') NOT NULL DEFAULT 'ACTIF',
+    statut ENUM('ACTIF','EXPIRE') NOT NULL DEFAULT 'ACTIF',
     PRIMARY KEY (id),
     KEY idx_abonnement_membre (membre_id),
+    KEY idx_abonnement_statut (statut),
+    KEY idx_abonnement_type (type),
+    KEY idx_abonnement_date_fin (date_fin),
     CONSTRAINT fk_abonnement_membre
         FOREIGN KEY (membre_id) REFERENCES membres(id)
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
+-- Suppression de l'ancien statut de suspension sur une base existante.
+UPDATE abonnements
+SET statut = 'ACTIF'
+WHERE statut = 'SUSPENDU';
+
+ALTER TABLE abonnements
+    MODIFY statut ENUM('ACTIF','EXPIRE') NOT NULL DEFAULT 'ACTIF';
 
 -- =============================================================
 -- SEANCES
@@ -169,6 +182,8 @@ CREATE TABLE IF NOT EXISTS paiements (
     PRIMARY KEY (id),
     KEY idx_paiement_membre (membre_id),
     KEY idx_paiement_abonnement (abonnement_id),
+    KEY idx_paiement_date (date_paiement),
+    KEY idx_paiement_statut (statut),
     UNIQUE KEY uk_paiement_reference (reference),
     CONSTRAINT fk_paiement_membre
         FOREIGN KEY (membre_id) REFERENCES membres(id)
@@ -185,3 +200,8 @@ CREATE TABLE IF NOT EXISTS paiements (
 -- Décommente et remplace le hash si nécessaire.
 -- INSERT INTO utilisateurs(username, password, type, statut)
 -- VALUES ('admin', '<HASH_BCRYPT>', 'ADMINISTRATEUR', 'ACTIF');
+
+-- Des données de démonstration reproductibles sont disponibles dans :
+-- database-test-data.sql
+-- Un jeu étendu de 50 membres et 10 coachs est disponible dans :
+-- database-test-data-50.sql

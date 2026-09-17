@@ -68,8 +68,7 @@ public class AbonnementFormController {
         statutComboBox.setItems(
                 FXCollections.observableArrayList(
                         "ACTIF",
-                        "EXPIRE",
-                        "SUSPENDU"
+                        "EXPIRE"
                 )
         );
 

@@ -2,6 +2,7 @@ package com.gss.gss.controller;
 
 import com.gss.gss.model.Utilisateur;
 import com.gss.gss.service.UtilisateurService;
+import com.gss.gss.security.PermissionManager;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.Normalizer;
+import java.util.List;
 
 public class UtilisateursController {
 
@@ -41,6 +44,15 @@ public class UtilisateursController {
 
     @FXML
     private TableColumn<Utilisateur, String> statutColumn;
+
+    @FXML
+    private Label coachsActifsLabel;
+
+    @FXML
+    private Label receptionnistesActifsLabel;
+
+    @FXML
+    private Label administrateursActifsLabel;
 
     private final UtilisateurService utilisateurService =
             new UtilisateurService();
@@ -116,11 +128,11 @@ public class UtilisateursController {
     }
 
     private void chargerUtilisateurs() {
+        List<Utilisateur> utilisateurs = utilisateurService.findAll();
         utilisateursTable.setItems(
-                FXCollections.observableArrayList(
-                        utilisateurService.findAll()
-                )
+                FXCollections.observableArrayList(utilisateurs)
         );
+        mettreAJourStatistiques(utilisateurs);
     }
 
     @FXML
@@ -144,7 +156,8 @@ public class UtilisateursController {
         String statut = statusComboBox.getValue();
         String type = typeComboBox.getValue();
 
-        var resultats = utilisateurService.findAll().stream()
+        List<Utilisateur> utilisateurs = utilisateurService.findAll();
+        var resultats = utilisateurs.stream()
                 .filter(u -> recherche.isEmpty()
                         || String.valueOf(u.getId()).contains(recherche)
                         || (u.getUsername() != null && u.getUsername().toLowerCase().contains(recherche))
@@ -159,15 +172,52 @@ public class UtilisateursController {
         utilisateursTable.setItems(
                 FXCollections.observableArrayList(resultats)
         );
+        mettreAJourStatistiques(utilisateurs);
+    }
+
+    private void mettreAJourStatistiques(List<Utilisateur> utilisateurs) {
+        coachsActifsLabel.setText(String.valueOf(compterActifsParType(utilisateurs, "COACH")));
+        receptionnistesActifsLabel.setText(
+                String.valueOf(compterActifsParType(utilisateurs, "RECEPTIONNISTE"))
+        );
+        administrateursActifsLabel.setText(
+                String.valueOf(compterActifsParType(utilisateurs, "ADMINISTRATEUR"))
+        );
+    }
+
+    private long compterActifsParType(List<Utilisateur> utilisateurs, String type) {
+        return utilisateurs.stream()
+                .filter(utilisateur -> "ACTIF".equals(normaliser(utilisateur.getStatut())))
+                .filter(utilisateur -> type.equals(normaliser(utilisateur.getType())))
+                .count();
+    }
+
+    private String normaliser(String valeur) {
+        if (valeur == null) {
+            return "";
+        }
+
+        return Normalizer.normalize(valeur, Normalizer.Form.NFD)
+                .replaceAll("\\p{M}", "")
+                .trim()
+                .toUpperCase();
     }
 
     @FXML
     private void handleAdd() {
+        if (!PermissionManager.canManageUsers()) {
+            afficherAvertissement("La gestion des utilisateurs est réservée à l'administrateur.");
+            return;
+        }
         ouvrirFormulaire(null);
     }
 
     @FXML
     private void handleEdit() {
+        if (!PermissionManager.canManageUsers()) {
+            afficherAvertissement("La gestion des utilisateurs est réservée à l'administrateur.");
+            return;
+        }
 
         Utilisateur utilisateur =
                 utilisateursTable
@@ -185,6 +235,10 @@ public class UtilisateursController {
 
     @FXML
     private void handleDelete() {
+        if (!PermissionManager.canManageUsers()) {
+            afficherAvertissement("La gestion des utilisateurs est réservée à l'administrateur.");
+            return;
+        }
         Utilisateur utilisateur =
                 utilisateursTable
                         .getSelectionModel()

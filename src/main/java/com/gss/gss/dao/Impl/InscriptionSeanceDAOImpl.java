@@ -151,6 +151,45 @@ public class InscriptionSeanceDAOImpl {
         return inscriptions;
     }
 
+    public int countOccupants(int seanceId, int excludedInscriptionId) {
+        String sql = """
+                SELECT COUNT(*) FROM inscriptions_seances
+                WHERE seance_id = ?
+                  AND statut <> 'ANNULEE'
+                  AND id <> ?
+                """;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, seanceId);
+            ps.setInt(2, excludedInscriptionId);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Impossible de vérifier la capacité de la séance.", e);
+        }
+    }
+
+    public boolean existsForMemberAndSession(int membreId, int seanceId, int excludedInscriptionId) {
+        String sql = """
+                SELECT 1 FROM inscriptions_seances
+                WHERE membre_id = ? AND seance_id = ?
+                  AND statut <> 'ANNULEE' AND id <> ?
+                LIMIT 1
+                """;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, membreId);
+            ps.setInt(2, seanceId);
+            ps.setInt(3, excludedInscriptionId);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Impossible de vérifier l'inscription existante.", e);
+        }
+    }
+
     private InscriptionSeance mapRow(ResultSet rs) throws SQLException {
         return new InscriptionSeance(
                 rs.getInt("id"),

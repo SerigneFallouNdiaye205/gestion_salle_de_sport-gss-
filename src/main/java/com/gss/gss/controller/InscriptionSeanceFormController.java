@@ -1,11 +1,12 @@
 package com.gss.gss.controller;
 
-import com.gss.gss.dao.Impl.InscriptionSeanceDAOImpl;
 import com.gss.gss.model.InscriptionSeance;
 import com.gss.gss.model.Membre;
 import com.gss.gss.model.Seance;
 import com.gss.gss.service.MembreService;
 import com.gss.gss.service.SeanceService;
+import com.gss.gss.service.InscriptionSeanceService;
+import com.gss.gss.security.PermissionManager;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.function.Consumer;
+import java.util.List;
 
 public class InscriptionSeanceFormController {
     @FXML private Label titleLabel;
@@ -23,11 +25,12 @@ public class InscriptionSeanceFormController {
     @FXML private Label errorLabel;
     @FXML private Button saveButton;
 
-    private final InscriptionSeanceDAOImpl dao = new InscriptionSeanceDAOImpl();
+    private final InscriptionSeanceService inscriptionService = new InscriptionSeanceService();
     private final MembreService membreService = new MembreService();
     private final SeanceService seanceService = new SeanceService();
     private InscriptionSeance inscription;
     private Runnable onSaved;
+    private List<Seance> availableSeances;
 
     @FXML
     public void initialize() {
@@ -77,6 +80,11 @@ public class InscriptionSeanceFormController {
         statutCombo.setValue(inscription.getStatut());
     }
 
+    public void setAvailableSeances(List<Seance> seances) {
+        availableSeances = seances;
+        seanceCombo.setItems(FXCollections.observableArrayList(seances));
+    }
+
     public void setOnSaved(Runnable onSaved) {
         this.onSaved = onSaved;
     }
@@ -84,8 +92,15 @@ public class InscriptionSeanceFormController {
     @FXML
     private void handleSave() {
         try {
+            if (!PermissionManager.canManageInscriptions()) {
+                throw new IllegalArgumentException("Un coach peut uniquement consulter les inscriptions.");
+            }
             if (membreCombo.getValue() == null) throw new IllegalArgumentException("Sélectionnez un membre.");
             if (seanceCombo.getValue() == null) throw new IllegalArgumentException("Sélectionnez une séance.");
+            if (availableSeances != null && availableSeances.stream()
+                    .noneMatch(seance -> seance.getId() == seanceCombo.getValue().getId())) {
+                throw new IllegalArgumentException("Vous ne pouvez inscrire un membre qu'à vos séances.");
+            }
             if (dateInscription.getValue() == null) throw new IllegalArgumentException("Sélectionnez la date.");
             if (statutCombo.getValue() == null) throw new IllegalArgumentException("Sélectionnez le statut.");
 
@@ -97,7 +112,9 @@ public class InscriptionSeanceFormController {
             inscription.setDate_inscription(dateInscription.getValue());
             inscription.setStatut(statutCombo.getValue());
 
-            boolean saved = inscription.getId() == 0 ? dao.save(inscription) : dao.update(inscription);
+            boolean saved = inscription.getId() == 0
+                    ? inscriptionService.save(inscription)
+                    : inscriptionService.update(inscription);
             if (!saved) {
                 afficherErreur("L'inscription n'a pas pu être enregistrée.");
                 return;

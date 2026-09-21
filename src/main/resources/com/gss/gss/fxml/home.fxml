@@ -37,19 +37,19 @@
                     <FontAwesomeIconView fill="black" glyphName="CALENDAR" size="20" wrappingWidth="20.857139587402344" />
                 </graphic>
             </Label>
-         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="207.0" spacing="20.0">
+         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="207.0" spacing="10.0">
             <children>
                 <Label text="">
                     <graphic>
                         <FontAwesomeIconView fill="Black" glyphName="BELL" size="20" />
                     </graphic>
                 </Label>
-                <Label prefHeight="18.0" prefWidth="0.0" style="-fx-background-color: black; -fx-background-radius: 50px;">
+                <Label prefHeight="16.0" prefWidth="0.0" style="-fx-background-color: #080e48; -fx-background-radius: 100px;" textFill="#080e48">
                     <graphic>
                         <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
                     </graphic>
                   <padding>
-                     <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                     <Insets bottom="5.0" left="7.0" right="7.0" top="5.0" />
                   </padding>
                 </Label>
                <Label fx:id="username" styleClass="session-user" />

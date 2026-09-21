@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,21 +14,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<BorderPane styleClass="dashboard-page" fx:id="container" prefHeight="618.0" prefWidth="950.0"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.gss.gss.controller.DashboardController">
+<BorderPane fx:id="container" prefHeight="618.0" prefWidth="950.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.DashboardController">
     <stylesheets>
-        <URL value="@../css/style.css"/>
-        <URL value="@../css/dashboard.css"/>
+        <URL value="@../css/style.css" />
+        <URL value="@../css/dashboard.css" />
     </stylesheets>
 <!-- ========================= -->
     <!-- SIDEBAR -->
     <!-- ========================= -->
 
     <left>
-        <VBox prefWidth="230.0" spacing="10.0" styleClass="dashboard-sidebar" style="-fx-background-color: #3051A0;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: #080e48;" styleClass="dashboard-sidebar" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20" left="15" right="15" top="25" />
             </padding>
@@ -37,16 +34,12 @@
                     <Font name="Times New Roman Bold" size="21.0" />
                 </font>
             </Label>
-            <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;
-            -fx-font-size: 13px;" text="Utilisateur" />
+            <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;             -fx-font-size: 13px;" text="Utilisateur" />
 
             <Separator />
 
             <!-- Accueil -->
-            <Button fx:id="homeButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleHome"
-                    prefHeight="42" text="Tableau de bord"
-                    styleClass="nav-button">
+            <Button fx:id="homeButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleHome" prefHeight="42" styleClass="nav-button" text="Tableau de bord">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -55,10 +48,7 @@
                 </graphic>
             </Button>
             <!-- Membres -->
-            <Button fx:id="membersButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleMembers"
-                    prefHeight="42" text="Membres"
-                    styleClass="nav-button">
+            <Button fx:id="membersButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleMembers" prefHeight="42" styleClass="nav-button" text="Membres">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -67,10 +57,7 @@
                 </graphic>
             </Button>
             <!-- Paiements -->
-            <Button fx:id="paymentsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handlePaiements"
-                    prefHeight="42" text="Paiements"
-                    styleClass="nav-button">
+            <Button fx:id="paymentsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handlePaiements" prefHeight="42" styleClass="nav-button" text="Paiements">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -79,10 +66,7 @@
                 </graphic>
             </Button>
             <!-- Abonnements -->
-            <Button fx:id="subscriptionsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleAbonnements"
-                    prefHeight="42" text="Abonnements"
-                    styleClass="nav-button">
+            <Button fx:id="subscriptionsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleAbonnements" prefHeight="42" styleClass="nav-button" text="Abonnements">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -91,10 +75,7 @@
                 </graphic>
             </Button>
             <!-- Séances -->
-            <Button fx:id="sessionsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleSeances"
-                    prefHeight="42" text="Séances"
-                    styleClass="nav-button">
+            <Button fx:id="sessionsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleSeances" prefHeight="42" styleClass="nav-button" text="Séances">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -103,10 +84,7 @@
                 </graphic>
             </Button>
             <!-- Inscriptions aux séances -->
-            <Button fx:id="inscriptionsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleInscriptions"
-                    prefHeight="42" text="Inscriptions"
-                    styleClass="nav-button">
+            <Button fx:id="inscriptionsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleInscriptions" prefHeight="42" styleClass="nav-button" text="Inscriptions">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -115,10 +93,7 @@
                 </graphic>
             </Button>
             <!-- Coachs -->
-            <Button fx:id="coachesButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleCoachs"
-                    prefHeight="42" text="Coachs"
-                    styleClass="nav-button">
+            <Button fx:id="coachesButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleCoachs" prefHeight="42" styleClass="nav-button" text="Coachs">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -127,10 +102,7 @@
                 </graphic>
             </Button>
             <!-- Utilisateurs -->
-            <Button fx:id="usersButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleUtilisateurs"
-                    prefHeight="42" text="Utilisateurs"
-                    styleClass="nav-button">
+            <Button fx:id="usersButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleUtilisateurs" prefHeight="42" styleClass="nav-button" text="Utilisateurs">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -138,10 +110,7 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
                 </graphic>
             </Button>
-            <Button fx:id="reportsButton" alignment="CENTER_LEFT"
-                    maxWidth="250" onAction="#handleRapports"
-                    prefHeight="42" text="Rapports"
-                    styleClass="nav-button">
+            <Button fx:id="reportsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleRapports" prefHeight="42" styleClass="nav-button" text="Rapports">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
                 </font>
@@ -156,10 +125,7 @@
             <Separator />
 
             <!-- Déconnexion -->
-            <Button fx:id="logoutButton" alignment="CENTER"
-                    maxWidth="250" onAction="#handleLogout"
-                    prefHeight="42" text="Déconnexion"
-                    styleClass="logout-button">
+            <Button fx:id="logoutButton" alignment="CENTER" maxWidth="250" onAction="#handleLogout" prefHeight="42" styleClass="logout-button" text="Déconnexion">
                 <font>
                     <Font name="Times New Roman" size="15.0" />
                 </font>
@@ -177,7 +143,7 @@
         <BorderPane prefHeight="539.0" prefWidth="380.0">
             <!-- HEADER -->
             <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="70" spacing="15" styleClass="dashboard-topbar" style="-fx-background-color: #eff0f5;                 -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_LEFT" prefHeight="70" spacing="15" style="-fx-background-color: #eff0f5;                 -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;" styleClass="dashboard-topbar">
                     <padding>
                         <Insets left="30" right="30" />
                     </padding>
@@ -187,47 +153,43 @@
             </top>
             <!-- CONTENU -->
             <center>
-                <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" styleClass="dashboard-content" style="-fx-background-color: #f3f4f6;">
+                <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" style="-fx-background-color: #f3f4f6;" styleClass="dashboard-content">
                     <padding>
                         <Insets bottom="30" left="30" right="30" top="30" />
                     </padding>
-                    <Label style="-fx-font-size: 24px;                     -fx-font-weight: bold;                     -fx-text-fill: #111827;" text="Vue d'ensemble" />
+                    <Label style="-fx-font-size: 24px;                     -fx-font-weight: bold;                     -fx-text-fill: #111827;" textFill="#080e48" />
 
                     <!-- CARTES -->
                     <HBox spacing="20">
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
-                            <Label style="-fx-font-size: 15px;
-                            -fx-text-fill: #6b7280;" text="Membres" />
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
+                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Membres" />
                         </VBox>
 
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
-                            <Label style="-fx-font-size: 15px;
-                            -fx-text-fill: #6b7280;" text="Abonnements actifs" />
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
+                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Abonnements actifs" />
                         </VBox>
 
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
 
-                            <Label style="-fx-font-size: 15px;
-                            -fx-text-fill: #6b7280;" text="Paiements" />
+                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Paiements" />
 
                         </VBox>
 
 
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" styleClass="dashboard-card" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;">
+                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
 
-                            <Label style="-fx-font-size: 15px;
-                            -fx-text-fill: #6b7280;" text="Séances" />
+                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Séances" />
                         </VBox>
                     </HBox>
-               <ScrollPane styleClass="dashboard-scroll" prefHeight="600.0" prefWidth="1000.0">
+               <ScrollPane prefHeight="600.0" prefWidth="1000.0" styleClass="dashboard-scroll">
                  <content>
                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="970.0">
                         <children>
                                 <!-- MESSAGE -->
-                                <StackPane fx:id="contentPane" styleClass="content-card" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;                                     -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                <StackPane fx:id="contentPane" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;                                     -fx-background-radius: 10;" styleClass="content-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                     </StackPane>
                         </children>
                      </AnchorPane>

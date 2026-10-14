@@ -11,41 +11,18 @@ import java.time.LocalDate;
 
 public class MembresFormController {
 
-    @FXML
-    private Label titleLabel;
-
-    @FXML
-    private TextField nomField;
-
-    @FXML
-    private TextField prenomField;
-
-    @FXML
-    private ComboBox<String> sexeComboBox;
-
-    @FXML
-    private TextField telephoneField;
-
-    @FXML
-    private TextField emailField;
-
-    @FXML
-    private TextField adresseField;
-
-    @FXML
-    private DatePicker dateNaissancePicker;
-
-    @FXML
-    private DatePicker dateInscriptionPicker;
-
-    @FXML
-    private ComboBox<String> statutComboBox;
-
-    @FXML
-    private Label errorLabel;
-
-    @FXML
-    private Button saveButton;
+    @FXML private Label titleLabel;
+    @FXML private TextField nomField;
+    @FXML private TextField prenomField;
+    @FXML private ComboBox<String> sexeComboBox;
+    @FXML private TextField telephoneField;
+    @FXML private TextField emailField;
+    @FXML private TextField adresseField;
+    @FXML private DatePicker dateNaissancePicker;
+    @FXML private DatePicker dateInscriptionPicker;
+    @FXML private ComboBox<String> statutComboBox;
+    @FXML private Label errorLabel;
+    @FXML private Button saveButton;
 
     private final MembreService membreService = new MembreService();
 

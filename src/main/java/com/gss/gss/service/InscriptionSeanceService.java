@@ -7,9 +7,7 @@ import com.gss.gss.model.Seance;
 
 import java.time.LocalDate;
 
-/**
- * Règles métier communes aux inscriptions, quel que soit le rôle appelant.
- */
+
 public class InscriptionSeanceService {
 
     private final InscriptionSeanceDAOImpl dao = new InscriptionSeanceDAOImpl();

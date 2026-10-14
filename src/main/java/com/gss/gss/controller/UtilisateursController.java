@@ -18,41 +18,18 @@ import java.util.List;
 
 public class UtilisateursController {
 
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private ComboBox<String> statusComboBox;
-
-    @FXML
-    private ComboBox<String> typeComboBox;
-
-    @FXML
-    private TableView<Utilisateur> utilisateursTable;
-
-    @FXML
-    private TableColumn<Utilisateur, Number> idColumn;
-
-    @FXML
-    private TableColumn<Utilisateur, String> usernameColumn;
-
-    @FXML
-    private TableColumn<Utilisateur, String> typeColumn;
-
-    @FXML
-    private TableColumn<Utilisateur, String> dateCreationColumn;
-
-    @FXML
-    private TableColumn<Utilisateur, String> statutColumn;
-
-    @FXML
-    private Label coachsActifsLabel;
-
-    @FXML
-    private Label receptionnistesActifsLabel;
-
-    @FXML
-    private Label administrateursActifsLabel;
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> statusComboBox;
+    @FXML private ComboBox<String> typeComboBox;
+    @FXML private TableView<Utilisateur> utilisateursTable;
+    @FXML private TableColumn<Utilisateur, Number> idColumn;
+    @FXML private TableColumn<Utilisateur, String> usernameColumn;
+    @FXML private TableColumn<Utilisateur, String> typeColumn;
+    @FXML private TableColumn<Utilisateur, String> dateCreationColumn;
+    @FXML private TableColumn<Utilisateur, String> statutColumn;
+    @FXML private Label coachsActifsLabel;
+    @FXML private Label receptionnistesActifsLabel;
+    @FXML private Label administrateursActifsLabel;
 
     private final UtilisateurService utilisateurService =
             new UtilisateurService();

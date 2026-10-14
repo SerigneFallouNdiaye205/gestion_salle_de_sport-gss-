@@ -7,9 +7,6 @@ public final class PasswordHasher {
     private PasswordHasher() {
     }
 
-    /**
-     * Hash un mot de passe avec BCrypt.
-     */
     public static String hash(String password) {
 
         if (password == null || password.isBlank()) {
@@ -24,9 +21,6 @@ public final class PasswordHasher {
         );
     }
 
-    /**
-     * Vérifie un mot de passe avec son hash BCrypt.
-     */
     public static boolean verify(
             String password,
             String hashedPassword

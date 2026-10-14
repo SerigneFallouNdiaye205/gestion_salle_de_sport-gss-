@@ -19,32 +19,19 @@ import java.util.List;
 
 public class MembreController {
 
-    @FXML
-    private TextField searchField;
-    @FXML
-    private ComboBox<String> statusComboBox;
-    @FXML
-    private TableView<Membre> membersTable;
-    @FXML
-    private TableColumn<Membre, Number> idColumn;
-    @FXML
-    private TableColumn<Membre, String> nomColumn;
-    @FXML
-    private TableColumn<Membre, String> prenomColumn;
-    @FXML
-    private TableColumn<Membre, String> telephoneColumn;
-    @FXML
-    private TableColumn<Membre, String> emailColumn;
-    @FXML
-    private TableColumn<Membre, String> dateInscriptionColumn;
-    @FXML
-    private TableColumn<Membre, String> statutColumn;
-    @FXML
-    private Button addButton;
-    @FXML
-    private Button editButton;
-    @FXML
-    private Button deleteButton;
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> statusComboBox;
+    @FXML private TableView<Membre> membersTable;
+    @FXML private TableColumn<Membre, Number> idColumn;
+    @FXML private TableColumn<Membre, String> nomColumn;
+    @FXML private TableColumn<Membre, String> prenomColumn;
+    @FXML private TableColumn<Membre, String> telephoneColumn;
+    @FXML private TableColumn<Membre, String> emailColumn;
+    @FXML private TableColumn<Membre, String> dateInscriptionColumn;
+    @FXML private TableColumn<Membre, String> statutColumn;
+    @FXML private Button addButton;
+    @FXML private Button editButton;
+    @FXML private Button deleteButton;
 
     private final MembreService membreService =
             new MembreService();

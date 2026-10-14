@@ -12,20 +12,13 @@ import javafx.stage.Stage;
 
 public class CoachFormController {
 
-    @FXML
-    private TextField nomField;
-    @FXML
-    private TextField prenomField;
-    @FXML
-    private TextField telephoneField;
-    @FXML
-    private TextField emailField;
-    @FXML
-    private ComboBox<String> specialiteComboBox;
-    @FXML
-    private TextField salaireField;
-    @FXML
-    private ComboBox<String> disponibiliteComboBox;
+    @FXML private TextField nomField;
+    @FXML private TextField prenomField;
+    @FXML private TextField telephoneField;
+    @FXML private TextField emailField;
+    @FXML private ComboBox<String> specialiteComboBox;
+    @FXML private TextField salaireField;
+    @FXML private ComboBox<String> disponibiliteComboBox;
 
     private final CoachService coachService =
             new CoachService();

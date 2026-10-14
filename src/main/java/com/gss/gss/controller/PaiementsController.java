@@ -338,13 +338,6 @@ public class PaiementsController {
             );
         }
 
-        /*
-         * Comparaison :
-         *
-         * LocalDate
-         *      ↓
-         * LocalDateTime.toLocalDate()
-         */
         if (date != null) {
 
             resultats.removeIf(
@@ -427,28 +420,21 @@ public class PaiementsController {
             controller.setPaiementsController(this);
 
             if (paiement != null) {
-
                 controller.setPaiement(paiement);
             }
 
             Stage stage = new Stage();
-
             stage.setTitle(
                     paiement == null
                             ? "Nouveau paiement"
                             : "Modifier paiement"
             );
-
-            stage.setScene(
-                    new Scene(root)
-            );
-
+            stage.setScene(new Scene(root));
             stage.showAndWait();
 
             chargerPaiements();
 
         } catch (IOException e) {
-
             e.printStackTrace();
 
             afficherAlerte(
@@ -458,35 +444,23 @@ public class PaiementsController {
         }
     }
 
-    private void afficherAlerte(
-            String titre,
-            String message) {
-
+    private void afficherAlerte(String titre, String message) {
         Alert alert =
                 new Alert(Alert.AlertType.ERROR);
 
         alert.setTitle(titre);
-
         alert.setHeaderText(null);
-
         alert.setContentText(message);
-
         alert.showAndWait();
     }
 
-    private void afficherInformation(
-            String titre,
-            String message) {
-
+    private void afficherInformation(String titre, String message) {
         Alert alert =
                 new Alert(Alert.AlertType.INFORMATION);
 
         alert.setTitle(titre);
-
         alert.setHeaderText(null);
-
         alert.setContentText(message);
-
         alert.showAndWait();
     }
 }

@@ -20,32 +20,15 @@ import java.time.LocalDateTime;
 
 public class PaiementFormController {
 
-    @FXML
-    private ComboBox<Membre> membreComboBox;
-
-    @FXML
-    private ComboBox<Abonnement> abonnementComboBox;
-
-    @FXML
-    private TextField montantField;
-
-    @FXML
-    private DatePicker datePaiementPicker;
-
-    @FXML
-    private ComboBox<String> modePaiementComboBox;
-
-    @FXML
-    private ComboBox<String> statutComboBox;
-
-    @FXML
-    private TextField referenceField;
-
-    @FXML
-    private Label errorLabel;
-
-    @FXML
-    private Label titleLabel;
+    @FXML private ComboBox<Membre> membreComboBox;
+    @FXML private ComboBox<Abonnement> abonnementComboBox;
+    @FXML private TextField montantField;
+    @FXML private DatePicker datePaiementPicker;
+    @FXML private ComboBox<String> modePaiementComboBox;
+    @FXML private ComboBox<String> statutComboBox;
+    @FXML private TextField referenceField;
+    @FXML private Label errorLabel;
+    @FXML private Label titleLabel;
 
     private Paiement paiement;
 

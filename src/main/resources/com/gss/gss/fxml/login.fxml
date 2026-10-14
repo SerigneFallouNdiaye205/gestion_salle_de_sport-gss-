@@ -21,7 +21,7 @@
    <stylesheets>
       <URL value="@../css/style.css" />
    </stylesheets>
-   <ImageView fitHeight="562.0" fitWidth="794.0" layoutX="-27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="0.0">
+   <ImageView fitHeight="578.0" fitWidth="1032.0" layoutX="-0.6666666666666666" layoutY="-13.666666666666666" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-2.3333333333333712" AnchorPane.leftAnchor="-0.6666666666666666" AnchorPane.rightAnchor="4.489481608072879" AnchorPane.topAnchor="-13.666666666666666">
       <Image url="@../images/gss_background.png" />
    </ImageView>
    <VBox alignment="CENTER" layoutX="448.00000000000006" layoutY="63.66666666666667" prefHeight="419.0" prefWidth="319.0" spacing="20.0" styleClass="login-card" AnchorPane.bottomAnchor="82.33333333333331" AnchorPane.rightAnchor="26.66666666666663" AnchorPane.topAnchor="63.66666666666667">
@@ -100,7 +100,10 @@
    <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       <Image url="@../images/logoGymFit.png" />
    </ImageView>
-   <Label layoutX="129.0" layoutY="77.0" styleClass="login-intro-label" text="Gestion salle de sport" />
+   <Label layoutX="143.0" layoutY="56.0" styleClass="login-intro-label" text="de votre salle de sport !" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
    <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="279.0" prefHeight="150.0" prefWidth="200.0" spacing="5.0">
       <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
          <Label styleClass="login-intro-icon">
@@ -172,4 +175,9 @@
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </padding>
    </HBox>
+   <Label layoutX="117.0" layoutY="40.0" styleClass="login-intro-label" text="L'appi qui facilite la gestion" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Label>
 </AnchorPane>

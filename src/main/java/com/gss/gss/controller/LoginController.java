@@ -15,14 +15,10 @@ import java.io.IOException;
 
 public class LoginController {
 
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private PasswordField passwordField;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Label errorLabel;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Button loginButton;
+    @FXML private Label errorLabel;
 
     private final AuthService authService;
 
@@ -37,18 +33,14 @@ public class LoginController {
         String password = passwordField.getText().trim();
 
         try {
-            // Authentification
             Utilisateur utilisateur = authService.login(username, password);
-            // Création de la session
             SessionManager.login(utilisateur);
-            // Ouvrir le dashboard correspondant
             openDashboard(utilisateur);
         } catch (Exception e) {
             showError(e.getMessage());
         }
     }
 
-    // Ouvre le dashboard partagé par les rôles, mais avec des fonctionnalités basées chaque rôle.
     private void openDashboard(Utilisateur utilisateur)
             throws IOException {
 
@@ -76,14 +68,12 @@ public class LoginController {
     }
 
 
-    // Affiche un message d'erreur.
     private void showError(String message) {
         errorLabel.setText(message);
         errorLabel.setVisible(true);
         errorLabel.setManaged(true);
     }
 
-    // Ferme l'application.
     @FXML
     private void handleExit() {
         Stage stage = (Stage) loginButton.getScene().getWindow();

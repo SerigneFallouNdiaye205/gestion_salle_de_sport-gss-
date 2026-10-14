@@ -18,30 +18,18 @@ import java.io.IOException;
 
 public class AbonnementController {
 
-    @FXML
-    private TextField searchField;
-    @FXML
-    private ComboBox<String> typeComboBox;
-    @FXML
-    private ComboBox<String> statutComboBox;
-    @FXML
-    private TableView<Abonnement> abonnementsTable;
-    @FXML
-    private TableColumn<Abonnement, Number> idColumn;
-    @FXML
-    private TableColumn<Abonnement, String> membreIdColumn;
-    @FXML
-    private TableColumn<Abonnement, String> typeColumn;
-    @FXML
-    private TableColumn<Abonnement, Number> prixColumn;
-    @FXML
-    private TableColumn<Abonnement, String> dateDebutColumn;
-    @FXML
-    private TableColumn<Abonnement, String> dateFinColumn;
-    @FXML
-    private TableColumn<Abonnement, String> statutColumn;
-    @FXML
-    private TableColumn<Abonnement, String> joursRestantsColumn;
+    @FXML private TextField searchField;
+    @FXML private ComboBox<String> typeComboBox;
+    @FXML private ComboBox<String> statutComboBox;
+    @FXML private TableView<Abonnement> abonnementsTable;
+    @FXML private TableColumn<Abonnement, Number> idColumn;
+    @FXML private TableColumn<Abonnement, String> membreIdColumn;
+    @FXML private TableColumn<Abonnement, String> typeColumn;
+    @FXML private TableColumn<Abonnement, Number> prixColumn;
+    @FXML private TableColumn<Abonnement, String> dateDebutColumn;
+    @FXML private TableColumn<Abonnement, String> dateFinColumn;
+    @FXML private TableColumn<Abonnement, String> statutColumn;
+    @FXML private TableColumn<Abonnement, String> joursRestantsColumn;
     @FXML private Button addButton;
     @FXML private Button editButton;
     @FXML private Button renewButton;
@@ -239,11 +227,7 @@ public class AbonnementController {
                         .getSelectedItem();
 
         if (abonnement == null) {
-
-            afficherAvertissement(
-                    "Veuillez sélectionner un abonnement."
-            );
-
+            afficherAvertissement("Veuillez sélectionner un abonnement.");
             return;
         }
 
@@ -263,25 +247,15 @@ public class AbonnementController {
                         .getSelectedItem();
 
         if (abonnement == null) {
-
-            afficherAvertissement(
-                    "Veuillez sélectionner un abonnement."
-            );
-
+            afficherAvertissement("Veuillez sélectionner un abonnement.");
             return;
         }
 
         Alert confirmation =
                 new Alert(Alert.AlertType.CONFIRMATION);
 
-        confirmation.setTitle(
-                "Supprimer l'abonnement"
-        );
-
-        confirmation.setHeaderText(
-                "Abonnement #" +
-                        abonnement.getId()
-        );
+        confirmation.setTitle("Supprimer l'abonnement");
+        confirmation.setHeaderText("Abonnement #" + abonnement.getId());
 
         confirmation.setContentText(
                 "Voulez-vous vraiment supprimer cet abonnement ?"
@@ -298,7 +272,6 @@ public class AbonnementController {
                                 );
 
                         if (resultat) {
-
                             chargerAbonnements();
 
                             afficherInformation(
@@ -306,7 +279,6 @@ public class AbonnementController {
                             );
 
                         } else {
-
                             afficherErreur(
                                     "Impossible de supprimer l'abonnement."
                             );
@@ -328,11 +300,7 @@ public class AbonnementController {
                         .getSelectedItem();
 
         if (abonnement == null) {
-
-            afficherAvertissement(
-                    "Veuillez sélectionner un abonnement."
-            );
-
+            afficherAvertissement("Veuillez sélectionner un abonnement.");
             return;
         }
 
@@ -358,41 +326,28 @@ public class AbonnementController {
                     loader.getController();
 
             if (abonnement != null) {
-
-                controller.setAbonnement(
-                        abonnement
-                );
+                controller.setAbonnement(abonnement);
             }
 
             Stage stage = new Stage();
-
             stage.setTitle(
                     abonnement == null
                             ? "Nouvel abonnement"
                             : "Modifier abonnement"
             );
-
             stage.initModality(
                     Modality.APPLICATION_MODAL
             );
-
             stage.setResizable(false);
-
-            stage.setScene(
-                    new Scene(root)
-            );
-
+            stage.setScene(new Scene(root));
             stage.showAndWait();
 
             chargerAbonnements();
 
         } catch (IOException e) {
-
             e.printStackTrace();
 
-            afficherErreur(
-                    "Impossible d'ouvrir le formulaire."
-            );
+            afficherErreur("Impossible d'ouvrir le formulaire.");
         }
     }
 

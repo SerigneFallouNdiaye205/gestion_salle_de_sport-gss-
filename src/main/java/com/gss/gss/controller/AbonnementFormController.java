@@ -13,20 +13,13 @@ import java.time.LocalDate;
 
 public class AbonnementFormController {
 
-    @FXML
-    private ComboBox<Membre> membreComboBox;
-    @FXML
-    private ComboBox<String> typeComboBox;
-    @FXML
-    private TextField prixField;
-    @FXML
-    private DatePicker dateDebutPicker;
-    @FXML
-    private DatePicker dateFinPicker;
-    @FXML
-    private ComboBox<String> statutComboBox;
-    @FXML
-    private Label errorLabel;
+    @FXML private ComboBox<Membre> membreComboBox;
+    @FXML private ComboBox<String> typeComboBox;
+    @FXML private TextField prixField;
+    @FXML private DatePicker dateDebutPicker;
+    @FXML private DatePicker dateFinPicker;
+    @FXML private ComboBox<String> statutComboBox;
+    @FXML private Label errorLabel;
 
     private final AbonnementService abonnementService =
             new AbonnementService();

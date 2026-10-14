@@ -108,10 +108,7 @@ public class AbonnementService {
         );
     }
 
-    /**
-     * Met automatiquement les abonnements expirés
-     * au statut EXPIRE.
-     */
+
     public void mettreAJourStatutsExpires() {
 
         List<Abonnement> actifs =
@@ -123,7 +120,6 @@ public class AbonnementService {
 
             if (abonnement.getDateFin() != null &&
                     abonnement.getDateFin().isBefore(aujourdHui)) {
-
                 abonnement.setStatut("EXPIRE");
 
                 abonnementDAO.update(abonnement);

@@ -90,9 +90,6 @@ public class Abonnement {
         this.statut = statut;
     }
 
-    /**
-     * Retourne le nombre de jours restants avant expiration.
-     */
     public long getJoursRestants() {
 
         if (dateFin == null) {
@@ -105,9 +102,6 @@ public class Abonnement {
         );
     }
 
-    /**
-     * Vérifie si l'abonnement est expiré.
-     */
     public boolean estExpire() {
 
         if (dateFin == null) {

@@ -11,7 +11,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -21,52 +20,37 @@
         <URL value="@../css/style.css" />
         <URL value="@../css/dashboard.css" />
     </stylesheets>
-<!-- ========================= -->
-    <!-- SIDEBAR -->
-    <!-- ========================= -->
 
     <left>
         <VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: #080e48;" styleClass="dashboard-sidebar" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20" left="15" right="15" top="25" />
             </padding>
-         <ImageView fitHeight="62.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../images/logoGymFit.png" />
-            </image>
-         </ImageView>
+            <ImageView fitHeight="62.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/logoGymFit.png" />
+            </ImageView>
             <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;             -fx-font-size: 13px;" text="Utilisateur" />
 
             <Separator />
 
-            <!-- Accueil -->
             <Button fx:id="homeButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleHome" prefHeight="42" styleClass="nav-button" text="Tableau de bord">
-                <font>
-                    <Font name="Times New Roman Bold" size="15.0" />
-                </font>
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="DASHBOARD" size="20" />
                 </graphic>
             </Button>
-            <!-- Membres -->
+
             <Button fx:id="membersButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleMembers" prefHeight="42" styleClass="nav-button" text="Membres">
-                <font>
-                    <Font name="Times New Roman Bold" size="15.0" />
-                </font>
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="USERS" size="20" />
                 </graphic>
             </Button>
-            <!-- Paiements -->
+
             <Button fx:id="paymentsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handlePaiements" prefHeight="42" styleClass="nav-button" text="Paiements">
-                <font>
-                    <Font name="Times New Roman Bold" size="15.0" />
-                </font>
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="MONEY" size="20" />
                 </graphic>
             </Button>
-            <!-- Abonnements -->
+
             <Button fx:id="subscriptionsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleAbonnements" prefHeight="42" styleClass="nav-button" text="Abonnements">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
@@ -75,7 +59,7 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="CREDIT_CARD" size="20" />
                 </graphic>
             </Button>
-            <!-- Séances -->
+
             <Button fx:id="sessionsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleSeances" prefHeight="42" styleClass="nav-button" text="Séances">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
@@ -84,7 +68,7 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="CALENDAR" size="20" />
                 </graphic>
             </Button>
-            <!-- Inscriptions aux séances -->
+
             <Button fx:id="inscriptionsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleInscriptions" prefHeight="42" styleClass="nav-button" text="Inscriptions">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
@@ -93,7 +77,7 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="CLIPBOARD" size="20" />
                 </graphic>
             </Button>
-            <!-- Coachs -->
+
             <Button fx:id="coachesButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleCoachs" prefHeight="42" styleClass="nav-button" text="Coachs">
                 <font>
                     <Font name="Times New Roman Bold" size="15.0" />
@@ -102,19 +86,13 @@
                     <FontAwesomeIconView fill="#eff0f5" glyphName="USER_MD" size="20" />
                 </graphic>
             </Button>
-            <!-- Utilisateurs -->
+
             <Button fx:id="usersButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleUtilisateurs" prefHeight="42" styleClass="nav-button" text="Utilisateurs">
-                <font>
-                    <Font name="Times New Roman Bold" size="15.0" />
-                </font>
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
                 </graphic>
             </Button>
             <Button fx:id="reportsButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleRapports" prefHeight="42" styleClass="nav-button" text="Rapports">
-                <font>
-                    <Font name="Times New Roman Bold" size="15.0" />
-                </font>
                 <graphic>
                     <FontAwesomeIconView fill="#eff0f5" glyphName="BAR_CHART" size="20" />
                 </graphic>
@@ -125,11 +103,7 @@
 
             <Separator />
 
-            <!-- Déconnexion -->
             <Button fx:id="logoutButton" alignment="CENTER" maxWidth="250" onAction="#handleLogout" prefHeight="42" styleClass="logout-button" text="Déconnexion" textFill="WHITE">
-                <font>
-                    <Font name="Times New Roman" size="15.0" />
-                </font>
                 <graphic>
                     <FontAwesomeIconView fill="#dc2626" glyphName="SIGN_OUT" size="20" />
                 </graphic>
@@ -142,60 +116,15 @@
 
     <center>
         <BorderPane prefHeight="539.0" prefWidth="380.0">
-            <!-- HEADER -->
-            <top>
-                <HBox alignment="CENTER_LEFT" prefHeight="70" spacing="15" style="-fx-background-color: #eff0f5;                 -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;" styleClass="dashboard-topbar">
-                    <padding>
-                        <Insets left="30" right="30" />
-                    </padding>
-                    <Label fx:id="welcomeLabel" style="-fx-font-size: 22px;                     -fx-font-weight: bold;                     -fx-text-fill: #111827;" />
-                </HBox>
 
-            </top>
-            <!-- CONTENU -->
             <center>
                 <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" style="-fx-background-color: #f3f4f6;" styleClass="dashboard-content">
-                    <padding>
-                        <Insets bottom="30" left="30" right="30" top="30" />
-                    </padding>
-                    <Label style="-fx-font-size: 24px;                     -fx-font-weight: bold;                     -fx-text-fill: #111827;" textFill="#080e48" />
-
-                    <!-- CARTES -->
-                    <HBox spacing="20">
-
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
-                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Membres" />
-                        </VBox>
-
-
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
-                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Abonnements actifs" />
-                        </VBox>
-
-
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
-
-                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Paiements" />
-
-                        </VBox>
-
-
-                        <VBox prefHeight="120" prefWidth="200" spacing="10" style="-fx-background-color: white;                         -fx-background-radius: 10;                         -fx-padding: 20;" styleClass="dashboard-card">
-
-                            <Label style="-fx-font-size: 15px;                             -fx-text-fill: #6b7280;" text="Séances" />
-                        </VBox>
-                    </HBox>
-               <ScrollPane prefHeight="600.0" prefWidth="1000.0" styleClass="dashboard-scroll">
-                 <content>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="970.0">
-                        <children>
-                                <!-- MESSAGE -->
-                                <StackPane fx:id="contentPane" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;                                     -fx-background-radius: 10;" styleClass="content-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
-                    </StackPane>
-                        </children>
-                     </AnchorPane>
-                 </content>
-               </ScrollPane>
+                    <ScrollPane prefHeight="655.0" prefWidth="717.0" styleClass="dashboard-scroll">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="649.0" prefWidth="713.0">
+                            <StackPane fx:id="contentPane" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;" styleClass="content-card" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            </StackPane>
+                        </AnchorPane>
+                    </ScrollPane>
 
                 </VBox>
 

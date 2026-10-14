@@ -24,8 +24,7 @@ import java.util.List;
 
 public class RapportsController {
 
-    @FXML
-    private TextArea reportArea;
+    @FXML private TextArea reportArea;
 
     private final MembreService membreService = new MembreService();
     private final AbonnementService abonnementService = new AbonnementService();

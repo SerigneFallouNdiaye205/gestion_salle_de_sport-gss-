@@ -33,7 +33,6 @@ public class DashboardService {
         }
     }
 
-    // Fréquentation confirmée des 7 derniers jours.
     public Map<LocalDate, Integer> getAttendanceLast7Days() {
         Map<LocalDate, Integer> result = new LinkedHashMap<>();
         LocalDate firstDay = LocalDate.now().minusDays(6);
@@ -70,7 +69,6 @@ public class DashboardService {
         }
     }
 
-    // Planning réel des séances du jour.
     public List<PlanningItem> getPlanningToday() {
         String sql = """
             SELECT s.id, s.nom, s.heure_debut, s.heure_fin, s.salle,
@@ -105,7 +103,6 @@ public class DashboardService {
         }
     }
 
-    /** Les membres inscrits le plus récemment. */
     public List<RecentMember> getRecentMembers(int limit) {
         String sql = """
             SELECT id, CONCAT(prenom, ' ', nom) AS nom_complet,
@@ -138,7 +135,6 @@ public class DashboardService {
         }
     }
 
-    /** Les abonnements créés le plus récemment. */
     public List<RecentSubscription> getRecentSubscriptions(int limit) {
         String sql = """
             SELECT a.id, a.membre_id,
@@ -175,7 +171,7 @@ public class DashboardService {
         }
     }
 
-    /** Les paiements les plus récents. */
+    // Les paiements les plus récents.
     public List<RecentPayment> getRecentPayments(int limit) {
         String sql = """
             SELECT p.id, p.membre_id,
@@ -215,11 +211,7 @@ public class DashboardService {
         }
     }
 
-    /**
-     * Notifications calculées depuis les données MySQL.
-     * Les alertes métier sont complétées par les dernières activités
-     * enregistrées afin que le tableau de bord reflète les actions récentes.
-     */
+    // Notifications calculées depuis les données MySQL, enregistrées afin que le tableau de bord reflète les actions récentes.
     public List<NotificationItem> getNotifications(int days) {
         List<NotificationItem> result = new ArrayList<>();
 

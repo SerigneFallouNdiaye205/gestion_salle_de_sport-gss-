@@ -17,53 +17,17 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="900.0" prefWidth="1120.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
+<BorderPane prefHeight="900.0" prefWidth="1120.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
     <stylesheets>
         <URL value="@../css/dashboard.css" />
     </stylesheets>
 
-    <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1120.0" spacing="20" styleClass="dashboard-topbar">
-            <padding>
-                <Insets bottom="22" left="32" right="32" top="24" />
-            </padding>
-            <VBox prefHeight="50.0" prefWidth="392.0" spacing="5">
-                <Label styleClass="dashboard-eyebrow" text="Bonjour, Admin" />
-                <Label styleClass="dashboard-subtitle" text="Suivez l'activité de votre salle en un coup d'œil." />
-            </VBox>
-            <Region prefHeight="50.0" prefWidth="294.0" HBox.hgrow="ALWAYS" />
-            <Label fx:id="localDateTime" prefHeight="20.0" prefWidth="125.0" styleClass="session-time">
-                <graphic>
-                    <FontAwesomeIconView fill="black" glyphName="CALENDAR" size="20" wrappingWidth="20.857139587402344" />
-                </graphic>
-            </Label>
-         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="207.0" spacing="10.0">
-            <children>
-                <Label text="">
-                    <graphic>
-                        <FontAwesomeIconView fill="Black" glyphName="BELL" size="20" />
-                    </graphic>
-                </Label>
-                <Label prefHeight="16.0" prefWidth="0.0" style="-fx-background-color: #080e48; -fx-background-radius: 100px;" textFill="#080e48">
-                    <graphic>
-                        <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="20" />
-                    </graphic>
-                  <padding>
-                     <Insets bottom="5.0" left="7.0" right="7.0" top="5.0" />
-                  </padding>
-                </Label>
-               <Label fx:id="username" styleClass="session-user" />
-            </children>
-         </HBox>
-        </HBox>
-    </top>
-
     <center>
         <StackPane fx:id="contentPane" styleClass="dashboard-content">
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="dashboard-scroll" vbarPolicy="NEVER">
                 <VBox spacing="22" styleClass="dashboard-body">
                     <padding>
-                        <Insets bottom="34" left="32" right="32" top="26" />
+                        <Insets top="26.0" />
                     </padding>
    
                     <HBox fx:id="countHBox" spacing="14" styleClass="kpi-row">
@@ -167,7 +131,7 @@
                               <VBox prefHeight="304.0" prefWidth="343.0" spacing="12" styleClass="panel-card">
                             <HBox alignment="CENTER_LEFT" spacing="10">
                                 <VBox spacing="3">
-                                    <Label styleClass="panel-title" text="Fréquentation">
+                                    <Label styleClass="panel-title" text=" Fréquentation">
                                         <graphic>
                                             <FontAwesomeIconView fill="#2367ec" glyphName="USERS" size="15" />
                                         </graphic>
@@ -190,7 +154,7 @@
                               <VBox prefHeight="304.0" prefWidth="304.0" spacing="12" styleClass="panel-card" GridPane.columnIndex="1">
                             <HBox alignment="CENTER_LEFT">
                                 <VBox spacing="3">
-                                    <Label styleClass="panel-title" text="Planning du jour">
+                                    <Label styleClass="panel-title" text=" Planning du jour">
                                         <graphic>
                                             <FontAwesomeIconView fill="#2367ec" glyphName="CALENDAR" size="15" />
                                         </graphic>
@@ -216,7 +180,7 @@
    
                         <VBox spacing="12" styleClass="panel-card" GridPane.columnIndex="1">
                             <HBox alignment="CENTER_LEFT">
-                                <Label styleClass="panel-title" text="Paiements récents">
+                                <Label styleClass="panel-title" text=" Paiements récents">
                                     <graphic>
                                         <FontAwesomeIconView fill="#2367ec" glyphName="MONEY" size="15" />
                                     </graphic>
@@ -229,7 +193,7 @@
    
                            <VBox spacing="12" styleClass="panel-card">
                             <HBox alignment="CENTER_LEFT">
-                                <Label styleClass="panel-title" text="Abonnements récents">
+                                <Label styleClass="panel-title" text=" Abonnements récents">
                                     <graphic>
                                     <FontAwesomeIconView fill="#2367ec" glyphName="CREDIT_CARD" size="15" />
                                     </graphic>
@@ -243,7 +207,7 @@
    
                            <VBox spacing="12" styleClass="panel-card" GridPane.columnIndex="2">
                             <HBox alignment="CENTER_LEFT">
-                                <Label styleClass="panel-title" text="Membres récents">
+                                <Label styleClass="panel-title" text=" Membres récents">
                                     <graphic>
                                         <FontAwesomeIconView fill="#2367ec" glyphName="USERS" size="15" />
                                     </graphic>
@@ -270,6 +234,7 @@
                                       </Label>
                                       <Label styleClass="panel-subtitle" text="Alertes et activités récentes de la salle" />
                                   </VBox>
+                           <Region prefHeight="37.0" prefWidth="713.0" />
                                   <Label styleClass="panel-badge" text="ACTIVITÉ RÉCENTE" />
                               </HBox>
                               <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="300.0" styleClass="notifications-scroll">
@@ -290,4 +255,37 @@
             </ScrollPane>
         </StackPane>
     </center>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="dashboard-topbar" BorderPane.alignment="CENTER">
+         <children>
+               <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="392.0" spacing="5">
+                   <Label styleClass="dashboard-welcome" text="Bonjour, Admin" />
+                   <Label styleClass="dashboard-subtitle" text="Suivez l'activité de votre salle en un coup d'œil." textFill="#d0c7c7" />
+               </VBox>
+               <Region prefHeight="50.0" prefWidth="294.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="292.0" spacing="10.0">
+               <children>
+                     <Label prefHeight="20.0" prefWidth="20.0" styleClass="session-time">
+                         <graphic>
+                             <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="20" wrappingWidth="20.857139587402344" />
+                         </graphic>
+                     </Label>
+                  <Label fx:id="localDateTime" prefHeight="14.0" prefWidth="103.0" styleClass="session-time" />
+                   <Label prefHeight="16.0" prefWidth="0.0" style="-fx-background-color: #ffff; -fx-background-radius: 100px;" textFill="#080e48">
+                       <graphic>
+                           <FontAwesomeIconView fill="#7c7e84" glyphName="USER" size="20" />
+                       </graphic>
+                     <padding>
+                        <Insets bottom="5.0" left="7.0" right="7.0" top="5.0" />
+                     </padding>
+                   </Label>
+                  <Label fx:id="username" styleClass="session-user" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <padding>
+      <Insets bottom="34.0" left="32.0" right="32.0" top="26.0" />
+   </padding>
 </BorderPane>

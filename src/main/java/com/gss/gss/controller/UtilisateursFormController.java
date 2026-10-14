@@ -11,29 +11,14 @@ import java.time.LocalDate;
 
 public class UtilisateursFormController {
 
-    @FXML
-    private Label titleLabel;
-
-    @FXML
-    private TextField usernameField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private ComboBox<String> typeComboBox;
-
-    @FXML
-    private DatePicker dateCreationPicker;
-
-    @FXML
-    private ComboBox<String> statutComboBox;
-
-    @FXML
-    private Label errorLabel;
-
-    @FXML
-    private Button saveButton;
+    @FXML private Label titleLabel;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private ComboBox<String> typeComboBox;
+    @FXML private DatePicker dateCreationPicker;
+    @FXML private ComboBox<String> statutComboBox;
+    @FXML private Label errorLabel;
+    @FXML private Button saveButton;
 
     private final UtilisateurService utilisateurService = new UtilisateurService();
 

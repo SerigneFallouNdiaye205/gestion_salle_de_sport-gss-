@@ -18,7 +18,6 @@ import java.io.IOException;
 public class DashboardController {
     @FXML private BorderPane container;
     @FXML private Label roleLabel;
-    @FXML private Label welcomeLabel;
     @FXML private StackPane contentPane;
     @FXML private Button homeButton;
     @FXML private Button membersButton;
@@ -34,21 +33,15 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        // Vérifier qu'une session existe
         if (!SessionManager.isLoggedIn()) {
             return;
         }
         Utilisateur utilisateur = SessionManager.getCurrentUser();
 
-        // Afficher les informations de l'utilisateur
-        welcomeLabel.setText("Bienvenue, " + utilisateur.getUsername());
         roleLabel.setText(utilisateur.getType());
-        // Adapter le menu au rôle
         configureMenu(utilisateur.getType());
 
     }
-
-    // Configure les boutons selon le rôle.
 
     private void configureMenu(String role) {
         setVisible(homeButton, PermissionManager.canViewDashboard());
@@ -107,7 +100,6 @@ public class DashboardController {
     @FXML
     private void handleHome() {
         if (!PermissionManager.canViewDashboard()) return;
-        // Tableau de bord
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -128,7 +120,6 @@ public class DashboardController {
     @FXML
     private void handleMembers() {
         if (!PermissionManager.canViewMembers()) return;
-        //Gestion des membres
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -149,7 +140,6 @@ public class DashboardController {
     @FXML
     private void handlePaiements() {
         if (!PermissionManager.canViewPayments()) return;
-        // Gestion des paiements
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -168,7 +158,6 @@ public class DashboardController {
     @FXML
     private void handleAbonnements() {
         if (!PermissionManager.canViewSubscriptions()) return;
-        // Gestion des abonnements
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -187,7 +176,6 @@ public class DashboardController {
     @FXML
     private void handleSeances() {
         if (!PermissionManager.canViewSessions()) return;
-        // Gestion des seances
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -207,7 +195,6 @@ public class DashboardController {
     @FXML
     private void handleInscriptions() {
         if (!PermissionManager.canViewInscriptions()) return;
-        // Gestion des inscriptions aux seances
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -227,7 +214,6 @@ public class DashboardController {
     @FXML
     private void handleCoachs() {
         if (!PermissionManager.canManageCoaches()) return;
-        // Gestion des paiements
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/com/gss/gss/fxml/coachs.fxml")
@@ -247,7 +233,6 @@ public class DashboardController {
     @FXML
     private void handleUtilisateurs() {
         if (!PermissionManager.canManageUsers()) return;
-    // Gestion des utilisateurs
         try {
 
             FXMLLoader loader = new FXMLLoader(
@@ -281,15 +266,11 @@ public class DashboardController {
     }
 
 
-    // Déconnexion.
     @FXML
     private void handleLogout() {
-
-        // Supprimer la session
         SessionManager.logout();
 
         try {
-            // Retour vers le login
             FXMLLoader loader =
                     new FXMLLoader(
                             getClass().getResource("/com/gss/gss/fxml/login.fxml")

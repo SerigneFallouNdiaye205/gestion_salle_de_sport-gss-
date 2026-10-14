@@ -36,18 +36,13 @@ public final class RecuPaiement {
 
         try {
             membre = new MembreDAOImpl().findById(paiement.getMembreId());
-        } catch (RuntimeException ignored) {
-            // Le reçu reste générable même si les informations complémentaires
-            // ne peuvent pas être relues depuis la base.
-        }
+        } catch (RuntimeException ignored) {}
 
         try {
             abonnement = new AbonnementsDAOImpl()
                     .findById(paiement.getAbonnementId())
                     .orElse(null);
-        } catch (RuntimeException ignored) {
-            // Même principe : les identifiants restent disponibles.
-        }
+        } catch (RuntimeException ignored) {}
 
         Document document = new Document();
 

@@ -4,13 +4,16 @@
 }
 
 .dashboard-topbar {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #17325f;
     -fx-border-color: #e7edf6;
     -fx-border-width: 0 0 1 0;
+    -fx-padding: 10px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
 }
 
-.dashboard-eyebrow {
-    -fx-text-fill: #0f2d63;
+.dashboard-welcome {
+    -fx-text-fill: #ffff;
     -fx-font-size: 24px;
     -fx-font-weight: 800;
 }
@@ -22,7 +25,7 @@
 }
 
 .dashboard-subtitle {
-    -fx-text-fill: #7183a1;
+    -fx-text-fill: #d0c7c7;
     -fx-font-size: 12px;
 }
 
@@ -41,14 +44,14 @@
 }
 
 .session-user {
-    -fx-text-fill: #17325f;
+    -fx-text-fill: #d0c7c7;
     -fx-font-size: 14px;
     -fx-font-weight: 800;
 }
 
 .session-time {
-    -fx-text-fill: #5c7193;
-    -fx-font-size: 11px;
+    -fx-text-fill: #d0c7c7;
+    -fx-font-size: 12px;
 }
 
 .dashboard-content,

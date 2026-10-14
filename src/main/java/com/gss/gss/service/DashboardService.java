@@ -8,10 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-/**
- * Données utilisées exclusivement par le tableau de bord.
- * Toutes les informations affichées dans Home.fxml viennent de MySQL.
- */
+
 public class DashboardService {
 
     public record PlanningItem(int id, String nom, LocalTime debut, LocalTime fin,
@@ -36,7 +33,7 @@ public class DashboardService {
         }
     }
 
-    /** Fréquentation confirmée des 7 derniers jours. */
+    // Fréquentation confirmée des 7 derniers jours.
     public Map<LocalDate, Integer> getAttendanceLast7Days() {
         Map<LocalDate, Integer> result = new LinkedHashMap<>();
         LocalDate firstDay = LocalDate.now().minusDays(6);
@@ -73,7 +70,7 @@ public class DashboardService {
         }
     }
 
-    /** Planning réel des séances du jour. */
+    // Planning réel des séances du jour.
     public List<PlanningItem> getPlanningToday() {
         String sql = """
             SELECT s.id, s.nom, s.heure_debut, s.heure_fin, s.salle,

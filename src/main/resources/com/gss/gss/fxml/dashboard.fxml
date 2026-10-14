@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -28,12 +30,11 @@
             <padding>
                 <Insets bottom="20" left="15" right="15" top="25" />
             </padding>
-            <!-- Logo -->
-            <Label style="-fx-text-fill: white;" text="GSS">
-                <font>
-                    <Font name="Times New Roman Bold" size="21.0" />
-                </font>
-            </Label>
+         <ImageView fitHeight="62.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/logoGymFit.png" />
+            </image>
+         </ImageView>
             <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;             -fx-font-size: 13px;" text="Utilisateur" />
 
             <Separator />
@@ -125,7 +126,7 @@
             <Separator />
 
             <!-- Déconnexion -->
-            <Button fx:id="logoutButton" alignment="CENTER" maxWidth="250" onAction="#handleLogout" prefHeight="42" styleClass="logout-button" text="Déconnexion">
+            <Button fx:id="logoutButton" alignment="CENTER" maxWidth="250" onAction="#handleLogout" prefHeight="42" styleClass="logout-button" text="Déconnexion" textFill="WHITE">
                 <font>
                     <Font name="Times New Roman" size="15.0" />
                 </font>

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,68 +15,72 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import java.net.URL?>
-<VBox styleClass="form-page" prefWidth="450.0" spacing="15" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementFormController">
-    <stylesheets>
-        <URL value="@../css/style.css"/>
-        <URL value="@../css/forms.css"/>
-    </stylesheets>
 
-    <padding>
-        <Insets bottom="25" left="30" right="30" top="25" />
-    </padding>
-
-    <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Gestion de l'abonnement" />
-   <Separator prefWidth="200.0" />
-
-    <GridPane hgap="15" vgap="12">
-
-        <Label text="Membre :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-
-        <ComboBox fx:id="membreComboBox" prefWidth="250" promptText="Sélectionner un membre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-        <Label text="Type :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-
-        <ComboBox fx:id="typeComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-        <Label text="Prix :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-
-        <TextField fx:id="prixField" promptText="Ex : 10000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-        <Label text="Date début :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-
-        <DatePicker fx:id="dateDebutPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
-        <Label text="Date fin :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-
-        <DatePicker fx:id="dateFinPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-        <Label text="Statut :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-
-        <ComboBox fx:id="statutComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
-
-    </GridPane>
-
-    <Label fx:id="errorLabel" styleClass="error-label" managed="false" style="-fx-text-fill: #dc2626;" visible="false" wrapText="true" />
-
-    <HBox styleClass="form-actions" alignment="CENTER_RIGHT" spacing="10">
-
-        <Button onAction="#handleCancel" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #64748b; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Annuler" />
-
-        <Button onAction="#handleSave" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Enregistrer" />
-
-    </HBox>
-
-</VBox>
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.AbonnementFormController">
+   <content>
+      <VBox prefWidth="450.0" spacing="15" styleClass="form-page">
+          <stylesheets>
+              <URL value="@../css/style.css" />
+              <URL value="@../css/forms.css" />
+          </stylesheets>
+      
+          <padding>
+              <Insets bottom="25" left="30" right="30" top="25" />
+          </padding>
+      
+          <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Gestion de l'abonnement" />
+         <Separator prefWidth="200.0" />
+      
+          <GridPane hgap="15" vgap="12">
+      
+              <Label text="Membre :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+      
+              <ComboBox fx:id="membreComboBox" prefWidth="250" promptText="Sélectionner un membre" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      
+              <Label text="Type :" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+      
+              <ComboBox fx:id="typeComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      
+              <Label text="Prix :" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+      
+              <TextField fx:id="prixField" promptText="Ex : 10000" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      
+              <Label text="Date début :" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+      
+              <DatePicker fx:id="dateDebutPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      
+              <Label text="Date fin :" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+      
+              <DatePicker fx:id="dateFinPicker" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      
+              <Label text="Statut :" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+      
+              <ComboBox fx:id="statutComboBox" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+      
+          </GridPane>
+      
+          <Label fx:id="errorLabel" managed="false" style="-fx-text-fill: #dc2626;" styleClass="error-label" visible="false" wrapText="true" />
+      
+          <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="form-actions">
+      
+              <Button onAction="#handleCancel" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #64748b; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Annuler" />
+      
+              <Button onAction="#handleSave" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #2563eb; -fx-background-radius: 6px; -fx-text-fill: white; -fx-font-size: 13; -fx-font-weight: bold; -fx-font-style: italic; -fx-cursor: hand;" text="Enregistrer" />
+      
+          </HBox>
+      
+      </VBox>
+   </content>
+</ScrollPane>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,87 +17,159 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="704.0" styleClass="login-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="794.0" styleClass="login-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.LoginController">
    <stylesheets>
       <URL value="@../css/style.css" />
    </stylesheets>
-   <ImageView fitHeight="503.0" fitWidth="704.0" layoutX="-27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="43.35443115234375" AnchorPane.topAnchor="0.0">
-      <image>
-         <Image url="@../images/gss_background.png" />
-      </image>
+   <ImageView fitHeight="562.0" fitWidth="794.0" layoutX="-27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-54.0" AnchorPane.topAnchor="0.0">
+      <Image url="@../images/gss_background.png" />
    </ImageView>
-   <VBox alignment="CENTER" layoutX="394.0" layoutY="53.0" prefHeight="357.0" prefWidth="283.0" spacing="20.0" styleClass="login-card" AnchorPane.bottomAnchor="38.333333333333314" AnchorPane.rightAnchor="26.666666666666742" AnchorPane.topAnchor="53.0">
+   <VBox alignment="CENTER" layoutX="448.00000000000006" layoutY="63.66666666666667" prefHeight="419.0" prefWidth="319.0" spacing="20.0" styleClass="login-card" AnchorPane.bottomAnchor="82.33333333333331" AnchorPane.rightAnchor="26.66666666666663" AnchorPane.topAnchor="63.66666666666667">
       <VBox alignment="CENTER" prefHeight="96.0" prefWidth="281.0">
-         <children>
-            <Text fill="#f4f4f4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Connexion" />
-            <Label text="Acceder a votre espace de gestion gss" textFill="#878383cc" />
-         </children>
+         <Text fill="#f4f4f4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="login-title" text="Connexion" />
+         <Label text="Acceder a votre espace de gestion GymFit" textFill="#878383cc">
+            <font>
+               <Font size="11.0" />
+            </font>
+         </Label>
       </VBox>
-      <TextField fx:id="usernameField" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Entrez votre nom d'utilisateur" styleClass="text-field">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <padding>
-            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-         </padding></TextField>
-      <PasswordField fx:id="passwordField" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Entrez votre mot de passe" styleClass="password-field">
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <padding>
-            <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
-         </padding></PasswordField>
+      <HBox alignment="CENTER" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" styleClass="login-input-hbox">
+         <children>
+            <FontAwesomeIconView fill="#2367ec" glyphName="USER" size="18" />
+            <TextField fx:id="usernameField" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Entrez votre nom d'utilisateur" styleClass="login-input-field">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </padding>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" styleClass="login-input-hbox">
+         <children>
+            <FontAwesomeIconView fill="#2367ec" glyphName="LOCK" size="18" />
+            <PasswordField fx:id="passwordField" maxHeight="30.0" maxWidth="250.0" prefHeight="30.0" prefWidth="250.0" promptText="Entrez votre mot de passe" styleClass="login-input-field">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <padding>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </padding>
+            </PasswordField>
+         </children>
+      </HBox>
       <Label fx:id="errorLabel" managed="false" textFill="#dc2626" visible="false" wrapText="true">
       </Label>
-      <Button fx:id="loginButton" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="250.0" styleClass="login-button" text="Se Connecter" textFill="#eff0f5">
+      <Button fx:id="loginButton" graphicTextGap="10.0" maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="250.0" styleClass="login-button" text="Se Connecter" textFill="#eff0f5">
          <font>
             <Font name="System Bold" size="13.0" />
-         </font></Button>
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="white" glyphName="SIGN_IN" size="15" />
+         </graphic>
+      </Button>
       <Button mnemonicParsing="false" onAction="#handleExit" styleClass="login-exit" text="Quitter" textFill="WHITE">
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
       </Button>
    </VBox>
-   <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="126.0" prefHeight="176.0" prefWidth="298.0">
-      <children>
-         <Label styleClass="login-label" text="Une gestion simple" textFill="WHITE" />
-         <HBox prefHeight="45.0" prefWidth="321.0" spacing="5.0">
-            <children>
-               <Label styleClass="login-label" text="pour une salle" textFill="WHITE" />
-               <Label styleClass="login-blue-label" text="plus forte" textFill="#1f6fef">
-                  <font>
-                     <Font name="System Bold" size="18.0" />
-                  </font>
-               </Label>
-            </children>
-         </HBox>
-         <Label styleClass="login-intro-label" text="GSS vous accompagnee au quotidien ">
+   <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="103.0" prefHeight="176.0" prefWidth="298.0">
+      <Label styleClass="login-label" text="Une gestion simple" textFill="WHITE" />
+      <HBox prefHeight="45.0" prefWidth="321.0" spacing="5.0">
+         <Label styleClass="login-label" text="pour une salle" textFill="WHITE" />
+         <Label styleClass="login-blue-label" text="plus forte" textFill="#1f6fef">
             <font>
-               <Font name="Montserrat Alternates ExtraLight" size="12.0" />
-            </font></Label>
-         <Label styleClass="login-intro-label" text="dans la gestion de votre salle de sport : " />
-         <Label styleClass="login-intro-label" text="membres, abonnenements sceances " />
-         <Label styleClass="login-intro-label" text="et bien plus !" />
-      </children>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Label>
+      </HBox>
+      <Label styleClass="login-intro-label" text="GSS vous accompagnee au quotidien ">
+         <font>
+            <Font name="Montserrat Alternates ExtraLight" size="12.0" />
+         </font>
+      </Label>
+      <Label styleClass="login-intro-label" text="dans la gestion de votre salle de sport : " />
+      <Label styleClass="login-intro-label" text="membres, abonnenements sceances " />
+      <Label styleClass="login-intro-label" text="et bien plus !" />
    </VBox>
-   <VBox layoutX="112.0" layoutY="24.0" prefHeight="96.0" prefWidth="200.0">
-      <children>
-         <HBox prefHeight="27.0" prefWidth="80.0">
-            <children>
-               <Label styleClass="login-logo-g" text="G" />
-               <Label styleClass="login-logo" text="SS" />
-            </children>
-         </HBox>
-         <Label styleClass="login-intro-label" text="Gestion salle de sport" />
-      </children>
-   </VBox>
-   <ImageView fitHeight="70.0" fitWidth="100.0" layoutX="27.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/logo.png" />
-      </image>
+   <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/logoGymFit.png" />
    </ImageView>
+   <Label layoutX="129.0" layoutY="77.0" styleClass="login-intro-label" text="Gestion salle de sport" />
+   <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="279.0" prefHeight="150.0" prefWidth="200.0" spacing="5.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+         <Label styleClass="login-intro-icon">
+            <graphic>
+               <FontAwesomeIconView fill="white" glyphName="USERS" size="15" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-intro-label" text="Gestion des membres" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+         <Label styleClass="login-intro-icon">
+            <graphic>
+            <FontAwesomeIconView fill="white" glyphName="CALENDAR" size="15" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-intro-label" text="Planning des seances" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+         <Label styleClass="login-intro-icon">
+            <graphic>
+               <FontAwesomeIconView fill="white" glyphName="CREDIT_CARD" size="15" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-intro-label" text="Suivi des paiements" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+         <Label styleClass="login-intro-icon">
+            <graphic>
+               <FontAwesomeIconView fill="white" glyphName="BAR_CHART" size="15" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-intro-label" text="Statistiques &amp; Rapports" />
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
+         <Label styleClass="login-intro-icon">
+            <graphic>
+               <FontAwesomeIconView fill="white" glyphName="USER_MD" size="19" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-intro-label" text="Gestion des coachs" />
+      </HBox>
+   </VBox>
+   <HBox alignment="CENTER" layoutX="418.0" layoutY="506.0" prefHeight="36.0" prefWidth="375.0" spacing="7.0">
+
+      <Label>
+         <graphic>
+            <FontAwesomeIconView fill="#2367ec" glyphName="HEARTBEAT" size="15" />
+         </graphic>
+      </Label>
+         <Label styleClass="login-footer-label" text="Plus de motivation" />
+         <Separator orientation="VERTICAL" prefHeight="200.0" />
+
+         <Label>
+            <graphic>
+               <FontAwesomeIconView fill="#2367ec" glyphName="SPINNER" size="15" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-footer-label" text="Plus de resultats" />
+
+         <Separator orientation="VERTICAL" prefHeight="200.0" />
+
+         <Label>
+            <graphic>
+               <FontAwesomeIconView fill="#2367ec" glyphName="USER_PLUS" size="15" />
+            </graphic>
+         </Label>
+         <Label styleClass="login-footer-label" text="Plus de membres" />
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </HBox>
 </AnchorPane>

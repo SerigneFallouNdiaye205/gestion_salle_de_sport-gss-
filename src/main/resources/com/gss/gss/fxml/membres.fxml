@@ -80,8 +80,8 @@
          <padding>
             <Insets bottom="10" left="25" right="25" top="5" />
          </padding>
-         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="400" prefWidth="900.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
-               <TableView fx:id="membersTable" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" VBox.vgrow="ALWAYS">
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="125.0" layoutY="160.0" prefHeight="400" prefWidth="900.0">
+               <TableView fx:id="membersTable" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
                   <columns>
                      <TableColumn fx:id="idColumn" prefWidth="55" text="ID" />
 

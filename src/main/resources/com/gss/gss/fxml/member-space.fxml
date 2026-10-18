@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" prefHeight="650.0" styleClass="member-root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MemberSpaceController">
+    <stylesheets>
+        <URL value="@../css/member-space.css" />
+    </stylesheets>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER">
+            <VBox alignment="CENTER" spacing="18" styleClass="member-top" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="18" left="28" right="28" top="22" />
+                </padding>
+                <HBox alignment="CENTER" prefHeight="106.0" prefWidth="200.0" spacing="18" styleClass="member-hero" VBox.vgrow="ALWAYS">
+                    <VBox prefHeight="115.0" prefWidth="595.0" spacing="7" HBox.hgrow="ALWAYS">
+                        <Label styleClass="hero-eyebrow" text="GYMFIT  /  ESPACE MEMBRE" />
+                        <Label styleClass="hero-title" text="Votre espace. Votre rythme." />
+                        <Label fx:id="welcomeLabel" styleClass="hero-greeting" text="Bienvenue" />
+                        <Label styleClass="hero-description" text="Retrouvez vos abonnements, vos séances et vos paiements au même endroit." wrapText="true" />
+                    </VBox>
+               <Region prefHeight="115.0" prefWidth="183.0" />
+                    <VBox alignment="CENTER_RIGHT" prefHeight="115.0" prefWidth="240.0" spacing="10">
+                        <Button onAction="#handleRefresh" styleClass="hero-ghost-button" text="Actualiser" />
+                        <Button onAction="#handleChangePassword" styleClass="hero-ghost-button" text="Changer mon mot de passe" />
+                        <Button onAction="#handleLogout" styleClass="hero-logout-button" text="Déconnexion" />
+                    </VBox>
+                </HBox>
+                <HBox spacing="12" styleClass="metric-row">
+                    <VBox spacing="5" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="metric-caption" text="ABONNEMENT ACTIF" />
+                        <Label fx:id="activeSubscriptionMetric" styleClass="metric-value" text="—" />
+                    </VBox>
+                    <VBox spacing="5" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="metric-caption" text="MES INSCRIPTIONS" />
+                        <Label fx:id="bookingMetric" styleClass="metric-value" text="0" />
+                    </VBox>
+                    <VBox spacing="5" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="metric-caption" text="PAIEMENTS ENREGISTRÉS" />
+                        <Label fx:id="paymentMetric" styleClass="metric-value" text="0" />
+                    </VBox>
+                    <VBox spacing="5" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="metric-caption" text="DEMANDE EN ATTENTE" />
+                        <Label fx:id="pendingRequestMetric" styleClass="metric-value" text="0" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <TabPane styleClass="member-tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                <Tab text="Abonnements">
+                    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="member-scroll">
+                        <VBox spacing="18" styleClass="tab-content">
+                            <padding>
+                                <Insets bottom="28" left="28" right="28" top="22" />
+                            </padding>
+                            <VBox spacing="5">
+                                <Label styleClass="section-title" text="Mes abonnements" />
+                                <Label styleClass="section-subtitle" text="Consultez vos formules et suivez vos demandes." />
+                            </VBox>
+                            <HBox alignment="TOP_CENTER" prefHeight="500.0" spacing="16">
+                                <VBox prefHeight="400.0" spacing="12" styleClass="content-card" HBox.hgrow="ALWAYS">
+                                    <Label styleClass="card-title" text="Historique" />
+                                    <TableView fx:id="subscriptionsTable" prefHeight="520.0" styleClass="member-table">
+                                        <columns>
+                                            <TableColumn fx:id="subscriptionIdColumn" prefWidth="58" text="N°" />
+                                            <TableColumn fx:id="subscriptionTypeColumn" prefWidth="150" text="Formule" />
+                                            <TableColumn fx:id="subscriptionStartColumn" prefWidth="112" text="Début" />
+                                            <TableColumn fx:id="subscriptionEndColumn" prefWidth="112" text="Fin" />
+                                            <TableColumn fx:id="subscriptionStatusColumn" prefWidth="100" text="Statut" />
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+                                <VBox prefHeight="400.0" prefWidth="390.0" spacing="13" styleClass="content-card">
+                                    <Label styleClass="card-title" text="Demander un abonnement" />
+                                    <Label styleClass="card-description" text="Choisissez une formule. Le personnel confirmera votre abonnement après réception du règlement." wrapText="true" />
+                                    <ComboBox fx:id="subscriptionTypeComboBox" maxWidth="Infinity" promptText="Choisir une formule" styleClass="member-input" />
+                                    <Button fx:id="requestSubscriptionButton" maxWidth="Infinity" onAction="#handleRequestSubscription" styleClass="primary-button" text="Envoyer ma demande" />
+                                    <Label styleClass="card-title" text="Mes demandes" />
+                                    <TableView fx:id="requestsTable" prefHeight="340.0" styleClass="member-table">
+                                        <columns>
+                                            <TableColumn fx:id="requestTypeColumn" prefWidth="130" text="Formule" />
+                                            <TableColumn fx:id="requestDateColumn" prefWidth="125" text="Date" />
+                                            <TableColumn fx:id="requestStatusColumn" prefWidth="100" text="État" />
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+                            </HBox>
+                            <Label styleClass="notice-text" text="Une demande ne vaut pas confirmation de paiement. Votre abonnement sera créé uniquement par le personnel après encaissement." wrapText="true" />
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+                <Tab text="Séances">
+                    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="member-scroll">
+                        <VBox prefHeight="750.0" spacing="18" styleClass="tab-content">
+                            <padding>
+                                <Insets bottom="28" left="28" right="28" top="22" />
+                            </padding>
+                            <VBox spacing="5">
+                                <Label styleClass="section-title" text="Bougez à votre façon" />
+                                <Label styleClass="section-subtitle" text="Réservez une place et gérez vos prochaines séances." />
+                            </VBox>
+                            <VBox prefHeight="350.0" spacing="12" styleClass="content-card">
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                        <Label styleClass="card-title" text="Séances disponibles" />
+                                        <Label styleClass="card-description" text="Votre abonnement doit être valide pour confirmer l’inscription." />
+                                    </VBox>
+                                    <Button fx:id="bookSessionButton" onAction="#handleBookSession" styleClass="primary-button" text="Réserver la séance sélectionnée" />
+                                </HBox>
+                                <TableView fx:id="sessionsTable" prefHeight="300.0" styleClass="member-table">
+                                    <columns>
+                                        <TableColumn fx:id="sessionNameColumn" prefWidth="250" text="Séance" />
+                                        <TableColumn fx:id="sessionDateColumn" prefWidth="145" text="Date" />
+                                        <TableColumn fx:id="sessionTimeColumn" prefWidth="155" text="Horaires" />
+                                        <TableColumn fx:id="sessionRoomColumn" prefWidth="145" text="Salle" />
+                                        <TableColumn fx:id="sessionPlacesColumn" prefWidth="130" text="Places restantes" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                            <VBox prefHeight="350.0" spacing="12" styleClass="content-card">
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                                        <Label styleClass="card-title" text="Mes inscriptions" />
+                                        <Label styleClass="card-description" text="Vous pouvez annuler avant le début de la séance." />
+                                    </VBox>
+                                    <Button fx:id="cancelBookingButton" onAction="#handleCancelBooking" styleClass="danger-button" text="Annuler l’inscription" />
+                                </HBox>
+                                <TableView fx:id="bookingsTable" prefHeight="300.0" styleClass="member-table">
+                                    <columns>
+                                        <TableColumn fx:id="bookingNameColumn" prefWidth="250" text="Séance" />
+                                        <TableColumn fx:id="bookingDateColumn" prefWidth="145" text="Date" />
+                                        <TableColumn fx:id="bookingTimeColumn" prefWidth="155" text="Horaires" />
+                                        <TableColumn fx:id="bookingRoomColumn" prefWidth="145" text="Salle" />
+                                        <TableColumn fx:id="bookingStatusColumn" prefWidth="130" text="Statut" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+                <Tab text="Paiements">
+                    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="member-scroll">
+                        <VBox spacing="18" styleClass="tab-content">
+                            <padding>
+                                <Insets bottom="28" left="28" right="28" top="22" />
+                            </padding>
+                            <VBox spacing="5">
+                                <Label styleClass="section-title" text="Mon historique de paiements" />
+                                <Label styleClass="section-subtitle" text="Retrouvez ici les règlements enregistrés par la salle." />
+                            </VBox>
+                            <VBox prefHeight="400.0" spacing="12" styleClass="content-card">
+                                <Label styleClass="card-title" text="Transactions" />
+                                <TableView fx:id="paymentsTable" prefHeight="400.0" styleClass="member-table">
+                                    <columns>
+                                        <TableColumn fx:id="paymentDateColumn" prefWidth="170" text="Date" />
+                                        <TableColumn fx:id="paymentAmountColumn" prefWidth="160" text="Montant (FCFA)" />
+                                        <TableColumn fx:id="paymentModeColumn" prefWidth="150" text="Mode" />
+                                        <TableColumn fx:id="paymentStatusColumn" prefWidth="125" text="Statut" />
+                                        <TableColumn fx:id="paymentReferenceColumn" prefWidth="240" text="Référence" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+            </TabPane>
+        </VBox>
+    </ScrollPane>
+
+</VBox>

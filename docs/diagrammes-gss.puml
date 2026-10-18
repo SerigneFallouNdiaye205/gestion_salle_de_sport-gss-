@@ -1,0 +1,446 @@
+@startuml GSS_Classes
+title GSS - Diagramme de classes
+skinparam packageStyle rectangle
+skinparam classAttributeIconSize 0
+hide empty members
+
+package "com.gss.gss.model" {
+  class Utilisateur {
+    - id : int
+    - username : String
+    - password : String
+    - type : String
+    - statut : String
+    - dateCreation : LocalDate
+  }
+
+  class Administrateur {
+    - id : int
+    - niveau_acces : String
+  }
+
+  class Receptionniste {
+    - id : int
+    - horaire_travail : String
+  }
+
+  class Membre {
+    - id : int
+    - nom : String
+    - prenom : String
+    - sexe : String
+    - telephone : String
+    - email : String
+    - adresse : String
+    - dateNaissance : LocalDate
+    - dateInscription : LocalDate
+    - statut : String
+  }
+
+  class Coach {
+    - id : int
+    - nom : String
+    - prenom : String
+    - telephone : String
+    - email : String
+    - specialite : String
+    - salaire : Double
+    - disponibilite : String
+  }
+
+  class Abonnement {
+    - id : int
+    - membreId : int
+    - type : String
+    - prix : Double
+    - dateDebut : LocalDate
+    - dateFin : LocalDate
+    - statut : String
+    + getJoursRestants() : long
+    + estExpire() : boolean
+  }
+
+  class Paiement {
+    - id : int
+    - membreId : int
+    - abonnementId : int
+    - montant : double
+    - datePaiement : LocalDateTime
+    - modePaiement : String
+    - statut : String
+    - reference : String
+  }
+
+  class Seance {
+    - id : int
+    - coachId : int
+    - nom : String
+    - dateSeance : LocalDate
+    - heureDebut : LocalTime
+    - heureFin : LocalTime
+    - salle : String
+    - capacite : int
+  }
+
+  class InscriptionSeance {
+    - id : int
+    - membre_id : int
+    - seance_id : int
+    - date_inscription : LocalDate
+    - statut : String
+  }
+}
+
+package "com.gss.gss.controller" {
+  class LoginController
+  class DashboardController
+  class MembreController
+  class MembresFormController
+  class AbonnementController
+  class AbonnementFormController
+  class PaiementsController
+  class PaiementFormController
+  class SeanceController
+  class SeanceFormController
+  class InscriptionSeanceController
+  class InscriptionSeanceFormController
+  class CoachController
+  class CoachFormController
+  class UtilisateursController
+  class UtilisateursFormController
+  class RapportsController
+}
+
+package "com.gss.gss.service" {
+  class AuthService
+  class DashboardService
+  class MembreService
+  class AbonnementService
+  class PaiementService
+  class SeanceService
+  class InscriptionSeanceService
+  class CoachService
+  class UtilisateurService
+}
+
+package "com.gss.gss.dao" {
+  participant UtilisateurDAO
+  interface MembreDAO
+  interface AbonnementDAO
+  participant PaiementDAO
+  interface SeanceDAO
+  interface InscriptionSeanceDAO
+  interface CoachDAO
+}
+
+package "com.gss.gss.dao.Impl" {
+  class UtilisateurDAOImpl
+  class MembreDAOImpl
+  class AbonnementsDAOImpl
+  class PaiementDAOImpl
+  class SeanceDAOImpl
+  class InscriptionSeanceDAOImpl
+  class CoachDAOImpl
+}
+
+package "Sécurité et utilitaires" {
+  class SessionManager <<singleton>>
+  class PermissionManager <<utility>>
+  class PasswordHasher <<utility>>
+  class RecuPaiement <<utility>>
+  class PaiementReferenceGenerator <<utility>>
+}
+
+package "Infrastructure" {
+  class DatabaseConnection
+  database "MySQL / MariaDB" as DB
+}
+
+' Les profils sont des enregistrements séparés dont l'identifiant
+' est une clé étrangère vers utilisateurs ; ce ne sont pas des sous-classes Java.
+Utilisateur "1" -- "0..1" Administrateur : profil / id partagé
+Utilisateur "1" -- "0..1" Receptionniste : profil / id partagé
+Utilisateur "1" -- "0..1" Coach : compte / id partagé
+
+Membre "1" -- "0..*" Abonnement : possède
+Membre "1" -- "0..*" Paiement : effectue
+Abonnement "1" -- "0..*" Paiement : est réglé par
+Coach "1" -- "0..*" Seance : anime
+Membre "1" -- "0..*" InscriptionSeance : s'inscrit
+Seance "1" -- "0..*" InscriptionSeance : reçoit
+
+LoginController ..> AuthService
+LoginController ..> SessionManager
+DashboardController ..> DashboardService
+MembreController ..> MembreService
+MembresFormController ..> MembreService
+AbonnementController ..> AbonnementService
+AbonnementFormController ..> AbonnementService
+PaiementsController ..> PaiementService
+PaiementFormController ..> PaiementService
+PaiementFormController ..> MembreService
+PaiementFormController ..> AbonnementService
+PaiementFormController ..> RecuPaiement
+PaiementFormController ..> PaiementReferenceGenerator
+SeanceController ..> SeanceService
+SeanceFormController ..> SeanceService
+InscriptionSeanceController ..> InscriptionSeanceService
+InscriptionSeanceFormController ..> InscriptionSeanceService
+CoachController ..> CoachService
+CoachFormController ..> CoachService
+UtilisateursController ..> UtilisateurService
+UtilisateursFormController ..> UtilisateurService
+RapportsController ..> DashboardService
+
+AuthService ..> UtilisateurDAO
+AuthService ..> PasswordHasher
+MembreService ..> MembreDAO
+AbonnementService ..> AbonnementDAO
+PaiementService ..> PaiementDAO
+SeanceService ..> SeanceDAO
+InscriptionSeanceService ..> InscriptionSeanceDAO
+InscriptionSeanceService ..> AbonnementService : contrôle l'abonnement
+InscriptionSeanceService ..> SeanceService : vérifie la séance
+CoachService ..> CoachDAO
+UtilisateurService ..> UtilisateurDAO
+
+UtilisateurDAOImpl ..|> UtilisateurDAO
+MembreDAOImpl ..|> MembreDAO
+AbonnementsDAOImpl ..|> AbonnementDAO
+PaiementDAOImpl ..|> PaiementDAO
+SeanceDAOImpl ..|> SeanceDAO
+InscriptionSeanceDAOImpl ..|> InscriptionSeanceDAO
+CoachDAOImpl ..|> CoachDAO
+
+UtilisateurDAOImpl ..> DatabaseConnection
+MembreDAOImpl ..> DatabaseConnection
+AbonnementsDAOImpl ..> DatabaseConnection
+PaiementDAOImpl ..> DatabaseConnection
+SeanceDAOImpl ..> DatabaseConnection
+InscriptionSeanceDAOImpl ..> DatabaseConnection
+CoachDAOImpl ..> DatabaseConnection
+DashboardService ..> DatabaseConnection
+DatabaseConnection --> DB : JDBC
+
+note right of PermissionManager
+  Les droits sont déterminés selon le rôle
+  de l'utilisateur conservé dans SessionManager.
+end note
+@enduml
+
+@startuml GSS_CasUtilisation
+title GSS - Diagramme de cas d'utilisation
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Administrateur" as Admin
+actor "Réceptionniste" as Reception
+actor "Coach" as Coach
+
+rectangle "Application GSS - Gestion de salle de sport" {
+  usecase "S'authentifier" as UC_Login
+  usecase "Consulter le tableau de bord" as UC_Dashboard
+  usecase "Consulter les membres" as UC_ViewMembers
+  usecase "Gérer les membres" as UC_ManageMembers
+  usecase "Consulter les abonnements" as UC_ViewSubs
+  usecase "Gérer les abonnements" as UC_ManageSubs
+  usecase "Consulter les paiements" as UC_ViewPayments
+  usecase "Enregistrer / modifier\nun paiement" as UC_ManagePayments
+  usecase "Générer un reçu PDF" as UC_Receipt
+  usecase "Consulter les séances\net le planning" as UC_ViewSessions
+  usecase "Gérer les séances" as UC_ManageSessions
+  usecase "Consulter les inscriptions\naux séances" as UC_ViewRegistrations
+  usecase "Gérer les inscriptions\naux séances" as UC_ManageRegistrations
+  usecase "Vérifier l'abonnement actif,\nla capacité et les doublons" as UC_CheckRegistration
+  usecase "Gérer les coachs" as UC_ManageCoaches
+  usecase "Gérer les comptes utilisateurs" as UC_ManageUsers
+  usecase "Consulter les rapports" as UC_Reports
+  usecase "Consulter les notifications,\nstatistiques et activités" as UC_DashboardData
+}
+
+Admin --> UC_Login
+Reception --> UC_Login
+Coach --> UC_Login
+
+Admin --> UC_Dashboard
+Admin --> UC_ViewMembers
+Admin --> UC_ManageMembers
+Admin --> UC_ViewSubs
+Admin --> UC_ManageSubs
+Admin --> UC_ViewPayments
+Admin --> UC_ManagePayments
+Admin --> UC_ViewSessions
+Admin --> UC_ManageSessions
+Admin --> UC_ViewRegistrations
+Admin --> UC_ManageRegistrations
+Admin --> UC_ManageCoaches
+Admin --> UC_ManageUsers
+Admin --> UC_Reports
+
+Reception --> UC_ViewMembers
+Reception --> UC_ManageMembers
+Reception --> UC_ViewSubs
+Reception --> UC_ManageSubs
+Reception --> UC_ViewPayments
+Reception --> UC_ManagePayments
+Reception --> UC_ViewSessions
+Reception --> UC_ViewRegistrations
+Reception --> UC_ManageRegistrations
+
+Coach --> UC_ViewMembers
+Coach --> UC_ViewSessions
+Coach --> UC_ViewRegistrations
+
+UC_ManagePayments ..> UC_Receipt : <<include>>\n(nouveau paiement validé)
+UC_ManageRegistrations ..> UC_CheckRegistration : <<include>>
+UC_Dashboard ..> UC_DashboardData : <<include>>
+@enduml
+
+@startuml GSS_Sequence_Authentification
+title GSS - Séquence : authentification
+autonumber
+
+actor Utilisateur
+boundary LoginController
+control AuthService
+interface UtilisateurDAO
+database "MySQL / MariaDB" as DB
+control PasswordHasher
+control SessionManager
+boundary Dashboard
+
+Utilisateur -> LoginController : saisir identifiant et mot de passe
+LoginController -> AuthService : login(username, password)
+AuthService -> AuthService : valider les champs obligatoires
+AuthService -> UtilisateurDAO : findByUsername(username)
+UtilisateurDAO -> DB : SELECT utilisateur par username
+DB --> UtilisateurDAO : utilisateur et hash BCrypt (ou aucun résultat)
+UtilisateurDAO --> AuthService : Optional<Utilisateur>
+
+alt utilisateur absent
+  AuthService --> LoginController : erreur identifiants incorrects
+  LoginController --> Utilisateur : afficher le message d'erreur
+else compte désactivé
+  AuthService -> AuthService : vérifier statut != ACTIF
+  AuthService --> LoginController : erreur compte désactivé
+  LoginController --> Utilisateur : afficher le message d'erreur
+else compte actif
+  AuthService -> PasswordHasher : verify(mot de passe, hash)
+  alt mot de passe incorrect
+    PasswordHasher --> AuthService : false
+    AuthService --> LoginController : erreur identifiants incorrects
+    LoginController --> Utilisateur : afficher le message d'erreur
+  else authentification réussie
+    PasswordHasher --> AuthService : true
+    AuthService --> LoginController : Utilisateur
+    LoginController -> SessionManager : login(utilisateur)
+    LoginController -> LoginController : choisir dashboard selon le rôle
+    LoginController -> Dashboard : charger dashboard.fxml
+    Dashboard --> Utilisateur : afficher le tableau de bord
+  end
+end
+@enduml
+
+@startuml GSS_Sequence_Paiement
+title GSS - Séquence : enregistrement d'un paiement et reçu
+autonumber
+
+actor "Administrateur / Réceptionniste" as Employe
+boundary PaiementFormController
+control PaiementService
+interface PaiementDAO
+database "MySQL / MariaDB" as DB
+control RecuPaiement
+
+Employe -> PaiementFormController : saisir membre, abonnement,\nmontant, date, mode et statut
+PaiementFormController -> PaiementFormController : valider les champs et montant > 0
+alt formulaire invalide
+  PaiementFormController --> Employe : afficher les erreurs de saisie
+else formulaire valide
+  PaiementFormController -> PaiementFormController : construire Paiement\n(date/heure courante si création)
+  PaiementFormController -> PaiementService : save(paiement)
+  PaiementService -> PaiementDAO : save(paiement)
+  PaiementDAO -> DB : INSERT INTO paiements
+  DB --> PaiementDAO : résultat de l'insertion
+  PaiementDAO --> PaiementService : succès / échec
+  PaiementService --> PaiementFormController : résultat
+  alt enregistrement réussi
+    PaiementFormController -> RecuPaiement : generer(paiement)
+    RecuPaiement --> PaiementFormController : fichier PDF
+    opt bureau compatible
+      PaiementFormController -> PaiementFormController : ouvrir le reçu PDF
+    end
+    PaiementFormController --> Employe : confirmer et fermer le formulaire
+  else échec d'enregistrement
+    PaiementFormController --> Employe : afficher l'erreur d'enregistrement
+  end
+end
+@enduml
+
+@startuml GSS_Sequence_InscriptionSeance
+title GSS - Séquence : inscription d'un membre à une séance
+autonumber
+
+actor "Administrateur / Réceptionniste" as Employe
+boundary InscriptionSeanceFormController
+control InscriptionSeanceService
+control AbonnementService
+participant AbonnementDAO
+control SeanceService
+participant SeanceDAO
+participant InscriptionSeanceDAO
+database "MySQL / MariaDB" as DB
+
+Employe -> InscriptionSeanceFormController : choisir membre et séance
+InscriptionSeanceFormController -> InscriptionSeanceFormController : préparer inscription et date
+InscriptionSeanceFormController -> InscriptionSeanceService : save(inscription)
+InscriptionSeanceService -> InscriptionSeanceService : vérifier membre, séance et date requis
+
+InscriptionSeanceService -> AbonnementService : findByMembreId(membreId)
+AbonnementService -> AbonnementDAO : rechercher abonnements du membre
+AbonnementDAO -> DB : SELECT abonnements
+DB --> AbonnementDAO : liste d'abonnements
+AbonnementDAO --> AbonnementService : abonnements
+AbonnementService --> InscriptionSeanceService : abonnements
+
+alt aucun abonnement ACTIF valide aujourd'hui
+  InscriptionSeanceService --> InscriptionSeanceFormController : erreur abonnement non valide
+  InscriptionSeanceFormController --> Employe : afficher le motif du refus
+else abonnement actif et valide
+  InscriptionSeanceService -> SeanceService : findById(seanceId)
+  SeanceService -> SeanceDAO : findById(seanceId)
+  SeanceDAO -> DB : SELECT séance
+  DB --> SeanceDAO : séance (ou aucune)
+  SeanceDAO --> SeanceService : séance
+  SeanceService --> InscriptionSeanceService : séance
+  alt séance inexistante
+    InscriptionSeanceService --> InscriptionSeanceFormController : erreur séance introuvable
+    InscriptionSeanceFormController --> Employe : afficher le motif du refus
+  else séance trouvée
+    InscriptionSeanceService -> InscriptionSeanceDAO : existsForMemberAndSession(...)
+    InscriptionSeanceDAO -> DB : vérifier inscription existante
+    DB --> InscriptionSeanceDAO : existe / n'existe pas
+    InscriptionSeanceDAO --> InscriptionSeanceService : résultat
+    alt membre déjà inscrit
+      InscriptionSeanceService --> InscriptionSeanceFormController : erreur doublon
+      InscriptionSeanceFormController --> Employe : afficher le motif du refus
+    else inscription non dupliquée
+      InscriptionSeanceService -> InscriptionSeanceDAO : countOccupants(seanceId)
+      InscriptionSeanceDAO -> DB : compter les inscriptions non exclues
+      DB --> InscriptionSeanceDAO : nombre d'inscrits
+      InscriptionSeanceDAO --> InscriptionSeanceService : nombre d'inscrits
+      alt capacité atteinte et inscription non annulée
+        InscriptionSeanceService --> InscriptionSeanceFormController : erreur capacité maximale
+        InscriptionSeanceFormController --> Employe : afficher le motif du refus
+      else capacité disponible (ou statut ANNULEE)
+        InscriptionSeanceService -> InscriptionSeanceDAO : save(inscription)
+        InscriptionSeanceDAO -> DB : INSERT INTO inscriptions_seances
+        DB --> InscriptionSeanceDAO : résultat de l'insertion
+        InscriptionSeanceDAO --> InscriptionSeanceService : succès / échec
+        InscriptionSeanceService --> InscriptionSeanceFormController : résultat
+        InscriptionSeanceFormController --> Employe : confirmer ou signaler l'échec
+      end
+    end
+  end
+end
+@enduml

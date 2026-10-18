@@ -2,6 +2,7 @@ package com.gss.gss.controller;
 
 import com.gss.gss.model.Utilisateur;
 import com.gss.gss.service.UtilisateurService;
+import com.gss.gss.util.StatusCellFactory;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -33,6 +34,7 @@ public class UtilisateursFormController {
         );
 
         statutComboBox.setValue("ACTIF");
+        StatusCellFactory.colorStatusOptions(statutComboBox);
 
         typeComboBox.getItems().addAll(
                 "ADMINISTRATEUR",

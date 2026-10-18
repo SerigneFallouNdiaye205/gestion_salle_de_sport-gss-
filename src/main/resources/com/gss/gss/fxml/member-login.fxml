@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="CENTER" prefHeight="580.0" prefWidth="940.0" styleClass="member-login-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MemberLoginController">
+    <stylesheets><URL value="@../css/member-space.css" /></stylesheets>
+    <VBox alignment="CENTER_LEFT" prefWidth="390" spacing="18" styleClass="login-brand-panel">
+        <padding><Insets bottom="48" left="42" right="42" top="48" /></padding>
+        <Label styleClass="login-brand" text="GYMFIT" />
+        <VBox spacing="8">
+            <Label styleClass="login-brand-title" text="L’énergie de bouger." />
+            <Label styleClass="login-brand-title" text="La simplicité de tout gérer." />
+        </VBox>
+        <Label styleClass="login-brand-copy" text="Votre espace personnel vous accompagne dans votre parcours sportif." wrapText="true" />
+        <VBox spacing="13" styleClass="login-benefits">
+            <Label styleClass="login-benefit" text="01   Votre abonnement, toujours à portée de main" />
+            <Label styleClass="login-benefit" text="02   Vos séances, réservées en quelques clics" />
+            <Label styleClass="login-benefit" text="03   Vos paiements, consultables à tout moment" />
+        </VBox>
+        <Label styleClass="login-brand-foot" text="UN ESPACE PRIVÉ, CONÇU POUR VOUS" />
+    </VBox>
+    <VBox alignment="CENTER" spacing="17" styleClass="login-form-area" HBox.hgrow="ALWAYS">
+        <padding><Insets bottom="38" left="54" right="54" top="38" /></padding>
+        <VBox maxWidth="370" spacing="7">
+            <Label styleClass="login-title" text="Ravi de vous revoir" />
+            <Label styleClass="login-subtitle" text="Connectez-vous avec les identifiants remis par la salle." wrapText="true" />
+        </VBox>
+        <VBox maxWidth="370" spacing="7">
+            <Label styleClass="login-field-label" text="Nom d’utilisateur" />
+         <HBox alignment="CENTER" prefHeight="38.0" prefWidth="370.0" spacing="5.0" styleClass="member-login-input">
+            <children>
+               <FontAwesomeIconView fill="#0d8276" glyphName="USER" size="20" />
+                  <TextField fx:id="usernameField" prefHeight="38.0" prefWidth="379.0" promptText="Votre identifiant" styleClass="member-login-input-TextField" />
+            </children>
+         </HBox>
+        </VBox>
+        <VBox maxWidth="370" spacing="7">
+            <Label styleClass="login-field-label" text="Mot de passe" />
+         <HBox alignment="CENTER" prefHeight="38.0" prefWidth="370.0" spacing="5.0" styleClass="member-login-input">
+            <children>
+               <FontAwesomeIconView fill="#0d8276" glyphName="LOCK" size="20" />
+                  <PasswordField fx:id="passwordField" onAction="#handleLogin" prefHeight="38.0" prefWidth="369.0" promptText="Votre mot de passe" styleClass="member-login-input-PasswordField" />
+            </children>
+         </HBox>
+        </VBox>
+        <Label fx:id="errorLabel" managed="false" maxWidth="370" styleClass="login-error" visible="false" wrapText="true" />
+        <Button maxWidth="370" onAction="#handleLogin" styleClass="login-submit" text="Accéder à mon espace" />
+        <Button onAction="#handleBack" styleClass="login-back" text="Retour à la connexion du personnel" />
+        <Label styleClass="login-help" text="Besoin d’aide ? Contactez l’accueil de votre salle." wrapText="true" />
+    </VBox>
+</HBox>

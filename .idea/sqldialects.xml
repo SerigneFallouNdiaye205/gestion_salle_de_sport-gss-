@@ -3,5 +3,6 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/com/gss/gss/database/database-test-data.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/gss/gss/database/database.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/gss/gss/database/member-portal-migration.sql" dialect="MySQL" />
   </component>
 </project>

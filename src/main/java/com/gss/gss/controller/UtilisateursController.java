@@ -3,6 +3,7 @@ package com.gss.gss.controller;
 import com.gss.gss.model.Utilisateur;
 import com.gss.gss.service.UtilisateurService;
 import com.gss.gss.security.PermissionManager;
+import com.gss.gss.util.StatusCellFactory;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,6 +47,7 @@ public class UtilisateursController {
                         "INACTIF"
                 )
         );
+        StatusCellFactory.colorStatusOptions(statusComboBox);
 
         typeComboBox.setItems(
                 FXCollections.observableArrayList(
@@ -102,6 +104,7 @@ public class UtilisateursController {
                                 cell.getValue().getStatut()
                         )
         );
+        statutColumn.setCellFactory(StatusCellFactory.redInactiveOrExpired());
     }
 
     private void chargerUtilisateurs() {

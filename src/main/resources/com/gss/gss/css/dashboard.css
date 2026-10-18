@@ -26,7 +26,7 @@
 
 .dashboard-subtitle {
     -fx-text-fill: #d0c7c7;
-    -fx-font-size: 12px;
+    -fx-font-size: 13px;
 }
 
 .session-card {
@@ -44,14 +44,14 @@
 }
 
 .session-user {
-    -fx-text-fill: #d0c7c7;
+    -fx-text-fill: #cfcccc;
     -fx-font-size: 14px;
     -fx-font-weight: 800;
 }
 
 .session-time {
-    -fx-text-fill: #d0c7c7;
-    -fx-font-size: 12px;
+    -fx-text-fill: #cfcccc;
+    -fx-font-size: 14px;
 }
 
 .dashboard-content,
@@ -168,6 +168,10 @@
     -fx-border-radius: 14;
     -fx-padding: 18;
     -fx-effect: dropshadow(gaussian, #17325f0f, 14, 0.14, 0, 3);
+}
+
+.panel-card:hover {
+    -fx-effect: dropshadow(gaussian, #17325f25, 18px, 0px, 0px, 5px);
 }
 
 .panel-title {

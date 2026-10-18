@@ -5,6 +5,7 @@ import com.gss.gss.model.Membre;
 import com.gss.gss.service.AbonnementService;
 import com.gss.gss.service.MembreService;
 import com.gss.gss.security.PermissionManager;
+import com.gss.gss.util.StatusCellFactory;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,7 @@ public class AbonnementController {
     @FXML private Button editButton;
     @FXML private Button renewButton;
     @FXML private Button deleteButton;
+    @FXML private Button memberRequestsButton;
 
     private final AbonnementService abonnementService =
             new AbonnementService();
@@ -52,6 +54,8 @@ public class AbonnementController {
         renewButton.setManaged(canManage);
         deleteButton.setVisible(canManage);
         deleteButton.setManaged(canManage);
+        memberRequestsButton.setVisible(canManage);
+        memberRequestsButton.setManaged(canManage);
 
         typeComboBox.setItems(
                 FXCollections.observableArrayList(
@@ -75,6 +79,7 @@ public class AbonnementController {
 
         typeComboBox.setValue("Tous");
         statutComboBox.setValue("Tous");
+        StatusCellFactory.colorStatusOptions(statutComboBox);
 
         abonnementService.mettreAJourStatutsExpires();
 
@@ -143,6 +148,7 @@ public class AbonnementController {
                                 cell.getValue().getStatut()
                         )
         );
+        statutColumn.setCellFactory(StatusCellFactory.redInactiveOrExpired());
 
         joursRestantsColumn.setCellValueFactory(
                 cell ->
@@ -293,7 +299,6 @@ public class AbonnementController {
             afficherAvertissement("Vous n'avez pas la permission de renouveler les abonnements.");
             return;
         }
-
         Abonnement abonnement =
                 abonnementsTable
                         .getSelectionModel()
@@ -305,6 +310,27 @@ public class AbonnementController {
         }
 
         ouvrirFormulaire(abonnement);
+    }
+
+    @FXML
+    private void handleMemberRequests() {
+        if (!PermissionManager.canManageSubscriptions()) {
+            afficherAvertissement("Vous n'avez pas la permission de traiter les demandes.");
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/com/gss/gss/fxml/member-subscription-requests.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Demandes d'abonnement des membres");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+            chargerAbonnements();
+        } catch (IOException e) {
+            afficherErreur("Impossible d'ouvrir les demandes des membres.");
+        }
     }
 
     private void ouvrirFormulaire(

@@ -135,6 +135,12 @@
             </graphic>
          </Button>
 
+         <Button fx:id="memberAccountButton" onAction="#handleCreateMemberAccount" prefHeight="40" style="-fx-background-color: #0f766e; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand;" text="Activer l'espace membre">
+            <graphic>
+               <FontAwesomeIconView fill="#eff0f5" glyphName="USER" size="15" />
+            </graphic>
+         </Button>
+
          <HBox HBox.hgrow="ALWAYS" />
 
          <Label alignment="CENTER_RIGHT" style="-fx-text-fill: #64748b;

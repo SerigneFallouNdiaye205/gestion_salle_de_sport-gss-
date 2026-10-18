@@ -9,6 +9,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -28,6 +35,7 @@ public class DashboardController {
     @FXML private Button coachesButton;
     @FXML private Button usersButton;
     @FXML private Button reportsButton;
+    @FXML private Button changePasswordButton;
     @FXML private Button logoutButton;
 
 
@@ -263,6 +271,50 @@ public class DashboardController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleChangePassword() {
+        if (!SessionManager.isLoggedIn()) {
+            afficherErreur("Vous devez être connecté pour changer votre mot de passe.");
+            return;
+        }
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Changer mon mot de passe");
+        dialog.setHeaderText("Choisissez un nouveau mot de passe d'au moins 8 caractères.");
+        ButtonType saveButton = new ButtonType("Enregistrer", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButton, ButtonType.CANCEL);
+
+        PasswordField currentPassword = new PasswordField();
+        PasswordField newPassword = new PasswordField();
+        PasswordField confirmation = new PasswordField();
+        currentPassword.setPromptText("Mot de passe actuel");
+        newPassword.setPromptText("8 caractères minimum");
+        confirmation.setPromptText("Confirmer le nouveau mot de passe");
+
+        GridPane fields = new GridPane();
+        fields.setHgap(10);
+        fields.setVgap(10);
+        fields.addRow(0, new Label("Mot de passe actuel :"), currentPassword);
+        fields.addRow(1, new Label("Nouveau mot de passe :"), newPassword);
+        fields.addRow(2, new Label("Confirmation :"), confirmation);
+        dialog.getDialogPane().setContent(fields);
+
+        dialog.showAndWait().filter(saveButton::equals).ifPresent(button -> {
+            try {
+                new com.gss.gss.service.UtilisateurService().changerMonMotDePasse(
+                        currentPassword.getText(), newPassword.getText(), confirmation.getText());
+                new Alert(Alert.AlertType.INFORMATION, "Votre mot de passe a été modifié.").showAndWait();
+            } catch (RuntimeException e) {
+                afficherErreur(e.getMessage());
+            }
+        });
+    }
+
+    private void afficherErreur(String message) {
+        new Alert(Alert.AlertType.ERROR,
+                message == null ? "Une erreur est survenue." : message).showAndWait();
     }
 
 

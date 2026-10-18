@@ -72,6 +72,7 @@
             <FontAwesomeIconView fill="white" glyphName="SIGN_IN" size="15" />
          </graphic>
       </Button>
+      <Button maxHeight="30.0" maxWidth="250.0" mnemonicParsing="false" onAction="#handleMemberLogin" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #0f766e; -fx-background-radius: 6px; -fx-cursor: hand; -fx-font-weight: bold;" text="Espace membre" textFill="WHITE" />
       <Button mnemonicParsing="false" onAction="#handleExit" styleClass="login-exit" text="Quitter" textFill="WHITE">
          <VBox.margin>
             <Insets top="20.0" />

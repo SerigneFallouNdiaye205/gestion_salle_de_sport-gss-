@@ -1,0 +1,368 @@
+.member-root {
+    -fx-background-color: #f3f6fb;
+    -fx-font-family: "Montserrat";}
+
+.member-top {
+    -fx-background-color: #f3f6fb;
+}
+
+.member-hero {
+    -fx-background-color: linear-gradient(to right, #101b36, #18365e);
+    -fx-background-radius: 20;
+    -fx-padding: 24 28;
+    -fx-effect: dropshadow(gaussian, #172b4d26, 20, 0.15, 0, 6);
+}
+
+.hero-eyebrow {
+    -fx-text-fill: #6ee7d0;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.hero-title {
+    -fx-text-fill: white;
+    -fx-font-size: 27px;
+    -fx-font-weight: 800;
+}
+
+.hero-greeting {
+    -fx-text-fill: #dbeafe;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+.hero-description {
+    -fx-text-fill: #b8c6dc;
+    -fx-font-size: 12px;
+}
+
+.hero-ghost-button {
+    -fx-background-color: #ffffff14;
+    -fx-border-color: #ffffff35;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+    -fx-text-fill: #f7faff;
+    -fx-font-size: 11px;
+    -fx-padding: 8 12;
+}
+
+.hero-ghost-button:hover {
+    -fx-background-color: #ffffff26;
+}
+
+.hero-logout-button {
+    -fx-background-color: #fee4e2;
+    -fx-background-radius: 9;
+    -fx-text-fill: #b42318;
+    -fx-font-size: 11px;
+    -fx-padding: 8 12;
+}
+
+.hero-logout-button:hover {
+    -fx-background-color: #fecaca;
+}
+
+.metric-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #e4eaf2;
+    -fx-border-radius: 14;
+    -fx-padding: 13 17;
+    -fx-effect: dropshadow(gaussian, #172b4d0d, 10, 0.1, 0, 2);
+}
+
+.metric-caption {
+    -fx-text-fill: #7a879b;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+
+.metric-value {
+    -fx-text-fill: #142b4e;
+    -fx-font-size: 19px;
+    -fx-font-weight: 800;
+}
+
+.member-tabs {
+    -fx-background-color: transparent;
+    -fx-padding: 0 20 18 20;
+}
+
+.member-tabs > .tab-header-area {
+    -fx-padding: 0 8 0 8;
+}
+
+.member-tabs > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.member-tabs .tab {
+    -fx-background-color: transparent;
+    -fx-padding: 10 18;
+}
+
+.member-tabs .tab:selected {
+    -fx-background-color: white;
+    -fx-background-radius: 11 11 0 0;
+}
+
+.member-tabs .tab .tab-label {
+    -fx-text-fill: #718096;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.member-tabs .tab:selected .tab-label {
+    -fx-text-fill: #166c68;
+}
+
+.member-tabs > .tab-content-area {
+    -fx-background-color: white;
+    -fx-background-radius: 0 14 14 14;
+    -fx-border-color: #e4eaf2;
+    -fx-border-radius: 0 14 14 14;
+}
+
+.member-scroll,
+.member-scroll > .viewport,
+.member-scroll > .corner {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tab-content {
+    -fx-background-color: transparent;
+}
+
+.section-title {
+    -fx-text-fill: #182b49;
+    -fx-font-size: 21px;
+    -fx-font-weight: 800;
+}
+
+.section-subtitle,
+.card-description {
+    -fx-text-fill: #77849a;
+    -fx-font-size: 11px;
+}
+
+.content-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-color: #e7edf4;
+    -fx-border-radius: 14;
+    -fx-padding: 16;
+}
+
+.card-title {
+    -fx-text-fill: #243653;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+}
+
+.notice-text {
+    -fx-background-color: #eff8f6;
+    -fx-background-radius: 10;
+    -fx-padding: 11 14;
+    -fx-text-fill: #39736c;
+    -fx-font-size: 11px;
+}
+
+.member-table {
+    -fx-background-color: white;
+    -fx-border-color: #e7edf4;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 1;
+}
+
+.member-table .column-header-background {
+    -fx-background-color: #f5f8fc;
+    -fx-background-radius: 9 9 0 0;
+}
+
+.member-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #e7edf4 transparent;
+    -fx-padding: 10 8;
+}
+
+.member-table .column-header .label {
+    -fx-text-fill: #718096;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.member-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #f0f3f7 transparent;
+    -fx-cell-size: 40px;
+}
+
+.member-table .table-row-cell:hover {
+    -fx-background-color: #f5faf9;
+}
+
+.member-table .table-row-cell:selected {
+    -fx-background-color: #e3f3f0;
+}
+
+.member-table .table-cell {
+    -fx-text-fill: #34445d;
+    -fx-font-size: 11px;
+    -fx-padding: 7 9;
+    -fx-border-color: transparent;
+}
+
+.member-input {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #dce5ef;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+    -fx-padding: 9 11;
+}
+
+.primary-button {
+    -fx-background-color: #0d8276;
+    -fx-background-radius: 9;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+    -fx-padding: 10 15;
+}
+
+.primary-button:hover {
+    -fx-background-color: #086b62;
+}
+
+.primary-button:disabled,
+.danger-button:disabled {
+    -fx-opacity: 0.48;
+}
+
+.danger-button {
+    -fx-background-color: #fff0ef;
+    -fx-background-radius: 9;
+    -fx-text-fill: #b42318;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+    -fx-padding: 10 15;
+}
+
+.danger-button:hover {
+    -fx-background-color: #fee2e2;
+}
+
+.member-login-root {
+    -fx-background-color: white;
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+.login-brand-panel {
+    -fx-background-color: linear-gradient(to bottom right, #101b36, #1a4169);
+    -fx-background-radius: 0 20 20 0;
+}
+
+.login-brand {
+    -fx-text-fill: #70e1ce;
+    -fx-font-size: 14px;
+    -fx-font-weight: 900;
+}
+
+.login-brand-title {
+    -fx-text-fill: white;
+    -fx-font-size: 27px;
+    -fx-font-weight: 800;
+}
+
+.login-brand-copy {
+    -fx-text-fill: #c0cee2;
+    -fx-font-size: 13px;
+    -fx-line-spacing: 4px;
+}
+
+.login-benefits {
+    -fx-background-color: #ffffff12;
+    -fx-background-radius: 13;
+    -fx-padding: 17;
+}
+
+.login-benefit {
+    -fx-text-fill: #e5edf8;
+    -fx-font-size: 11px;
+}
+
+.login-brand-foot {
+    -fx-text-fill: #83d7cb;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+
+.login-form-area {
+    -fx-background-color: white;
+}
+
+.login-title {
+    -fx-text-fill: #172944;
+    -fx-font-size: 27px;
+    -fx-font-weight: 800;
+}
+
+.login-subtitle,
+.login-help {
+    -fx-text-fill: #7a879a;
+    -fx-font-size: 11px;
+}
+
+.login-field-label {
+    -fx-text-fill: #3d4c63;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+
+.member-login-input {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #dce5ef;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+    -fx-font-size: 12px;
+    -fx-padding: 0 0 0 10;
+}
+
+.member-login-input-TextField,
+.member-login-input-PasswordField{
+    -fx-background-color: #f8fafc;
+}
+
+.member-login-input:focused {
+    -fx-border-color: #0d8276;
+    -fx-effect: dropshadow(gaussian, #0d827622, 10, 0.15, 0, 1);
+}
+
+.login-submit {
+    -fx-background-color: #0d8276;
+    -fx-background-radius: 9;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-padding: 12 16;
+}
+
+.login-submit:hover {
+    -fx-background-color: #086b62;
+}
+
+.login-back {
+    -fx-background-color: transparent;
+    -fx-text-fill: #53647d;
+    -fx-font-size: 11px;
+}
+
+.login-back:hover {
+    -fx-text-fill: #0d8276;
+}
+
+.login-error {
+    -fx-text-fill: #b42318;
+    -fx-font-size: 11px;
+}

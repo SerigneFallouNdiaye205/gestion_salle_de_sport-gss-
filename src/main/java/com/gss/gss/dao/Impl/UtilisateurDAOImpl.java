@@ -411,6 +411,24 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         }
     }
 
+    @Override
+    public boolean changePassword(int id, String currentHash, String newHash) {
+        String sql = """
+                UPDATE utilisateurs
+                SET password = ?
+                WHERE id = ? AND password = ? AND statut = 'ACTIF'
+                """;
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, newHash);
+            statement.setInt(2, id);
+            statement.setString(3, currentHash);
+            return statement.executeUpdate() == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erreur lors du changement de mot de passe.", e);
+        }
+    }
+
 
     @Override
     public boolean delete(int id) {

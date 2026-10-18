@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="900.0" prefWidth="1120.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
+<BorderPane prefHeight="900.0" prefWidth="1120.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.HomeController">
     <stylesheets>
         <URL value="@../css/dashboard.css" />
     </stylesheets>
@@ -263,14 +263,14 @@
                    <Label styleClass="dashboard-subtitle" text="Suivez l'activité de votre salle en un coup d'œil." textFill="#d0c7c7" />
                </VBox>
                <Region prefHeight="50.0" prefWidth="294.0" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="292.0" spacing="10.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="79.0" prefWidth="429.0" spacing="10.0">
                <children>
                      <Label prefHeight="20.0" prefWidth="20.0" styleClass="session-time">
                          <graphic>
                              <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="20" wrappingWidth="20.857139587402344" />
                          </graphic>
                      </Label>
-                  <Label fx:id="localDateTime" prefHeight="14.0" prefWidth="103.0" styleClass="session-time" />
+                  <Label fx:id="localDateTime" prefHeight="17.0" prefWidth="169.0" styleClass="session-time" />
                    <Label prefHeight="16.0" prefWidth="0.0" style="-fx-background-color: #ffff; -fx-background-radius: 100px;" textFill="#080e48">
                        <graphic>
                            <FontAwesomeIconView fill="#7c7e84" glyphName="USER" size="20" />

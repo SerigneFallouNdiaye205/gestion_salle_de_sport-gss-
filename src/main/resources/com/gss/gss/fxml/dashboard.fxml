@@ -15,18 +15,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="container" prefHeight="618.0" prefWidth="950.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.DashboardController">
+<BorderPane fx:id="container" prefHeight="618.0" prefWidth="950.0" styleClass="dashboard-page" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.DashboardController">
     <stylesheets>
         <URL value="@../css/style.css" />
         <URL value="@../css/dashboard.css" />
     </stylesheets>
 
     <left>
-        <VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: #080e48;" styleClass="dashboard-sidebar" BorderPane.alignment="CENTER">
+        <VBox prefHeight="705.0" prefWidth="217.0" spacing="6.0" style="-fx-background-color: #080e48;" styleClass="dashboard-sidebar" BorderPane.alignment="CENTER">
             <padding>
                 <Insets bottom="20" left="15" right="15" top="25" />
             </padding>
-            <ImageView fitHeight="62.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../images/logoGymFit.png" />
             </ImageView>
             <Label fx:id="roleLabel" style="-fx-text-fill: #9ca3af;             -fx-font-size: 13px;" text="Utilisateur" />
@@ -103,6 +103,12 @@
 
             <Separator />
 
+            <Button fx:id="changePasswordButton" alignment="CENTER_LEFT" maxWidth="250" onAction="#handleChangePassword" prefHeight="42" styleClass="nav-button" text="Changer mot de passe">
+                <graphic>
+                    <FontAwesomeIconView fill="#eff0f5" glyphName="LOCK" size="18" />
+                </graphic>
+            </Button>
+
             <Button fx:id="logoutButton" alignment="CENTER" maxWidth="250" onAction="#handleLogout" prefHeight="42" styleClass="logout-button" text="Déconnexion" textFill="WHITE">
                 <graphic>
                     <FontAwesomeIconView fill="#dc2626" glyphName="SIGN_OUT" size="20" />
@@ -121,7 +127,7 @@
                 <VBox prefHeight="469.0" prefWidth="595.0" spacing="25" style="-fx-background-color: #f3f4f6;" styleClass="dashboard-content">
                     <ScrollPane prefHeight="655.0" prefWidth="717.0" styleClass="dashboard-scroll">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="649.0" prefWidth="713.0">
-                            <StackPane fx:id="contentPane" layoutX="-134.0" layoutY="51.0" prefHeight="400.0" prefWidth="950.0" style="-fx-background-color: #eff0f5;" styleClass="content-card" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <StackPane fx:id="contentPane" layoutX="-3.0" layoutY="51.0" prefHeight="649.0" prefWidth="819.0" style="-fx-background-color: #eff0f5;" styleClass="content-card" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                             </StackPane>
                         </AnchorPane>
                     </ScrollPane>

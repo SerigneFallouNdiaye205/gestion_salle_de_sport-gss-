@@ -4,6 +4,7 @@ import com.gss.gss.model.Abonnement;
 import com.gss.gss.model.Membre;
 import com.gss.gss.service.AbonnementService;
 import com.gss.gss.service.MembreService;
+import com.gss.gss.util.StatusCellFactory;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -66,6 +67,7 @@ public class AbonnementFormController {
         );
 
         statutComboBox.setValue("ACTIF");
+        StatusCellFactory.colorStatusOptions(statutComboBox);
 
         dateDebutPicker.setValue(
                 LocalDate.now()

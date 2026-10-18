@@ -67,6 +67,21 @@ public class LoginController {
         stage.show();
     }
 
+    @FXML
+    private void handleMemberLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/com/gss/gss/fxml/member-login.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("GSS - Espace membre");
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            showError("Impossible d'ouvrir l'espace membre.");
+        }
+    }
+
 
     private void showError(String message) {
         errorLabel.setText(message);

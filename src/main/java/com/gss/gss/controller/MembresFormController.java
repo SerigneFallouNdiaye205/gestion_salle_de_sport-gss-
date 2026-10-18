@@ -2,6 +2,7 @@ package com.gss.gss.controller;
 
 import com.gss.gss.model.Membre;
 import com.gss.gss.service.MembreService;
+import com.gss.gss.util.StatusCellFactory;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -43,6 +44,7 @@ public class MembresFormController {
         );
 
         statutComboBox.setValue("ACTIF");
+        StatusCellFactory.colorStatusOptions(statutComboBox);
 
         dateInscriptionPicker.setValue(
                 LocalDate.now()

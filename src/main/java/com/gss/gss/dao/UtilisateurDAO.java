@@ -25,5 +25,7 @@ public interface UtilisateurDAO {
 
     boolean update(Utilisateur utilisateur);
 
+    boolean changePassword(int id, String currentHash, String newHash);
+
     boolean delete(int id);
 }

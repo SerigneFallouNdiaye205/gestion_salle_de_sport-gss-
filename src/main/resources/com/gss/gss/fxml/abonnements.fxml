@@ -122,6 +122,8 @@
                     </graphic>
             </Button>
 
+            <Button fx:id="memberRequestsButton" onAction="#handleMemberRequests" prefHeight="40.0" style="-fx-background-color: #0f766e; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6px; -fx-cursor: hand;" text="Demandes des membres" />
+
             <HBox HBox.hgrow="ALWAYS" />
 
             <Label alignment="CENTER_RIGHT" style="-fx-text-fill: #64748b;                           -fx-font-size: 12px;" text="Sélectionnez un abonnement pour effectuer une action." />

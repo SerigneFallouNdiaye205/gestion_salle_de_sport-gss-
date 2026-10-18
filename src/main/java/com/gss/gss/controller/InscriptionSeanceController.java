@@ -8,6 +8,7 @@ import com.gss.gss.service.MembreService;
 import com.gss.gss.service.SeanceService;
 import com.gss.gss.security.SessionManager;
 import com.gss.gss.security.PermissionManager;
+import com.gss.gss.util.StatusCellFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,6 +69,7 @@ public class InscriptionSeanceController {
         colDateSeance.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().dateSeance()));
         colDateInscription.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().dateInscription()));
         colStatut.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().statut()));
+        colStatut.setCellFactory(StatusCellFactory.redInactiveOrExpired());
     }
 
     @FXML

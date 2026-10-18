@@ -5,6 +5,7 @@ import com.gss.gss.model.Membre;
 import com.gss.gss.service.MembreService;
 import com.gss.gss.service.PaiementService;
 import com.gss.gss.security.PermissionManager;
+import com.gss.gss.util.StatusCellFactory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -149,6 +150,7 @@ public class PaiementsController {
                                 cellData.getValue().getStatut()
                         )
         );
+        statutColumn.setCellFactory(StatusCellFactory.redInactiveOrExpired());
 
         referenceColumn.setCellValueFactory(
                 cellData ->

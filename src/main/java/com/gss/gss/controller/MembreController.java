@@ -4,6 +4,8 @@ import com.gss.gss.model.Membre;
 import com.gss.gss.service.MembreService;
 import com.gss.gss.security.PermissionManager;
 import com.gss.gss.security.SessionManager;
+import com.gss.gss.service.EspaceMembreService;
+import com.gss.gss.util.StatusCellFactory;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,9 +35,11 @@ public class MembreController {
     @FXML private Button addButton;
     @FXML private Button editButton;
     @FXML private Button deleteButton;
+    @FXML private Button memberAccountButton;
 
     private final MembreService membreService =
             new MembreService();
+    private final EspaceMembreService espaceMembreService = new EspaceMembreService();
     private boolean coach;
     private int coachId;
 
@@ -52,6 +57,8 @@ public class MembreController {
             editButton.setManaged(false);
             deleteButton.setVisible(false);
             deleteButton.setManaged(false);
+            memberAccountButton.setVisible(false);
+            memberAccountButton.setManaged(false);
         } else if (!PermissionManager.canManageMembers()) {
             addButton.setVisible(false);
             addButton.setManaged(false);
@@ -59,6 +66,8 @@ public class MembreController {
             editButton.setManaged(false);
             deleteButton.setVisible(false);
             deleteButton.setManaged(false);
+            memberAccountButton.setVisible(false);
+            memberAccountButton.setManaged(false);
         }
 
         statusComboBox.setItems(
@@ -70,6 +79,7 @@ public class MembreController {
         );
 
         statusComboBox.setValue("Tous");
+        StatusCellFactory.colorStatusOptions(statusComboBox);
 
         chargerMembres();
     }
@@ -128,6 +138,7 @@ public class MembreController {
                                 cell.getValue().getStatut()
                         )
         );
+        statutColumn.setCellFactory(StatusCellFactory.redInactiveOrExpired());
     }
 
     private void chargerMembres() {
@@ -205,7 +216,6 @@ public class MembreController {
             afficherAvertissement("La suppression des membres est réservée à l'administration et à la réception.");
             return;
         }
-
         Membre membre =
                 membersTable.getSelectionModel().getSelectedItem();
 
@@ -256,6 +266,58 @@ public class MembreController {
                         }
                     }
                 });
+    }
+
+    @FXML
+    private void handleCreateMemberAccount() {
+        if (!PermissionManager.canManageMembers()) {
+            afficherAvertissement("Seul le personnel autorisé peut activer un espace membre.");
+            return;
+        }
+        Membre membre = membersTable.getSelectionModel().getSelectedItem();
+        if (membre == null) {
+            afficherAvertissement("Veuillez sélectionner un membre actif.");
+            return;
+        }
+        if (!"ACTIF".equalsIgnoreCase(membre.getStatut())) {
+            afficherAvertissement("Un compte ne peut être créé que pour un membre actif.");
+            return;
+        }
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Activer l'espace membre");
+        dialog.setHeaderText("Créer ou réinitialiser l'accès de "
+                + membre.getPrenom() + " " + membre.getNom());
+        ButtonType createButton = new ButtonType("Enregistrer les identifiants", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(createButton, ButtonType.CANCEL);
+
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Nom d'utilisateur");
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("8 caractères minimum");
+        PasswordField confirmationField = new PasswordField();
+        confirmationField.setPromptText("Confirmer le mot de passe");
+        GridPane fields = new GridPane();
+        fields.setHgap(10);
+        fields.setVgap(10);
+        fields.addRow(0, new Label("Identifiant :"), usernameField);
+        fields.addRow(1, new Label("Mot de passe initial :"), passwordField);
+        fields.addRow(2, new Label("Confirmation :"), confirmationField);
+        dialog.getDialogPane().setContent(fields);
+
+        dialog.showAndWait().filter(createButton::equals).ifPresent(button -> {
+            String password = passwordField.getText();
+            if (!password.equals(confirmationField.getText())) {
+                afficherErreur("Les mots de passe ne correspondent pas.");
+                return;
+            }
+            try {
+                espaceMembreService.creerCompte(membre.getId(), usernameField.getText(), password);
+                afficherInformation("Les identifiants de l'espace membre sont prêts. Remettez-les au membre de manière confidentielle.");
+            } catch (RuntimeException e) {
+                afficherErreur(e.getMessage());
+            }
+        });
     }
 
     private void ouvrirFormulaire(Membre membre) {

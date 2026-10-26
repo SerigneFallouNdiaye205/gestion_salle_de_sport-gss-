@@ -14,30 +14,34 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" prefHeight="650.0" styleClass="member-root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MemberSpaceController">
+<VBox alignment="TOP_CENTER" prefHeight="650.0" spacing="18.0" styleClass="member-root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MemberSpaceController">
     <stylesheets>
         <URL value="@../css/member-space.css" />
     </stylesheets>
-    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-        <VBox alignment="CENTER">
+   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+      <children>
+             <HBox alignment="CENTER" prefHeight="106.0" prefWidth="200.0" spacing="18" styleClass="member-hero" VBox.vgrow="ALWAYS">
+                 <VBox prefHeight="115.0" prefWidth="595.0" spacing="7" HBox.hgrow="ALWAYS">
+                     <Label styleClass="hero-eyebrow" text="GYMFIT  /  ESPACE MEMBRE" />
+                     <Label styleClass="hero-title" text="Votre espace. Votre rythme." />
+                     <Label fx:id="welcomeLabel" styleClass="hero-greeting" text="Bienvenue" />
+                     <Label styleClass="hero-description" text="Retrouvez vos abonnements, vos séances et vos paiements au même endroit." wrapText="true" />
+                 </VBox>
+            <Region prefHeight="115.0" prefWidth="183.0" />
+                 <VBox alignment="CENTER_RIGHT" prefHeight="115.0" prefWidth="240.0" spacing="10">
+                     <Button onAction="#handleRefresh" styleClass="hero-ghost-button" text="Actualiser" />
+                     <Button onAction="#handleChangePassword" styleClass="hero-ghost-button" text="Changer mon mot de passe" />
+                     <Button onAction="#handleLogout" styleClass="hero-logout-button" text="Déconnexion" />
+                 </VBox>
+             </HBox>
+      </children>
+      <padding>
+         <Insets bottom="5.0" left="28.0" right="18.0" top="22.0" />
+      </padding>
+   </VBox>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="443.0" prefWidth="1064.0" style="-fx-background-color: #f3f6fb;;" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" style="-fx-background-color: #f3f6fb;;">
             <VBox alignment="CENTER" spacing="18" styleClass="member-top" VBox.vgrow="ALWAYS">
-                <padding>
-                    <Insets bottom="18" left="28" right="28" top="22" />
-                </padding>
-                <HBox alignment="CENTER" prefHeight="106.0" prefWidth="200.0" spacing="18" styleClass="member-hero" VBox.vgrow="ALWAYS">
-                    <VBox prefHeight="115.0" prefWidth="595.0" spacing="7" HBox.hgrow="ALWAYS">
-                        <Label styleClass="hero-eyebrow" text="GYMFIT  /  ESPACE MEMBRE" />
-                        <Label styleClass="hero-title" text="Votre espace. Votre rythme." />
-                        <Label fx:id="welcomeLabel" styleClass="hero-greeting" text="Bienvenue" />
-                        <Label styleClass="hero-description" text="Retrouvez vos abonnements, vos séances et vos paiements au même endroit." wrapText="true" />
-                    </VBox>
-               <Region prefHeight="115.0" prefWidth="183.0" />
-                    <VBox alignment="CENTER_RIGHT" prefHeight="115.0" prefWidth="240.0" spacing="10">
-                        <Button onAction="#handleRefresh" styleClass="hero-ghost-button" text="Actualiser" />
-                        <Button onAction="#handleChangePassword" styleClass="hero-ghost-button" text="Changer mon mot de passe" />
-                        <Button onAction="#handleLogout" styleClass="hero-logout-button" text="Déconnexion" />
-                    </VBox>
-                </HBox>
                 <HBox spacing="12" styleClass="metric-row">
                     <VBox spacing="5" styleClass="metric-card" HBox.hgrow="ALWAYS">
                         <Label styleClass="metric-caption" text="ABONNEMENT ACTIF" />
@@ -56,15 +60,15 @@
                         <Label fx:id="pendingRequestMetric" styleClass="metric-value" text="0" />
                     </VBox>
                 </HBox>
+            <padding>
+               <Insets bottom="18.0" />
+            </padding>
             </VBox>
 
             <TabPane styleClass="member-tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                 <Tab text="Abonnements">
                     <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="member-scroll">
                         <VBox spacing="18" styleClass="tab-content">
-                            <padding>
-                                <Insets bottom="28" left="28" right="28" top="22" />
-                            </padding>
                             <VBox spacing="5">
                                 <Label styleClass="section-title" text="Mes abonnements" />
                                 <Label styleClass="section-subtitle" text="Consultez vos formules et suivez vos demandes." />
@@ -105,7 +109,7 @@
                     <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="member-scroll">
                         <VBox prefHeight="750.0" spacing="18" styleClass="tab-content">
                             <padding>
-                                <Insets bottom="28" left="28" right="28" top="22" />
+                                <Insets top="22.0" />
                             </padding>
                             <VBox spacing="5">
                                 <Label styleClass="section-title" text="Bougez à votre façon" />
@@ -154,7 +158,7 @@
                     <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="member-scroll">
                         <VBox spacing="18" styleClass="tab-content">
                             <padding>
-                                <Insets bottom="28" left="28" right="28" top="22" />
+                                <Insets top="22.0" />
                             </padding>
                             <VBox spacing="5">
                                 <Label styleClass="section-title" text="Mon historique de paiements" />
@@ -176,6 +180,9 @@
                     </ScrollPane>
                 </Tab>
             </TabPane>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="28.0" />
+         </padding>
         </VBox>
     </ScrollPane>
 

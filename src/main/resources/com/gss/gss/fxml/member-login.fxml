@@ -12,7 +12,7 @@
 
 <HBox alignment="CENTER" prefHeight="580.0" prefWidth="940.0" styleClass="member-login-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gss.gss.controller.MemberLoginController">
     <stylesheets><URL value="@../css/member-space.css" /></stylesheets>
-    <VBox alignment="CENTER_LEFT" prefWidth="390" spacing="18" styleClass="login-brand-panel">
+    <VBox alignment="CENTER_LEFT" prefHeight="580.0" prefWidth="440.0" spacing="18" styleClass="login-brand-panel">
         <padding><Insets bottom="48" left="42" right="42" top="48" /></padding>
         <Label styleClass="login-brand" text="GYMFIT" />
         <VBox spacing="8">
@@ -20,8 +20,8 @@
             <Label styleClass="login-brand-title" text="La simplicité de tout gérer." />
         </VBox>
         <Label styleClass="login-brand-copy" text="Votre espace personnel vous accompagne dans votre parcours sportif." wrapText="true" />
-        <VBox spacing="13" styleClass="login-benefits">
-            <Label styleClass="login-benefit" text="01   Votre abonnement, toujours à portée de main" />
+        <VBox prefHeight="103.0" prefWidth="329.0" spacing="13" styleClass="login-benefits">
+            <Label prefHeight="14.0" prefWidth="296.0" styleClass="login-benefit" text="01   Votre abonnement, toujours à portée de main" />
             <Label styleClass="login-benefit" text="02   Vos séances, réservées en quelques clics" />
             <Label styleClass="login-benefit" text="03   Vos paiements, consultables à tout moment" />
         </VBox>
@@ -52,7 +52,10 @@
          </HBox>
         </VBox>
         <Label fx:id="errorLabel" managed="false" maxWidth="370" styleClass="login-error" visible="false" wrapText="true" />
-        <Button maxWidth="370" onAction="#handleLogin" styleClass="login-submit" text="Accéder à mon espace" />
+        <Button graphicTextGap="7.0" maxWidth="370" onAction="#handleLogin" styleClass="login-submit" text="Accéder à mon espace">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="SIGN_IN" size="16" />
+         </graphic></Button>
         <Button onAction="#handleBack" styleClass="login-back" text="Retour à la connexion du personnel" />
         <Label styleClass="login-help" text="Besoin d’aide ? Contactez l’accueil de votre salle." wrapText="true" />
     </VBox>

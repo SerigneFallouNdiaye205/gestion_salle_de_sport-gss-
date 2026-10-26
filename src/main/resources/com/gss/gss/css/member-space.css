@@ -1,6 +1,7 @@
 .member-root {
     -fx-background-color: #f3f6fb;
-    -fx-font-family: "Montserrat";}
+    -fx-font-family: "Montserrat";
+}
 
 .member-top {
     -fx-background-color: #f3f6fb;
@@ -255,7 +256,7 @@
 
 .member-login-root {
     -fx-background-color: white;
-    -fx-font-family: "Segoe UI", "Arial";
+    -fx-font-family: "Montserrat";
 }
 
 .login-brand-panel {
@@ -271,7 +272,7 @@
 
 .login-brand-title {
     -fx-text-fill: white;
-    -fx-font-size: 27px;
+    -fx-font-size: 25px;
     -fx-font-weight: 800;
 }
 
